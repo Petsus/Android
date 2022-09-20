@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Petsus</string>
+
+    <string name="error_generic">Unable to complete action</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create account</string>
+    <string name="invalid_email">Email invalid</string>
+    <string name="reset_password">Reset password</string>
+    <string name="home">Home</string>
+    <string name="clinic">Clinic</string>
+    <string name="animal">Animal</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="address">Address</string>
+    <string name="login_google">Login Google</string>
 </resources>

@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -16,18 +20,25 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    viewBinding {
+        enabled true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField("base_url", "String", "http://10.2.2.2:8080")
+            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
+            manifestPlaceholders = [ BASE_HOST : "10.0.2.2", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
         }
         dev {
-            buildConfigField("base_url", "String", "http://10.2.2.2:8080")
+            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
+            manifestPlaceholders = [ BASE_HOST : "10.0.2.2", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
         }
         debug {
-            buildConfigField("base_url", "String", "http://10.2.2.2:8080")
+            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
+            manifestPlaceholders = [ BASE_HOST : "10.0.2.2", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
         }
     }
     compileOptions {
@@ -42,13 +53,34 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0')
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1')
+
+    implementation('androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1')
+    implementation('androidx.lifecycle:lifecycle-livedata-ktx:2.5.1')
+
+    implementation('androidx.fragment:fragment-ktx:1.5.2')
+
     implementation('com.squareup.retrofit2:retrofit:2.1.0')
     implementation('com.squareup.retrofit2:converter-gson:2.1.0')
     implementation('com.squareup.okhttp3:logging-interceptor:3.4.1')
+
+//    implementation('com.github.RedMadRobot:input-mask-android:6.1.0')
+
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation('com.google.firebase:firebase-analytics-ktx')
+    implementation('com.google.firebase:firebase-crashlytics-ktx')
+    implementation('com.google.firebase:firebase-messaging-ktx')
+
+    implementation('com.google.android.gms:play-services-auth:20.3.0')
+    implementation('com.google.android.gms:play-services-maps:18.1.0')
+    implementation('com.google.android.gms:play-services-location:20.0.0')
 }

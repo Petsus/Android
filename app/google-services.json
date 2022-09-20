@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "593020941743",
+    "project_id": "tcc-petsus",
+    "storage_bucket": "tcc-petsus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593020941743:android:3a1536d33ee18e4c77eb5a",
+        "android_client_info": {
+          "package_name": "br.com.petsus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593020941743-f22in82tne1je1li3f7ucm3a9hoih0c8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.petsus",
+            "certificate_hash": "069585044571a9a89eb0d8dad34f50a1a13b6420"
+          }
+        },
+        {
+          "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX0UHg-VM_WEHFVdJppSTNUIKXXs1h27Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
