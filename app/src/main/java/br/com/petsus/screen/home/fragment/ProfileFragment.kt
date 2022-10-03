@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.com.petsus.AppApplication
 import br.com.petsus.R
 import br.com.petsus.databinding.FragmentProfileBinding
+import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.screen.profile.EditProfileActivity
 import br.com.petsus.util.base.fragment.BaseFragment
+import br.com.petsus.util.tool.cast
 import com.bumptech.glide.Glide
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
@@ -40,7 +43,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
 
         binding?.logoutMenu?.setOnClickListener {
-
+            activity?.application?.cast<AppApplication>()?.sessionManager?.token = null
+            context?.apply {
+                startActivity(
+                    Intent(this, LoginActivity::class.java)
+                )
+            }
         }
     }
 
