@@ -2,9 +2,10 @@ package br.com.petsus.util.base.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import br.com.petsus.R
 import br.com.petsus.databinding.ActivityHomeBinding
-import br.com.petsus.screen.home.ClinicFragment
+import br.com.petsus.screen.home.clinics.ClinicFragment
 import br.com.petsus.screen.home.fragment.HomeFragment
 import br.com.petsus.screen.home.fragment.ProfileFragment
 
@@ -39,9 +40,10 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun replace(fragment: Class<out Fragment>) {
-        supportFragmentManager.beginTransaction()
-            .replace(binding.homeContainer.id, fragment.newInstance())
-            .commit()
+        supportFragmentManager.commit {
+            setCustomAnimations(R.anim.full_enter_fragment, R.anim.full_exit_fragment, R.anim.full_pop_enter_fragment, R.anim.full_pop_exit_fragment)
+            replace(binding.homeContainer.id, fragment.newInstance())
+        }
     }
 
 }

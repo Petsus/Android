@@ -10,6 +10,7 @@ import br.com.petsus.api.model.user.User
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 
 interface UserRepository {
@@ -24,4 +25,7 @@ interface UserRepository {
 
     @GET("user")
     fun getUser(): Call<BaseResponse<User>>
+
+    @PATCH("user")
+    fun update(): Call<EmptyResponse>
 }

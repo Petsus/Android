@@ -7,6 +7,10 @@ class EditProfileViewModel(
     private val repository: APIRepository
 ) : ViewModelLiveData() {
 
-    fun get() = repository.user().getUser().toLiveData()
+    fun get() =
+        repository.user().getUser().toLiveData()
+
+    fun update() =
+        repository.user().update().toLiveData()
 
 }

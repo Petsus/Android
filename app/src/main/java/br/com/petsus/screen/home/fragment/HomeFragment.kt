@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.petsus.databinding.FragmentHomeBinding
-import br.com.petsus.util.base.BaseFragment
+import br.com.petsus.util.base.fragment.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 

@@ -20,7 +20,7 @@ class LoginViewModel(
     fun updatePassword(email: String?, password: String?, token: String?) =
         repository.user().changePassword(ChangePassword(email = email, password = password, token = token)).toLiveData()
 
-    fun createUser(name: String?, email: String?, password: String?) =
-        repository.user().createUser(CreateUser(name = name, email = email, password = password)).toLiveData()
+    fun createUser(name: String?, email: String?, password: String?, phone: String?) =
+        repository.user().createUser(CreateUser(name = name, email = email, password = password, phone = phone)).toLiveData()
 
 }

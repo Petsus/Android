@@ -15,10 +15,9 @@ import androidx.core.content.edit
 import br.com.petsus.R
 import br.com.petsus.api.model.base.ErrorResponse
 import br.com.petsus.util.base.viewmodel.StringFormatter
+import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import okhttp3.MediaType
 import okhttp3.ResponseBody
-import java.util.regex.Pattern
 import kotlin.math.roundToInt
 
 val Context.sharedPreferences: SharedPreferences
@@ -74,6 +73,9 @@ fun ResponseBody?.evaluateError(): StringFormatter {
 
     return defaultResponse
 }
+
+val TextInputLayout.text: String?
+    get() = editText?.text?.toString()
 
 fun Toolbar.listenerDismiss(activity: Activity?) {
     setNavigationOnClickListener {

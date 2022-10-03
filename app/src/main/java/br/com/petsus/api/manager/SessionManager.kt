@@ -41,7 +41,7 @@ class SessionManager(
     @WorkerThread
     fun fetchToken(): AuthToken? {
         val currentToken = weakContext.get()?.sharedPreferences?.getObject<AuthToken>(Keys.KEY_TOKEN.valueKey) ?: return null
-        if (currentToken.expiration < System.currentTimeMillis())
+        if (currentToken.expiration >= System.currentTimeMillis())
             return currentToken
         return api.create(AuthRepository::class.java).refreshToken(RefreshToken(token = currentToken.token))?.execute()?.run {
             when {

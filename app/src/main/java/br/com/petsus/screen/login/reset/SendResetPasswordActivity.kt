@@ -34,7 +34,7 @@ class SendResetPasswordActivity : BaseActivity() {
         binding.resetPassword.setOnClickListener {
             it.preventDoubleClick()
 
-            showLoading()
+            loading()
             viewModel.updatePassword(
                 email = email,
                 password = binding.inputPassword.editText?.text?.toString(),

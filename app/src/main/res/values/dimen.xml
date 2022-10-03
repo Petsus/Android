@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_default_x0.25">8dp</dimen>
+    <dimen name="margin_default_x0.5">16dp</dimen>
+    <dimen name="margin_default">32dp</dimen>
+    <dimen name="margin_default_x2">64dp</dimen>
+
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="padding_default_x2">16dp</dimen>
+
+    <dimen name="divider_height">1dp</dimen>
 
     <dimen name="button_height">56dp</dimen>
+    <dimen name="button_radius">28dp</dimen>
+    <dimen name="button_radius_square">14dp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+
+    <dimen name="button_height_flat">30dp</dimen>
+    <dimen name="button_text_size_flat">14sp</dimen>
+
+    <dimen name="radius_default">16dp</dimen>
+
+    <dimen name="text_h0">28sp</dimen>
+    <dimen name="text_h1">24sp</dimen>
+    <dimen name="text_h2">16sp</dimen>
+    <dimen name="text_h3">12sp</dimen>
+
+    <dimen name="icon_size">32dp</dimen>
+    <dimen name="icon_size_large">128dp</dimen>
 
 </resources>

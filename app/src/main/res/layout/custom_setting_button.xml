@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/margin_default"
+    android:paddingVertical="@dimen/margin_default_x0.5">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/setting_button_icon"
+        style="@style/AppTheme.Petsus.Text.H1"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:tint="@color/md_theme_dark_onBackground"
+        tools:src="@drawable/icon_error" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/setting_button_title"
+        style="@style/AppTheme.Petsus.Text.H2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_x0.5"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="1"
+        tools:text="Subtitle" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

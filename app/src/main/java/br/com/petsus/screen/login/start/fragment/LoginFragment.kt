@@ -2,11 +2,14 @@ package br.com.petsus.screen.login.start.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.updatePadding
 import androidx.lifecycle.LiveData
 import br.com.petsus.R
 import br.com.petsus.api.model.auth.AuthToken
@@ -14,7 +17,7 @@ import br.com.petsus.api.model.base.BaseResponse
 import br.com.petsus.databinding.FragmentLoginBinding
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.screen.login.start.LoginViewModel
-import br.com.petsus.util.base.BaseFragment
+import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.base.activity.HomeActivity
 import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.*
@@ -23,6 +26,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    private val rootView: View by lazy {
+        requireActivity().findViewById(android.R.id.content)
+    }
+
+    private val listenerKeyboard = ViewTreeObserver.OnGlobalLayoutListener {
+        val visibleBounds = Rect()
+        rootView.getWindowVisibleDisplayFrame(visibleBounds)
+        val heightDiff = rootView.height - visibleBounds.height()
+
+        binding?.root?.updatePadding(bottom = heightDiff)
+    }
 
     private val viewModel: LoginViewModel by appViewModels()
 
@@ -47,10 +62,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         configureView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        rootView.viewTreeObserver.addOnGlobalLayoutListener(listenerKeyboard)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        rootView.viewTreeObserver.removeOnGlobalLayoutListener(listenerKeyboard)
+    }
+
     private fun configureView() {
         binding?.login?.setOnClickListener {
             it.preventDoubleClick()
-            showLoading()
+            loading()
 
             viewModel.login(
                 email = binding?.inputEmail?.editText?.text?.toString(),
@@ -65,18 +90,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             activity?.cast<LoginActivity>()?.goTo(ResetFragment())
         }
         binding?.loginGoogle?.setOnClickListener {
-            showLoading()
-            val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestServerAuthCode(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-            requestLoginGoogle.launch(GoogleSignIn.getClient(requireActivity(), signInOptions).signInIntent)
+//            loading()
+//            val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestServerAuthCode(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build()
+//            requestLoginGoogle.launch(GoogleSignIn.getClient(requireActivity(), signInOptions).signInIntent)
         }
     }
 
     private fun LiveData<BaseResponse<AuthToken>>.observer() {
         observe(viewLifecycleOwner) { response ->
-            dismissLoading()
+            closeLoading()
             context?.apply {
                 sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, response.data)
                 startActivity(

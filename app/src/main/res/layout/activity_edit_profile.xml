@@ -6,10 +6,12 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_edit_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@color/cardview_dark_background"
-        app:title="@string/profile" />
+        app:navigationIcon="@drawable/icon_back"
+        app:title="@string/profile"
+        app:titleTextColor="@color/md_theme_dark_onBackground" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,13 +27,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
+                android:hint="@string/name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderText="@string/name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/md_theme_dark_onBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,13 +46,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
+                android:hint="@string/email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_name">
+                app:layout_constraintTop_toBottomOf="@id/input_name"
+                app:placeholderText="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/md_theme_dark_onBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,21 +65,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
+                android:hint="@string/phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_email">
+                app:layout_constraintTop_toBottomOf="@id/input_email"
+                app:placeholderText="@string/phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_theme_dark_onBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/update_profile"
+                style="@style/AppTheme.Petsus.Button.Full"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="@dimen/margin_default"
+                android:text="@string/save_changes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
