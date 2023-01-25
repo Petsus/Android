@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="@string/app_name"
+        android:textAppearance="@style/AppTheme.Petsus.Text.H0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_default_x0.5"
+        app:layout_constraintBottom_toTopOf="@id/center_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_name"
+        app:srcCompat="@drawable/logo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/center_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default"
+        android:text="@string/be_careful_your_animal"
+        android:textAlignment="center"
+        android:textAppearance="@style/AppTheme.Petsus.Text.H1"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/center_guideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default_x0.5"
+        android:background="@drawable/bg_button"
+        android:text="@string/login"
+        android:textAppearance="@style/AppTheme.Petsus.Button.Full"
+        app:layout_constraintBottom_toTopOf="@id/create_account" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/create_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_flat"
+        android:layout_margin="@dimen/margin_default"
+        android:text="@string/create_account"
+        android:background="@drawable/bg_button_ripple"
+        android:textAppearance="@style/AppTheme.Petsus.Button.Flat"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

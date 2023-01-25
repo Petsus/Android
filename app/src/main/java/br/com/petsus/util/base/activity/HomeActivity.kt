@@ -6,14 +6,18 @@ import androidx.fragment.app.commit
 import br.com.petsus.R
 import br.com.petsus.databinding.ActivityHomeBinding
 import br.com.petsus.screen.home.clinics.ClinicFragment
+import br.com.petsus.screen.home.fragment.AnimalFragment
 import br.com.petsus.screen.home.fragment.HomeFragment
 import br.com.petsus.screen.home.fragment.ProfileFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity() {
 
     private val content: Map<Int, Class<out Fragment>> = mapOf(
         Pair(R.id.home_fragment_menu, HomeFragment::class.java),
         Pair(R.id.clinic_fragment_menu, ClinicFragment::class.java),
+        Pair(R.id.animal_fragment_menu, AnimalFragment::class.java),
         Pair(R.id.profile_fragment_menu, ProfileFragment::class.java)
     )
 

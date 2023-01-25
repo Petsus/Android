@@ -10,22 +10,23 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.updatePadding
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
-import br.com.petsus.R
 import br.com.petsus.api.model.auth.AuthToken
-import br.com.petsus.api.model.base.BaseResponse
 import br.com.petsus.databinding.FragmentLoginBinding
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.screen.login.start.LoginViewModel
-import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.base.activity.HomeActivity
-import br.com.petsus.util.base.viewmodel.appViewModels
+import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.tool.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    private val viewModel: LoginViewModel by viewModels()
 
     private val rootView: View by lazy {
         requireActivity().findViewById(android.R.id.content)
@@ -38,8 +39,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
         binding?.root?.updatePadding(bottom = heightDiff)
     }
-
-    private val viewModel: LoginViewModel by appViewModels()
 
     private val requestLoginGoogle = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result == null || result.resultCode != Activity.RESULT_OK)
@@ -84,10 +83,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             ).observer()
         }
         binding?.createAccount?.setOnClickListener {
-            activity?.cast<LoginActivity>()?.goTo(CreateAccountFragment())
+            activity?.cast<LoginActivity>()?.goToFragment(CreateAccountFragment())
         }
         binding?.resetPassword?.setOnClickListener {
-            activity?.cast<LoginActivity>()?.goTo(ResetFragment())
+            activity?.cast<LoginActivity>()?.goToFragment(ResetFragment())
         }
         binding?.loginGoogle?.setOnClickListener {
 //            loading()
@@ -99,11 +98,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
     }
 
-    private fun LiveData<BaseResponse<AuthToken>>.observer() {
+    private fun LiveData<AuthToken>.observer() {
         observe(viewLifecycleOwner) { response ->
             closeLoading()
             context?.apply {
-                sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, response.data)
+                sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, response)
                 startActivity(
                     Intent(this, HomeActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

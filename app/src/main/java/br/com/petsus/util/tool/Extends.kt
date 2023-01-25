@@ -6,18 +6,19 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.util.Patterns
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.edit
-import br.com.petsus.R
-import br.com.petsus.api.model.base.ErrorResponse
-import br.com.petsus.util.base.viewmodel.StringFormatter
+import androidx.lifecycle.LiveDataScope
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import okhttp3.ResponseBody
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlin.math.roundToInt
 
 val Context.sharedPreferences: SharedPreferences
@@ -62,18 +63,6 @@ fun View.preventDoubleClick() {
     Handler(Looper.getMainLooper()).postDelayed({ isClickable = true }, 1000)
 }
 
-fun ResponseBody?.evaluateError(): StringFormatter {
-    var defaultResponse = StringFormatter(messageId = R.string.error_generic)
-    runCatching {
-        if (this == null)
-            return@runCatching
-        val fromJson = Gson().fromJson(this.string(), ErrorResponse::class.java)
-        defaultResponse = defaultResponse.copy(messageString = fromJson.message)
-    }
-
-    return defaultResponse
-}
-
 val TextInputLayout.text: String?
     get() = editText?.text?.toString()
 
@@ -81,4 +70,10 @@ fun Toolbar.listenerDismiss(activity: Activity?) {
     setNavigationOnClickListener {
         activity?.finish()
     }
+}
+
+suspend fun <T>Flow<T>.collector(liveDataScope: LiveDataScope<T>) {
+    onStart { Log.i("Flow", "Start loading") }
+        .catch { Log.i("Flow", "Error flow"); it.printStackTrace() }
+        .collect(liveDataScope::emit)
 }

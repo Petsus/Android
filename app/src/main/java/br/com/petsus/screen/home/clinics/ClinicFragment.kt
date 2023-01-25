@@ -9,23 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.viewModels
+import br.com.petsus.api.model.clinic.ClinicAddress
 import br.com.petsus.databinding.FragmentClinicBinding
 import br.com.petsus.util.base.fragment.BaseFragment
-import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.cast
-import com.google.android.gms.location.CurrentLocationRequest
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ClinicFragment : BaseFragment<FragmentClinicBinding>() {
 
-    private val viewModel: ClinicViewModel by appViewModels()
+    private val viewModel: ClinicViewModel by viewModels()
 
     private val maps: SupportMapFragment?
         get() {
@@ -60,10 +60,10 @@ class ClinicFragment : BaseFragment<FragmentClinicBinding>() {
             supportMapFragment.getMapAsync { googleMap ->
                 googleMap.configure()
                 val context = context ?: return@getMapAsync
-                val request = LocationRequest.create()
-                    .setMaxWaitTime(1000)
-                    .setSmallestDisplacement(0f)
-                    .setInterval(0)
+                val request = LocationRequest.Builder(0)
+                    .setMinUpdateDistanceMeters(0f)
+                    .setMaxUpdateDelayMillis(0)
+                    .build()
 
                 val settingRequest = LocationSettingsRequest.Builder()
                     .addLocationRequest(request)
@@ -75,9 +75,14 @@ class ClinicFragment : BaseFragment<FragmentClinicBinding>() {
                     .checkLocationSettings(settingRequest)
                     .addOnCompleteListener {
                         providerClient.getCurrentLocation(
-                            CurrentLocationRequest.Builder().build(), null
+                            CurrentLocationRequest.Builder()
+                                .setMaxUpdateAgeMillis(0)
+                                .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+                                .setGranularity(Granularity.GRANULARITY_FINE)
+                                .build(), null
                         ).addOnSuccessListener { currentLocation ->
                             viewModel.load(LatLng(currentLocation.latitude, currentLocation.longitude)).observe(viewLifecycleOwner) { clinics ->
+                                googleMap.addListener(clinics)
                                 googleMap.addMarker(
                                     MarkerOptions()
                                         .position(LatLng(currentLocation.latitude, currentLocation.longitude))
@@ -103,14 +108,17 @@ class ClinicFragment : BaseFragment<FragmentClinicBinding>() {
         uiSettings.isCompassEnabled = false
         uiSettings.isMapToolbarEnabled = false
 
-        setOnMarkerClickListener {
-            ClinicDetailsBottomSheet(1)
-                .show(childFragmentManager, null)
-            return@setOnMarkerClickListener true
-        }
-
         setOnCameraIdleListener {
 
+        }
+    }
+
+    private fun GoogleMap.addListener(clinics: List<ClinicAddress>) {
+        setOnMarkerClickListener { marker ->
+            val clinic = clinics.firstOrNull { clinic -> clinic.lat == marker.position.latitude && clinic.lng == marker.position.longitude } ?: return@setOnMarkerClickListener true
+            ClinicDetailsBottomSheet(clinic.id)
+                .show(childFragmentManager, null)
+            return@setOnMarkerClickListener true
         }
     }
 

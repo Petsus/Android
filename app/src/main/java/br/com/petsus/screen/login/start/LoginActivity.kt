@@ -10,7 +10,10 @@ import androidx.fragment.app.commit
 import br.com.petsus.R
 import br.com.petsus.databinding.ActivityLoginBinding
 import br.com.petsus.screen.login.start.fragment.LoginFragment
+import br.com.petsus.screen.login.welcome.WelcomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     var topInset: Int = 0
@@ -31,14 +34,14 @@ class LoginActivity : AppCompatActivity() {
                 .build()
         }
 
-        goTo(LoginFragment())
+        goToFragment(WelcomeFragment())
     }
 
-    fun goTo(fragment: Fragment) {
+    fun goToFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setCustomAnimations(R.anim.full_enter_fragment, R.anim.full_exit_fragment, R.anim.full_pop_enter_fragment, R.anim.full_pop_exit_fragment)
             replace(binding.loginContainer.id, fragment, fragment::class.java.name)
-            if (fragment !is LoginFragment)
+            if (fragment !is WelcomeFragment && fragment !is LoginFragment)
                 addToBackStack(fragment::class.java.name)
         }
     }

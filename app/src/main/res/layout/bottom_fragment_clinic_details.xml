@@ -1,138 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.core.widget.NestedScrollView
+    <data>
+
+        <variable
+            name="clinic"
+            type="br.com.petsus.api.model.clinic.Clinic" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/element_constraint_clinic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/container_map_clinic"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/icon_clinic"
+            android:layout_width="@dimen/icon_size_large"
+            android:layout_height="@dimen/icon_size_large"
+            android:layout_margin="@dimen/margin_default"
+            app:cardCornerRadius="@dimen/icon_size_large_radius"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_clinic"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/margin_default"
-                app:cardBackgroundColor="@color/md_theme_dark_surfaceVariant"
-                app:cardCornerRadius="@dimen/radius_default"
-                app:layout_constraintDimensionRatio="21:9"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@drawable/sample1" />
 
-            </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_clinic_details"
-                style="@style/AppTheme.Petsus.Text.H0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/container_map_clinic"
-                tools:text="Clinic name test" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default_x0.5"
+            android:text="@{clinic.name}"
+            android:textAppearance="@style/AppTheme.Petsus.Text.H0"
+            app:layout_constraintTop_toBottomOf="@id/icon_clinic"
+            tools:text="Clinic name" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/address_clinic_details"
-                style="@style/AppTheme.Petsus.Text.H3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_default"
-                android:layout_marginVertical="@dimen/margin_default_x0.25"
-                app:layout_constraintTop_toBottomOf="@id/title_clinic_details"
-                tools:text="Rua da clinic de teste - Nº 123, Vila alguma coisa, Cidade/UF" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/address_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default_x0.25"
+            android:text="@{clinic.address.completeAddress}"
+            android:textAppearance="@style/AppTheme.Petsus.Text.H2"
+            app:layout_constraintTop_toBottomOf="@id/name_clinic"
+            tools:text="R. Address clinic 123, Neighbor - City/UF" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_opening_hours_clinic_details"
-                style="@style/AppTheme.Petsus.Text.H1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/opening_hours"
-                app:layout_constraintTop_toBottomOf="@id/address_clinic_details" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_menu_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/address_clinic"
+            android:layout_marginTop="@dimen/margin_default_x0.5" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/opening_hours_clinic_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_default"
-                android:layout_marginVertical="@dimen/margin_default_x0.25"
-                app:layout_constraintTop_toBottomOf="@id/title_opening_hours_clinic_details" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/segment_menu_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_menu_clinic" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/species_served_clinic_details"
-                style="@style/AppTheme.Petsus.Text.H1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/species_served"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/opening_hours_clinic_details" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/see_species_served_clinic_details"
-                style="@style/AppTheme.Petsus.Button.Flat"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/button_height_flat"
-                android:layout_marginHorizontal="@dimen/margin_default"
-                android:text="@string/see_more"
-                app:layout_constraintBottom_toBottomOf="@id/species_served_clinic_details"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/species_served_clinic_details"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/exam_served_clinic_details"
-                style="@style/AppTheme.Petsus.Text.H1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/exam_served"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/see_species_served_clinic_details" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/see_exam_served_clinic_details"
-                style="@style/AppTheme.Petsus.Button.Flat"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/button_height_flat"
-                android:layout_marginHorizontal="@dimen/margin_default"
-                android:text="@string/see_more"
-                app:layout_constraintBottom_toBottomOf="@id/exam_served_clinic_details"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/exam_served_clinic_details"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <br.com.petsus.util.custom.buttom.SettingButton
-                android:id="@+id/open_phone_clinic_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_default"
-                app:icon="@drawable/icon_phone"
-                app:layout_constraintTop_toBottomOf="@id/see_exam_served_clinic_details"
-                app:title="@string/call_clinic" />
-
-            <br.com.petsus.util.custom.buttom.SettingButton
-                android:id="@+id/open_site_clinic_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/icon_web"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/open_phone_clinic_details"
-                app:title="@string/visit_site" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <br.com.petsus.util.custom.loading.BaseLoading
-        android:id="@+id/loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="invisible" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

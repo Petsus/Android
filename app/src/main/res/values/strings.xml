@@ -31,4 +31,17 @@
     <string name="exam_served">Exames prestados</string>
     <string name="visit_site">Visite o site</string>
     <string name="call_clinic">Ligue para a clinica</string>
+    <string name="cant_load_clinic">Não conseguimos carregar a clinic.</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="info">Informações</string>
+    <string name="species">Espécies</string>
+    <string name="exams">Exames</string>
+    <string name="be_careful_your_animal">Cuide dos seu animais domésticos. Com segurança e privacidade.</string>
+    
+    <array name="tabs_clinic_details">
+        <item>Informações</item>
+        <item>Espécies</item>
+        <item>Exames</item>
+        <item>Vacinas</item>
+    </array>
 </resources>

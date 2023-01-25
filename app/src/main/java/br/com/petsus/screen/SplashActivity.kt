@@ -5,17 +5,21 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import br.com.petsus.AppApplication
+import br.com.petsus.api.service.auth.SessionRepository
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.util.base.activity.BaseActivity
 import br.com.petsus.util.base.activity.HomeActivity
 import br.com.petsus.util.base.viewmodel.StringFormatter
-import br.com.petsus.util.tool.cast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
+@AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
+
+    @Inject lateinit var sessionRepository: SessionRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,29 +28,22 @@ class SplashActivity : BaseActivity() {
         splashScreen.setKeepOnScreenCondition { true }
 
         lifecycleScope.launchWhenResumed {
-            val sessionManager = application.cast<AppApplication>().sessionManager
             runCatching {
-                val token = withContext(Dispatchers.IO) { sessionManager.fetchToken() }
-                token?.let {
-                    withContext(Dispatchers.Main) {
-                        startActivity(
-                            Intent(this@SplashActivity, HomeActivity::class.java)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        )
-                    }
-                } ?: run {
-                    if (!sessionManager.hasToken)
-                        startActivity(
-                            Intent(this@SplashActivity, LoginActivity::class.java)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        )
-                    else
-                        error(StringFormatter())
+                val token = withContext(Dispatchers.IO) { sessionRepository.fetchToken() }
+                when {
+                    token != null -> openActivity(HomeActivity::class.java)
+                    !sessionRepository.hasToken -> openActivity(LoginActivity::class.java)
+                    else -> error(StringFormatter())
                 }
             }.messageError()
         }
     }
 
+    private fun openActivity(clazz: Class<*>) {
+        startActivity(
+            Intent(this@SplashActivity, clazz)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        )
+    }
 }

@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.core.view.updatePadding
+import androidx.fragment.app.viewModels
 import br.com.petsus.R
 import br.com.petsus.databinding.FragmentResetPasswordBinding
 import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.base.viewmodel.StringFormatter
-import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.preventDoubleClick
 
 class ResetFragment : BaseFragment<FragmentResetPasswordBinding>() {
@@ -29,7 +29,7 @@ class ResetFragment : BaseFragment<FragmentResetPasswordBinding>() {
         binding?.root?.updatePadding(bottom = heightDiff)
     }
 
-    private val viewModel: LoginViewModel by appViewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentResetPasswordBinding.inflate(inflater, container, false)

@@ -1,27 +1,29 @@
 package br.com.petsus.screen.home.clinics
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import br.com.petsus.api.model.clinic.ClinicAddress
-import br.com.petsus.api.service.APIRepository
+import br.com.petsus.api.service.clinic.ClinicRepository
 import br.com.petsus.util.base.viewmodel.ViewModelLiveData
+import br.com.petsus.util.tool.collector
 import com.google.android.gms.maps.model.LatLng
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ClinicViewModel(
-    private val repository: APIRepository
-) : ViewModelLiveData() {
+@HiltViewModel
+class ClinicViewModel @Inject constructor() : ViewModelLiveData() {
 
-    private var lastLocation: Pair<LatLng, List<ClinicAddress>>? = null
+    @Inject lateinit var clinicRepository: ClinicRepository
 
-    fun load(location: LatLng): LiveData<List<ClinicAddress>> {
-        val last = lastLocation
-        return when {
-            last != null && last.equals(location) -> liveData { emit(last.second) }
-            else -> repository.clinic().allClinic(lat = location.latitude, lng = location.longitude, distance = 5000.0).toLiveData()
-        }
+    fun load(
+        location: LatLng
+    ) = liveData {
+        clinicRepository.list(lat = location.latitude, lng = location.longitude, distance = 5000.0)
+            .collector(this)
     }
 
-    fun findClinic(id: Int) =
-        repository.clinic().findClinic(id = id).toLiveData()
-
+    fun find(
+        id: Long
+    ) = liveData {
+        clinicRepository.find(id)
+            .collector(this)
+    }
 }

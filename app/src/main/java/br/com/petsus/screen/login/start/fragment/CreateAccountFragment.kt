@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import br.com.petsus.databinding.FragmentLoginCreateUserBinding
 import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.util.base.activity.HomeActivity
 import br.com.petsus.util.base.fragment.BaseFragment
-import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateAccountFragment : BaseFragment<FragmentLoginCreateUserBinding>() {
 
-    private val viewModel: LoginViewModel by appViewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginCreateUserBinding.inflate(inflater, container, false)

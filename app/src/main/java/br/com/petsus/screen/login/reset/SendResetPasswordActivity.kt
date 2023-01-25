@@ -2,11 +2,11 @@ package br.com.petsus.screen.login.reset
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import br.com.petsus.databinding.ActivitySendResetPasswordBinding
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.util.base.activity.BaseActivity
-import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.Keys
 import br.com.petsus.util.tool.preventDoubleClick
 
@@ -16,7 +16,7 @@ class SendResetPasswordActivity : BaseActivity() {
         ActivitySendResetPasswordBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: LoginViewModel by appViewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

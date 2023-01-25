@@ -1,16 +1,26 @@
 package br.com.petsus.screen.profile
 
-import br.com.petsus.api.service.APIRepository
+import androidx.lifecycle.liveData
+import br.com.petsus.api.model.user.User
+import br.com.petsus.api.service.user.UserRepository
 import br.com.petsus.util.base.viewmodel.ViewModelLiveData
+import br.com.petsus.util.tool.collector
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class EditProfileViewModel(
-    private val repository: APIRepository
-) : ViewModelLiveData() {
+@HiltViewModel
+class EditProfileViewModel @Inject constructor() : ViewModelLiveData() {
 
-    fun get() =
-        repository.user().getUser().toLiveData()
+    @Inject lateinit var userRepository: UserRepository
 
-    fun update() =
-        repository.user().update().toLiveData()
+    fun get() = liveData {
+        userRepository.getUser()
+            .collector(this)
+    }
+
+    fun update(user: User) = liveData {
+        userRepository.update(body = user)
+            .collector(this)
+    }
 
 }
