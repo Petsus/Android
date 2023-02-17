@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create_account">Não possui conta? <font fgcolor='#005045'>Crie agora</font></string>
+</resources>

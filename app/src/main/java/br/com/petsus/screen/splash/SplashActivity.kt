@@ -1,25 +1,21 @@
-package br.com.petsus.screen
+package br.com.petsus.screen.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
-import br.com.petsus.api.service.auth.SessionRepository
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.util.base.activity.BaseActivity
 import br.com.petsus.util.base.activity.HomeActivity
 import br.com.petsus.util.base.viewmodel.StringFormatter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
 
-    @Inject lateinit var sessionRepository: SessionRepository
+    val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +23,12 @@ class SplashActivity : BaseActivity() {
         val splashScreen = installSplashScreen()
         splashScreen.setKeepOnScreenCondition { true }
 
-        lifecycleScope.launchWhenResumed {
-            runCatching {
-                val token = withContext(Dispatchers.IO) { sessionRepository.fetchToken() }
-                when {
-                    token != null -> openActivity(HomeActivity::class.java)
-                    !sessionRepository.hasToken -> openActivity(LoginActivity::class.java)
-                    else -> error(StringFormatter())
-                }
-            }.messageError()
+        viewModel.isLogged().observe(this) { result ->
+            when {
+                result == null -> openActivity(LoginActivity::class.java)
+                result.isFailure -> error(StringFormatter(throwable = result.exceptionOrNull()))
+                result.isSuccess -> openActivity(HomeActivity::class.java)
+            }
         }
     }
 

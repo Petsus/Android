@@ -31,7 +31,7 @@
         </service>
 
         <activity
-            android:name=".screen.SplashActivity"
+            android:name=".screen.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Starting">
             <intent-filter>

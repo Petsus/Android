@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.viewModels
 import br.com.petsus.databinding.FragmentLoginCreateUserBinding
 import br.com.petsus.screen.login.start.LoginViewModel
@@ -26,24 +27,32 @@ class CreateAccountFragment : BaseFragment<FragmentLoginCreateUserBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.createAccount?.setOnClickListener {
-            it.preventDoubleClick()
-            loading()
+        binding?.apply {
+            keyboardController.setOnKeyboardChangeListener { heightDiff ->
+                container.minHeight = root.height - heightDiff
+            }
+            root.doOnLayout {
+                container.minHeight = root.height
+            }
+            back.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+            createAccount.setOnClickListener {
+                it.preventDoubleClick()
+                loading()
 
-            viewModel.createUser(
-                name = binding?.inputName?.text,
-                email = binding?.inputEmail?.text,
-                phone = binding?.inputPhone?.text,
-                password = binding?.inputPassword?.text
-            ).observe(viewLifecycleOwner) { token ->
-                closeLoading()
-                context?.apply {
-                    sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, token)
-                    startActivity(
-                        Intent(this, HomeActivity::class.java)
-                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    )
+                viewModel.createUser(
+                    name = binding?.inputName?.text,
+                    email = binding?.inputEmail?.text,
+                    phone = binding?.inputPhone?.text,
+                    password = binding?.inputPassword?.text
+                ).observe(viewLifecycleOwner) {
+                    closeLoading()
+                    context?.apply {
+                        startActivity(
+                            Intent(this, HomeActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
+                    }
                 }
             }
         }

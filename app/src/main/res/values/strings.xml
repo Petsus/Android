@@ -36,7 +36,7 @@
     <string name="info">Informações</string>
     <string name="species">Espécies</string>
     <string name="exams">Exames</string>
-    <string name="be_careful_your_animal">Cuide dos seu animais domésticos. Com segurança e privacidade.</string>
+    <string name="be_careful_your_animal">Cuide dos seu animais domésticos.\nCom segurança e privacidade.</string>
     
     <array name="tabs_clinic_details">
         <item>Informações</item>

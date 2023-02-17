@@ -27,8 +27,8 @@ abstract class BaseActivity : AppCompatActivity(), ErrorInterface, SuccessInterf
             .setText(message.parse(this))
             .setIcon(R.drawable.icon_error)
             .setOnHideListener { onErrorClose() }
-            .setIconColorFilter(ResourcesCompat.getColor(resources, R.color.md_theme_dark_onErrorContainer, theme))
-            .setBackgroundColorRes(R.color.md_theme_dark_errorContainer)
+            .setIconColorFilter(ResourcesCompat.getColor(resources, R.color.md_theme_onErrorContainer, theme))
+            .setBackgroundColorRes(R.color.md_theme_errorContainer)
             .setTextAppearance(R.style.AppTheme_Petsus_Text_Error)
             .show()
         return this
@@ -43,8 +43,8 @@ abstract class BaseActivity : AppCompatActivity(), ErrorInterface, SuccessInterf
         Alerter.create(this)
             .setText(message.parse(this))
             .setIcon(R.drawable.icon_error)
-            .setIconColorFilter(ResourcesCompat.getColor(resources, R.color.md_theme_dark_onSecondaryContainer, theme))
-            .setBackgroundColorRes(R.color.md_theme_dark_secondaryContainer)
+            .setIconColorFilter(ResourcesCompat.getColor(resources, R.color.md_theme_onSecondaryContainer, theme))
+            .setBackgroundColorRes(R.color.md_theme_secondaryContainer)
             .setTextAppearance(R.style.AppTheme_Petsus_Text_Successful)
             .show()
         return this

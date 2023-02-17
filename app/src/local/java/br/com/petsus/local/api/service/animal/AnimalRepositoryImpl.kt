@@ -1,28 +1,27 @@
-package br.com.petsus.local
+package br.com.petsus.local.api.service.animal
 
 import br.com.petsus.api.model.animal.Animal
-import br.com.petsus.api.service.AnimalRepository
+import br.com.petsus.api.service.animal.AnimalRepository
+import br.com.petsus.local.util.delayDefault
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlin.random.Random
 
 class AnimalRepositoryImpl : AnimalRepository {
     override suspend fun all(): Flow<List<Animal>> {
         return flow {
-            delay(4000)
-            emit(listOf(Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt()), Animal(Random.nextInt())))
+            delayDefault()
+            emit(emptyList())
         }
     }
 }
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object ApiModule {
+class AnimalRepositoryModule {
     @Provides
     fun animal(): AnimalRepository = AnimalRepositoryImpl()
 }

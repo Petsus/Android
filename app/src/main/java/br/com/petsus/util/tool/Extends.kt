@@ -14,6 +14,8 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.edit
 import androidx.lifecycle.LiveDataScope
+import br.com.petsus.util.global.Action
+import br.com.petsus.util.global.ActionSuspend
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
@@ -72,8 +74,14 @@ fun Toolbar.listenerDismiss(activity: Activity?) {
     }
 }
 
-suspend fun <T>Flow<T>.collector(liveDataScope: LiveDataScope<T>) {
+suspend fun <T>Flow<T>.collector(
+    liveDataScope: LiveDataScope<T>,
+    onCollect: ActionSuspend<T>? = null
+) {
     onStart { Log.i("Flow", "Start loading") }
         .catch { Log.i("Flow", "Error flow"); it.printStackTrace() }
-        .collect(liveDataScope::emit)
+        .collect { value ->
+            liveDataScope.emit(value)
+            onCollect?.action(value)
+        }
 }

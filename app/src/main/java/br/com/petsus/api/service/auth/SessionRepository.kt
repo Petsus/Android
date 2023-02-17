@@ -2,6 +2,7 @@ package br.com.petsus.api.service.auth
 
 import androidx.annotation.WorkerThread
 import br.com.petsus.api.model.auth.AuthToken
+import kotlinx.coroutines.flow.Flow
 
 interface SessionRepository {
     val hasToken: Boolean
@@ -9,5 +10,5 @@ interface SessionRepository {
     var token: AuthToken?
 
     @WorkerThread
-    fun fetchToken(): AuthToken?
+    fun fetchToken(): Flow<Result<AuthToken>?>
 }

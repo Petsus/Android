@@ -26,7 +26,7 @@ class BaseLoading @JvmOverloads constructor(
     init {
         loader.isIndeterminate = true
         addView(loader, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, Gravity.CENTER))
-        background = ColorDrawable(ContextCompat.getColor(context, R.color.md_theme_dark_background))
+        background = ColorDrawable(ContextCompat.getColor(context, R.color.md_theme_background))
     }
 
     fun show() {

@@ -1,4 +1,4 @@
-package br.com.petsus.screen.home.fragment
+package br.com.petsus.screen.home.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,7 +7,9 @@ import br.com.petsus.api.model.auth.ResetPassword
 import br.com.petsus.api.model.user.CreateUser
 import br.com.petsus.api.service.auth.AuthRepository
 import br.com.petsus.api.service.user.UserRepository
+import br.com.petsus.application.preferences.AppPreferences
 import br.com.petsus.util.base.viewmodel.ViewModelLiveData
+import br.com.petsus.util.tool.Keys
 import br.com.petsus.util.tool.collector
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -17,13 +19,13 @@ class LoginViewModel @Inject constructor() : ViewModelLiveData() {
 
     @Inject lateinit var authRepository: AuthRepository
     @Inject lateinit var userRepository: UserRepository
+    @Inject lateinit var sharedPreferences: AppPreferences
 
     fun login(
         email: String?,
         password: String?,
-        googleAuthCode: String?
     ) = liveData {
-        authRepository.login(AuthLogin(email = email, password = password, googleAuthCode = googleAuthCode))
+        authRepository.login(AuthLogin(email = email, password = password))
             .collector(this)
     }
 
@@ -50,7 +52,8 @@ class LoginViewModel @Inject constructor() : ViewModelLiveData() {
         phone: String?
     ) = liveData {
         userRepository.createUser(CreateUser(name = name, email = email, password = password, phone = phone))
-            .collector(this)
+            .collector(this) { authToken ->
+                sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, authToken)
+            }
     }
-
 }
