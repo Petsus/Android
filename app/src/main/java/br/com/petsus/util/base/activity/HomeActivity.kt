@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import br.com.petsus.R
 import br.com.petsus.databinding.ActivityHomeBinding
 import br.com.petsus.screen.home.clinics.ClinicFragment
-import br.com.petsus.screen.home.fragment.AnimalFragment
+import br.com.petsus.screen.home.fragment.animal.AnimalFragment
 import br.com.petsus.screen.home.fragment.home.HomeFragment
 import br.com.petsus.screen.home.fragment.ProfileFragment
 import br.com.petsus.util.global.router.Navigator

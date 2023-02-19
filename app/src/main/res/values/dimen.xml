@@ -18,6 +18,9 @@
     <dimen name="button_height_flat">30dp</dimen>
     <dimen name="button_text_size_flat">14sp</dimen>
 
+    <dimen name="image_profile">64dp</dimen>
+    <dimen name="radius_image_profile">32dp</dimen>
+
     <dimen name="radius_default">16dp</dimen>
 
     <dimen name="text_h0">28sp</dimen>

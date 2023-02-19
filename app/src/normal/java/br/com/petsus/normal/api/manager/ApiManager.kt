@@ -37,7 +37,7 @@ class ApiManager(sessionManager: SessionManager) {
 
     private class AuthenticatorInterceptor(private val sessionManager: SessionManager) : Authenticator {
         override fun authenticate(route: Route?, response: Response): Request? {
-            sessionManager.fetchToken()?.let { authToken ->
+            sessionManager.fetchToken()?.getOrNull()?.let { authToken ->
                 return response.request.newBuilder()
                     .header("Authorization", authToken.token)
                     .build()

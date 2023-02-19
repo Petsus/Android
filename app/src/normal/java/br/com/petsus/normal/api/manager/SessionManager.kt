@@ -1,36 +1,32 @@
 package br.com.petsus.normal.api.manager
 
-import android.content.Context
 import androidx.annotation.WorkerThread
 import br.com.petsus.BuildConfig
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.RefreshToken
+import br.com.petsus.application.preferences.AppPreferences
+import br.com.petsus.normal.api.exception.ApiException
 import br.com.petsus.normal.api.service.auth.AuthRepositoryRetrofit
 import br.com.petsus.util.tool.Keys
-import br.com.petsus.util.tool.getObject
-import br.com.petsus.util.tool.putObject
-import br.com.petsus.util.tool.sharedPreferences
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.ref.WeakReference
 
 class SessionManager private constructor(
-    context: Context,
+    private val preferences: AppPreferences,
     interceptor: Interceptor
 ) {
     companion object {
         lateinit var current: SessionManager
             private set
 
-        fun create(context: Context, interceptor: Interceptor): SessionManager  {
-            return SessionManager(context = context, interceptor = interceptor).apply { current = this }
+        fun create(preferences: AppPreferences, interceptor: Interceptor): SessionManager  {
+            return SessionManager(preferences = preferences, interceptor = interceptor).apply { current = this }
         }
     }
-
-    private val weakContext: WeakReference<Context> = WeakReference(context)
 
     private val api: Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
@@ -47,32 +43,39 @@ class SessionManager private constructor(
         .build()
 
     @WorkerThread
-    fun fetchToken(): AuthToken? {
-        val currentToken = weakContext.get()?.sharedPreferences?.getObject<AuthToken>(Keys.KEY_TOKEN.valueKey) ?: return null
+    fun fetchToken(): Result<AuthToken>? {
+        val currentToken = preferences.getObject(Keys.KEY_TOKEN.valueKey, AuthToken::class.java) ?: return null
         if (currentToken.expiration >= System.currentTimeMillis())
-            return currentToken
-        return api.create(AuthRepositoryRetrofit::class.java).refresh(RefreshToken(token = currentToken.token)).execute().run {
-            when {
-                this.code() in 200..299 -> {
-                    val token = this.body()?.data
+            return Result.success(value = currentToken)
+        try {
+            val request = api.create(AuthRepositoryRetrofit::class.java)
+                .refresh(RefreshToken(token = currentToken.token))
+                .execute()
+
+            return when {
+                request.code() in 200..299 -> {
+                    val token = request.body()?.data ?: throw JSONException("Not load json token")
                     this@SessionManager.token = token
-                    return@run token
+                    Result.success(value = token)
                 }
-                this.code() in 400..499 -> {
+                request.code() in 400..499 -> {
                     this@SessionManager.token = null
-                    return@run body()?.data
+                    null
                 }
-                else -> return@run null
+                else -> throw ApiException(response = request)
             }
+
+        } catch (e: Throwable) {
+            return Result.failure(exception = e)
         }
     }
 
     @get:Synchronized
     @set:Synchronized
     var token: AuthToken?
-        get() = weakContext.get()?.sharedPreferences?.getObject(Keys.KEY_TOKEN.valueKey)
+        get() = preferences.getObject(Keys.KEY_TOKEN.valueKey, AuthToken::class.java)
         set(value) {
-            weakContext.get()?.sharedPreferences?.putObject(Keys.KEY_TOKEN.valueKey, value)
+            preferences.putObject(Keys.KEY_TOKEN.valueKey, value)
         }
 
     val hasToken: Boolean

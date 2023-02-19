@@ -11,7 +11,9 @@ import br.com.petsus.databinding.FragmentLoginCreateUserBinding
 import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.util.base.activity.HomeActivity
 import br.com.petsus.util.base.fragment.BaseFragment
-import br.com.petsus.util.tool.*
+import br.com.petsus.util.base.fragment.findNavigation
+import br.com.petsus.util.tool.preventDoubleClick
+import br.com.petsus.util.tool.text
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +36,7 @@ class CreateAccountFragment : BaseFragment<FragmentLoginCreateUserBinding>() {
             root.doOnLayout {
                 container.minHeight = root.height
             }
-            back.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+            back.setOnClickListener { findNavigation()?.dismiss() }
             createAccount.setOnClickListener {
                 it.preventDoubleClick()
                 loading()

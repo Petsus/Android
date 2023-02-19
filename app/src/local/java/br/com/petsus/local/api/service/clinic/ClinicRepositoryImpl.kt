@@ -3,8 +3,10 @@ package br.com.petsus.local.api.service.clinic
 import br.com.petsus.api.model.address.Address
 import br.com.petsus.api.model.address.City
 import br.com.petsus.api.model.address.State
+import br.com.petsus.api.model.animal.Specie
 import br.com.petsus.api.model.clinic.Clinic
 import br.com.petsus.api.model.clinic.ClinicAddress
+import br.com.petsus.api.model.clinic.Exam
 import br.com.petsus.api.service.clinic.ClinicRepository
 import br.com.petsus.local.util.delayDefault
 import dagger.Module
@@ -13,8 +15,28 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlin.random.Random
 
 class ClinicRepositoryImpl : ClinicRepository {
+
+    private var countExams = Random.nextInt(3, 50)
+    private var countSpecies = Random.nextInt(3, 50)
+    private fun generateExam(): Exam {
+        val id = Random.nextLong(Long.MAX_VALUE)
+        return Exam(
+            id = id,
+            name = "Exam $id"
+        )
+    }
+
+    private fun generateSpecies(): Specie {
+        val id = Random.nextLong(Long.MAX_VALUE)
+        return Specie(
+            id = id,
+            name = "Exam $id"
+        )
+    }
+
     override suspend fun find(id: Long): Flow<Clinic> {
         return flow {
             delayDefault()
@@ -45,7 +67,9 @@ class ClinicRepositoryImpl : ClinicRepository {
                         ),
                         postalCode = "18020-268"
                     ),
-                    image = "https://lh3.googleusercontent.com/p/AF1QipOYkKLyoGz2aosGJJa6Af1YeHwQY-se-27DAJCc=s680-w680-h510"
+                    image = "https://lh3.googleusercontent.com/p/AF1QipOYkKLyoGz2aosGJJa6Af1YeHwQY-se-27DAJCc=s680-w680-h510",
+                    exams = generateSequence { if (--countExams > 0) generateExam() else null }.toList(),
+                    species = generateSequence { if (--countSpecies > 0) generateSpecies() else null }.toList()
                 )
             )
         }

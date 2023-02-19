@@ -1,9 +1,9 @@
 package br.com.petsus.util.tool
 
 import android.app.Activity
-import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
+import android.location.Location
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -12,21 +12,18 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.edit
 import androidx.lifecycle.LiveDataScope
-import br.com.petsus.util.global.Action
+import br.com.petsus.util.base.viewmodel.StringFormatter
 import br.com.petsus.util.global.ActionSuspend
+import br.com.petsus.util.global.ResultState
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlin.math.roundToInt
 
-val Context.sharedPreferences: SharedPreferences
-    get() = getSharedPreferences(Keys.APP_PREFERENCES.valueKey, Context.MODE_PRIVATE)
-
-fun SharedPreferences.putObject(key: String, value: Any?) = edit { putString(key, value?.json) }
+val Location.latLng: LatLng
+    get() = LatLng(latitude, longitude)
 
 inline fun <reified T> SharedPreferences.getObject(key: String): T? {
     val jsonValue = getString(key, null) ?: return null
@@ -74,7 +71,7 @@ fun Toolbar.listenerDismiss(activity: Activity?) {
     }
 }
 
-suspend fun <T>Flow<T>.collector(
+suspend fun <T> Flow<T>.collector(
     liveDataScope: LiveDataScope<T>,
     onCollect: ActionSuspend<T>? = null
 ) {
@@ -84,4 +81,19 @@ suspend fun <T>Flow<T>.collector(
             liveDataScope.emit(value)
             onCollect?.action(value)
         }
+}
+
+suspend fun <T> Flow<T>.collectorState(
+    stateFlow: MutableStateFlow<ResultState<T>>,
+) {
+    onStart {
+        Log.i("Flow", "Start loading")
+        stateFlow.value = ResultState.Init()
+    }.catch {
+        it.printStackTrace()
+        Log.i("Flow", "Error flow")
+        stateFlow.value = ResultState.Fail(error = StringFormatter(throwable = it))
+    }.collect { value ->
+        stateFlow.value = ResultState.Success(data = value)
+    }
 }

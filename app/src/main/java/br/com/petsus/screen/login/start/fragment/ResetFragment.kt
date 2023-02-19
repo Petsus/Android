@@ -1,33 +1,22 @@
 package br.com.petsus.screen.login.start.fragment
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import androidx.core.view.updatePadding
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.viewModels
 import br.com.petsus.R
 import br.com.petsus.databinding.FragmentResetPasswordBinding
 import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.util.base.fragment.BaseFragment
+import br.com.petsus.util.base.fragment.findNavigation
 import br.com.petsus.util.base.viewmodel.StringFormatter
 import br.com.petsus.util.tool.preventDoubleClick
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResetFragment : BaseFragment<FragmentResetPasswordBinding>() {
-
-    private val rootView: View by lazy {
-        requireActivity().findViewById(android.R.id.content)
-    }
-
-    private val listenerKeyboard = ViewTreeObserver.OnGlobalLayoutListener {
-        val visibleBounds = Rect()
-        rootView.getWindowVisibleDisplayFrame(visibleBounds)
-        val heightDiff = rootView.height - visibleBounds.height()
-
-        binding?.root?.updatePadding(bottom = heightDiff)
-    }
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -38,28 +27,30 @@ class ResetFragment : BaseFragment<FragmentResetPasswordBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        FragmentResetPasswordBinding.bind(view).apply {
+            root.doOnLayout {
+                container.minHeight = root.height
+            }
 
-        binding?.resetPassword?.setOnClickListener {
-            it.preventDoubleClick()
-            loading()
+            keyboardController.setOnKeyboardChangeListener { heightDiff ->
+                container.minHeight = root.height - heightDiff
+            }
 
-            viewModel.resetPassword(
-                email = binding?.inputEmail?.editText?.text?.toString()
-            ).observe(viewLifecycleOwner) {
-                closeLoading()
-                message(StringFormatter(messageId = R.string.send_reset_successfull))
+            back.setOnClickListener {
+                findNavigation()?.dismiss()
+            }
+
+            resetPassword.setOnClickListener { reset ->
+                reset.preventDoubleClick()
+                loading()
+
+                viewModel.resetPassword(
+                    email = inputEmail.editText?.text?.toString()
+                ).observe(viewLifecycleOwner) {
+                    closeLoading()
+                    message(StringFormatter(messageId = R.string.send_reset_successfull))
+                }
             }
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        rootView.viewTreeObserver.addOnGlobalLayoutListener(listenerKeyboard)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        rootView.viewTreeObserver.removeOnGlobalLayoutListener(listenerKeyboard)
-    }
-
 }

@@ -1,18 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="clinic"
             type="br.com.petsus.api.model.clinic.Clinic" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_default">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H1"
+                android:textSize="@dimen/text_h3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_x0.25"
+                android:text="@{clinic.address.completeAddress}"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H0"
+                android:textSize="@dimen/text_h2"
+                tools:text="Rua Comandante Salgado - 547, Vila Hortência, Sorocaba/SP" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/phone"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H1"
+                android:textSize="@dimen/text_h3"
+                android:visibility="@{clinic.phone == null ? View.GONE : View.VISIBLE}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/go_to_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_x0.25"
+                android:background="@drawable/bg_ripple"
+                android:text="@{clinic.maskPhone}"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H0"
+                android:textSize="@dimen/text_h2"
+                android:visibility="@{clinic.phone == null ? View.GONE : View.VISIBLE}"
+                tools:text="(15) 98765-4321" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/visit_site"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H1"
+                android:textSize="@dimen/text_h3"
+                android:visibility="@{clinic.site == null ? View.GONE : View.VISIBLE}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/go_to_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_x0.25"
+                android:background="@drawable/bg_ripple"
+                android:text="@string/click_to_go"
+                android:textAppearance="@style/AppTheme.Petsus.Text.H0"
+                android:textSize="@dimen/text_h2"
+                android:visibility="@{clinic.site == null ? View.GONE : View.VISIBLE}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
