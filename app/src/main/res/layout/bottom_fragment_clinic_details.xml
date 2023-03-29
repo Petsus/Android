@@ -60,7 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default_x0.5"
-                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default_x2"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="@{clinic.name}"
@@ -70,6 +70,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/container_image"
                 app:layout_constraintTop_toTopOf="@id/container_image" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close_dialog"
+                android:layout_width="@dimen/button_height_flat"
+                android:layout_height="@dimen/button_height_flat"
+                android:layout_marginEnd="@dimen/margin_default_x0.5"
+                app:layout_constraintTop_toTopOf="@id/title_clinic"
+                app:layout_constraintBottom_toBottomOf="@id/title_clinic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/icon_close"
+                app:tint="@color/md_theme_onBackground"
+                android:padding="@dimen/padding_default_x0.5"
+                android:background="@drawable/bg_button_ripple"/>
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/group_button"

@@ -59,12 +59,19 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
 
     open fun delete(elements: Collection<Element>) {
         coroutineScope.launch {
-            val calculateDiff = DiffUtil.calculateDiff(BaseDiffCallback(currentList = this@BaseAdapter.elements, newList = this@BaseAdapter.elements.minus(elements.toSet())))
+            val calculateDiff = DiffUtil.calculateDiff(BaseDiffCallback(
+                currentList = this@BaseAdapter.elements,
+                newList = this@BaseAdapter.elements.filter { filter -> elements.find { it === filter } == null }
+            ))
             withContext(Dispatchers.Main) {
                 this@BaseAdapter.elements.removeAll(elements)
                 calculateDiff.dispatchUpdatesTo(this@BaseAdapter)
             }
         }
+    }
+
+    open fun find(position: Int): List<Element> {
+        return elements.getOrNull(position)?.run { listOf(this) } ?: emptyList()
     }
 
     open fun clear() {

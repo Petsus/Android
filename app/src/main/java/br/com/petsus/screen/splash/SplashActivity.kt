@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import br.com.petsus.screen.login.start.LoginActivity
 import br.com.petsus.util.base.activity.BaseActivity
-import br.com.petsus.util.base.activity.HomeActivity
+import br.com.petsus.screen.home.HomeActivity
 import br.com.petsus.util.base.viewmodel.StringFormatter
 import dagger.hilt.android.AndroidEntryPoint
 

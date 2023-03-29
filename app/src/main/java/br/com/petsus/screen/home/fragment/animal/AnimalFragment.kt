@@ -1,5 +1,6 @@
 package br.com.petsus.screen.home.fragment.animal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,8 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.petsus.databinding.FragmentAnimalBinding
-import br.com.petsus.screen.home.fragment.home.HomeViewModel
+import br.com.petsus.screen.animal.update.UpdateAnimalActivity
+import br.com.petsus.screen.home.HomeViewModel
 import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.global.ResultState
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +20,10 @@ class AnimalFragment : BaseFragment<FragmentAnimalBinding>() {
 
     private val adapter: AnimalHomeAdapter = AnimalHomeAdapter().apply {
         addClickListener { animal ->
-
+            startActivity(
+                Intent(requireContext(), UpdateAnimalActivity::class.java)
+                    .putExtra(UpdateAnimalActivity.EXTRA_ANIMAL, animal)
+            )
         }
     }
 

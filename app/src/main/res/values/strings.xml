@@ -16,6 +16,7 @@
     <string name="profile">Perfil</string>
     <string name="logout">Logout</string>
     <string name="address">Endereço</string>
+    <string name="continue_text">Continue</string>
     <string name="login_google">Login Google</string>
     <string name="or_login_social">Ou login com</string>
     <string name="send_reset_successfull">Email de recuperação enviado, verifique a mensagem enviado no email informado</string>
@@ -37,8 +38,30 @@
     <string name="species">Espécies</string>
     <string name="exams">Exames</string>
     <string name="be_careful_your_animal">Cuide dos seu animais domésticos.\nCom segurança e privacidade.</string>
-    <string name="click_to_go">Clique aqui para visitar o siteir</string>
+    <string name="click_to_go">Clique aqui para visitar o site</string>
     <string name="add_animal">Adicionar animal</string>
+    <string name="delete">Deletar</string>
+    <string name="basic_data">Dados básicos</string>
+    <string name="name_animal">Nome do animal</string>
+    <string name="weight_animal">Peso do animal</string>
+    <string name="kg">kg</string>
+    <string name="height_animal">Altura do animal</string>
+    <string name="cm">cm</string>
+    <string name="birthday_animal">Data de nascimento</string>
+    <string name="race_animal">Raça do animal</string>
+    <string name="record_medic_animal">Históricos médicos</string>
+    <string name="tracker_animal">Rastreador</string>
+    <string name="see_qr_code">Ver o QR Code</string>
+    <string name="qr_code">QRCode</string>
+    <string name="register_qr_code">Registrar QRCode</string>
+    <string name="unregister_qr_code">Remover QRCode</string>
+    <string name="save">Salvar</string>
+    <string name="history_medical">Histórico Médico</string>
+    <string name="add_history">Adicionar histórico</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">OK</string>
+    <string name="select_birthday">Seleciona a data de nascimento</string>
+    <string name="add_address">Adicionar endereço</string>
 
     <array name="tabs_clinic_details">
         <item>Informações</item>

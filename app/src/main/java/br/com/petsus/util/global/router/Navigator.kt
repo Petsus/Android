@@ -58,6 +58,31 @@ class Navigator private constructor(
         }
     }
 
+    fun show(
+        tagShow: String,
+        tagHide: String? = null
+    ) {
+        fragmentManager.commit {
+            setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+            if (tagHide != null)
+                fragmentManager.findFragmentByTag(tagHide)?.run(this::hide)
+            fragmentManager.findFragmentByTag(tagShow)?.run(this::show)
+        }
+    }
+
+    fun add(list: List<Fragment>) {
+        if (list.isEmpty())
+            throw IllegalArgumentException("List of fragment cannot be empty")
+        fragmentManager.commit {
+            setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+            list.forEach { fragment ->
+                add(container.id, fragment, fragment::class.java.name)
+                hide(fragment)
+            }
+            show(list.first())
+        }
+    }
+
     fun dismiss() {
         fragmentManager.popBackStack()
     }

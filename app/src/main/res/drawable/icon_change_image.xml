@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size
+                android:width="@dimen/mini_icon_size"
+                android:height="@dimen/mini_icon_size" />
+            <corners android:radius="@dimen/mini_icon_size_radius" />
+            <solid android:color="@color/md_theme_secondaryContainer" />
+        </shape>
+    </item>
+    <item
+        android:width="@dimen/mini_icon_size_radius"
+        android:height="@dimen/mini_icon_size_radius"
+        android:drawable="@drawable/icon_camera"
+        android:gravity="center" />
+</layer-list>

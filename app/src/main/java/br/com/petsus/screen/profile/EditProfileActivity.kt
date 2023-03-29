@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import br.com.petsus.databinding.ActivityEditProfileBinding
 import br.com.petsus.util.base.activity.BaseActivity
-import br.com.petsus.util.tool.listenerDismiss
+import com.redmadrobot.inputmask.MaskedTextChangedListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditProfileActivity : BaseActivity() {
 
     private val viewModel: EditProfileViewModel by viewModels()
@@ -14,19 +16,34 @@ class EditProfileActivity : BaseActivity() {
         ActivityEditProfileBinding.inflate(layoutInflater)
     }
 
+    private val maskedPhone: MaskedTextChangedListener by lazy {
+        MaskedTextChangedListener.installOn(binding.inputPhone.editText!!, "{(}[00]{)} [00000]{-}[0000]")
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        configureView()
+    }
+
+    private fun configureView() {
         loading()
 
-        binding.toolbarEditProfile.listenerDismiss(this)
+        binding.back.setOnClickListener { finish() }
 
         viewModel.get().observe(this) { user ->
             closeLoading()
             binding.inputEmail.editText?.setText(user.email)
-            binding.inputPhone.editText?.setText(user.phone)
             binding.inputName.editText?.setText(user.name)
+
+            maskedPhone.setText(user.phone ?: "")
+
+            binding.updateProfile.setOnClickListener {
+                loading()
+                viewModel.update(user).observe(this) {
+                    closeLoading()
+                }
+            }
         }
     }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back_app_bar"
+        android:layout_width="@dimen/button_height_flat"
+        android:layout_height="@dimen/button_height_flat"
+        android:layout_margin="@dimen/margin_default"
+        android:background="@drawable/bg_button_ripple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_app_bar"
+        style="@style/AppTheme.Petsus.Text.H0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_x0.5"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:maxLines="2"
+        app:autoSizeMaxTextSize="@dimen/text_h0"
+        app:autoSizeMinTextSize="@dimen/text_h2"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/back_app_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/back_app_bar"
+        app:layout_constraintTop_toTopOf="@id/back_app_bar"
+        tools:text="Name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

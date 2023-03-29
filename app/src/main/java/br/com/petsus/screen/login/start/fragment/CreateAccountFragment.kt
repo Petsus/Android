@@ -9,7 +9,7 @@ import androidx.core.view.doOnLayout
 import androidx.fragment.app.viewModels
 import br.com.petsus.databinding.FragmentLoginCreateUserBinding
 import br.com.petsus.screen.login.start.LoginViewModel
-import br.com.petsus.util.base.activity.HomeActivity
+import br.com.petsus.screen.home.HomeActivity
 import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.base.fragment.findNavigation
 import br.com.petsus.util.tool.preventDoubleClick

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".application.AppApplication"
@@ -21,6 +22,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
+
+        <meta-data
+            android:name="com.google.android.places.API_KEY"
+            android:value="${PLACE_API_KEY}" />
 
         <service
             android:name=".service.MessagingService"
@@ -81,12 +86,30 @@
 
         </activity>
 
-        <activity android:name=".screen.login.start.LoginActivity" />
+        <activity android:name=".screen.home.HomeActivity" />
 
-        <activity android:name=".util.base.activity.HomeActivity" />
+        <activity android:name=".screen.about.AboutAppActivity" />
+
+        <activity android:name=".screen.address.list.AddressActivity" />
+
+        <activity android:name=".screen.animal.history.HistoryMedicalAnimalActivity" />
+
+        <activity android:name=".screen.animal.history.AddHistoryMedicalAnimalActivity" />
+
+        <activity
+            android:name=".screen.address.add.AddUpdateAddressActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".screen.animal.update.UpdateAnimalActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".screen.profile.EditProfileActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".screen.login.start.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
 
     </application>

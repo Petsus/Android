@@ -14,4 +14,5 @@ interface UserRepository {
     suspend fun createUser(body: CreateUser): Flow<AuthToken>
     suspend fun getUser(): Flow<User>
     suspend fun update(body: User): Flow<EmptyResponse>
+    suspend fun name(): Flow<String>
 }

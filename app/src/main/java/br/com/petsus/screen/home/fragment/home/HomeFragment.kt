@@ -10,6 +10,7 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.petsus.databinding.FragmentHomeBinding
+import br.com.petsus.screen.home.HomeViewModel
 import br.com.petsus.screen.home.fragment.home.adpter.NewsAdapter
 import br.com.petsus.util.base.fragment.BaseFragment
 import br.com.petsus.util.global.ResultState

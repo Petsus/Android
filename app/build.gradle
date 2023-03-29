@@ -9,12 +9,15 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+Properties propertiesValues = new Properties()
+propertiesValues.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     compileSdk 33
 
     defaultConfig {
         applicationId "br.com.petsus"
-        minSdk 23
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "0.0.1"
@@ -38,7 +41,8 @@ android {
         }
         local {
             dimension "version"
-            versionNameSuffix "-test"
+            applicationIdSuffix ".local"
+            versionNameSuffix "-local"
         }
     }
 
@@ -48,86 +52,57 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
-            manifestPlaceholders = [ BASE_HOST : "10.0.2.2", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
+            manifestPlaceholders = [
+                    BASE_HOST : "10.0.2.2",
+                    PORT_HOST : "8080",
+                    MAPS_API_KEY : propertiesValues.getProperty("google.maps.key"),
+                    PLACE_API_KEY : propertiesValues.getProperty("google.places.key")
+            ]
         }
         dev {
             signingConfig signingConfigs.debug
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
 
             buildConfigField("String", "BASE_URL", '"https://5c08-2804-431-cfcd-7cad-25e9-746-4ead-7e71.sa.ngrok.io/"')
-            manifestPlaceholders = [ BASE_HOST : "5c08-2804-431-cfcd-7cad-25e9-746-4ead-7e71.sa.ngrok.io", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
+            manifestPlaceholders = [
+                    BASE_HOST : "5c08-2804-431-cfcd-7cad-25e9-746-4ead-7e71.sa.ngrok.io",
+                    PORT_HOST : "8080",
+                    MAPS_API_KEY : propertiesValues.getProperty("google.maps.key"),
+                    PLACE_API_KEY : propertiesValues.getProperty("google.places.key")
+            ]
         }
         debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+
             buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
-            manifestPlaceholders = [ BASE_HOST : "10.0.2.2", PORT_HOST : "8080", MAPS_API_KEY : 'AIzaSyAnBpQa8inbxF4tB6d5DIEBRuULQ70bIBs' ]
+            manifestPlaceholders = [
+                    BASE_HOST : "10.0.2.2",
+                    PORT_HOST : "8080",
+                    MAPS_API_KEY : propertiesValues.getProperty("google.maps.key"),
+                    PLACE_API_KEY : propertiesValues.getProperty("google.places.key")
+            ]
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     namespace 'br.com.petsus'
 }
 
-dependencies {
-
-    implementation('androidx.core:core-ktx:1.9.0')
-    implementation('androidx.appcompat:appcompat:1.6.1')
-    implementation('com.google.android.material:material:1.8.0')
-    implementation('androidx.lifecycle:lifecycle-livedata-ktx:2.5.1')
-
-    testImplementation('junit:junit:4.13.2')
-    androidTestImplementation('androidx.test.ext:junit:1.1.5')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1')
-
-    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4')
-    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4')
-
-    implementation('androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1')
-    implementation('androidx.lifecycle:lifecycle-livedata-ktx:2.5.1')
-
-    implementation('androidx.fragment:fragment-ktx:1.5.5')
-
-//    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-
-    normalImplementation('com.squareup.retrofit2:retrofit:2.9.0')
-    implementation('com.squareup.retrofit2:converter-gson:2.9.0')
-    normalImplementation('com.squareup.okhttp3:logging-interceptor:4.10.0')
-
-//    implementation('com.github.RedMadRobot:input-mask-android:6.1.0')
-
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
-    implementation('com.google.firebase:firebase-analytics-ktx')
-    implementation('com.google.firebase:firebase-crashlytics-ktx')
-    implementation('com.google.firebase:firebase-messaging-ktx')
-
-    implementation('com.google.android.gms:play-services-maps:18.1.0')
-    implementation('com.google.android.gms:play-services-location:21.0.1')
-
-    implementation('com.airbnb.android:lottie:6.0.0')
-    implementation('androidx.browser:browser:1.5.0')
-
-    implementation('androidx.core:core-splashscreen:1.0.0')
-    implementation('com.github.tapadoo:alerter:7.2.4')
-
-    implementation('com.github.EudyContreras:Skeleton-Bones:v1.4.5')
-
-    implementation('com.github.bumptech.glide:glide:4.14.2')
-    kapt('com.github.bumptech.glide:compiler:4.14.2')
-
-    implementation('com.google.dagger:hilt-android:2.45')
-    kapt('com.google.dagger:hilt-compiler:2.45')
-}
+apply from: 'dependencies.gradle'
 
 kapt {
     correctErrorTypes true
 }
 
 sonarqube {
-    Properties propertiesValues = new Properties()
-    propertiesValues.load(project.rootProject.file('local.properties').newDataInputStream())
 
     properties {
         property "sonar.projectName", "Petsus Android"

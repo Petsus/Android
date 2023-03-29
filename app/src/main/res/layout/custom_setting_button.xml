@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+    android:background="@drawable/bg_button_ripple"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingHorizontal="@dimen/margin_default"
+    android:paddingHorizontal="@dimen/margin_default_x0.5"
     android:paddingVertical="@dimen/margin_default_x0.5">
 
     <androidx.appcompat.widget.AppCompatImageView

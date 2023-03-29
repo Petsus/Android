@@ -41,6 +41,109 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593020941743:android:891ddd00126c713d77eb5a",
+        "android_client_info": {
+          "package_name": "br.com.petsus.local.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593020941743-uboapd1v9jej9tr815gd1rmc9o31mi07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.petsus.local.debug",
+            "certificate_hash": "069585044571a9a89eb0d8dad34f50a1a13b6420"
+          }
+        },
+        {
+          "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX0UHg-VM_WEHFVdJppSTNUIKXXs1h27Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593020941743:android:82d0f8fae1b2940877eb5a",
+        "android_client_info": {
+          "package_name": "br.com.petsus.local.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593020941743-2a5dhl3j26i82r62dr0krr46fblduf5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.petsus.local.dev",
+            "certificate_hash": "069585044571a9a89eb0d8dad34f50a1a13b6420"
+          }
+        },
+        {
+          "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX0UHg-VM_WEHFVdJppSTNUIKXXs1h27Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593020941743:android:ed98c0a269dc38e877eb5a",
+        "android_client_info": {
+          "package_name": "br.com.petsus.local.release"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX0UHg-VM_WEHFVdJppSTNUIKXXs1h27Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

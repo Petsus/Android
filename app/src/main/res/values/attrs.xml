@@ -4,4 +4,10 @@
         <attr name="title" format="string|reference" />
         <attr name="icon" format="reference" />
     </declare-styleable>
+    <declare-styleable name="CardDivider">
+        <attr name="android:text" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="AppBarView">
+        <attr name="android:text" format="string|reference" />
+    </declare-styleable>
 </resources>

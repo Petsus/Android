@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="animal"
+            type="br.com.petsus.api.model.animal.Animal" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/button_height_flat"
+                android:layout_height="@dimen/button_height_flat"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:background="@drawable/bg_button_ripple"
+                app:layout_constraintBottom_toBottomOf="@id/container_image_animal"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/padding_default_x0.5"
+                app:tint="@color/md_theme_onBackground"
+                app:layout_constraintTop_toTopOf="@id/container_image_animal"
+                app:srcCompat="@drawable/icon_close" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/container_image_animal"
+                android:layout_width="@dimen/image_profile"
+                android:layout_height="@dimen/image_profile"
+                android:layout_margin="@dimen/margin_default"
+                app:cardCornerRadius="@dimen/radius_image_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/loading_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:indeterminate="true" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/edit_image_animal"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:background="?attr/selectableItemBackground"
+                android:translationX="8dp"
+                android:translationY="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/container_image_animal"
+                app:layout_constraintEnd_toEndOf="@id/container_image_animal"
+                app:srcCompat="@drawable/icon_change_image" />
+
+            <br.com.petsus.util.custom.card.CardDivider
+                android:id="@+id/basic_data_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_x0.5"
+                android:text="@string/basic_data"
+                app:layout_constraintTop_toBottomOf="@id/container_image_animal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/name_animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:hint="@string/name_animal"
+                        app:placeholderText="@string/name_animal">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text|textPersonName"
+                            android:maxLength="255"
+                            android:maxLines="1"
+                            android:text="@{animal.name}"
+                            android:textColor="@color/md_theme_onBackground" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/weight_animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:hint="@string/weight_animal"
+                        app:placeholderText="@string/weight_animal"
+                        app:suffixText="@string/kg">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="@{String.valueOf(animal.weight)}"
+                            android:textColor="@color/md_theme_onBackground" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/height_animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:hint="@string/height_animal"
+                        app:placeholderText="@string/height_animal"
+                        app:suffixText="@string/cm">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(animal.height)}"
+                            android:textColor="@color/md_theme_onBackground" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/birthday_animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:hint="@string/birthday_animal"
+                        app:placeholderText="@string/birthday_animal">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:focusable="false"
+                            android:text="@{animal.formattedBirthday}"
+                            android:textColor="@color/md_theme_onBackground" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/race_animal"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:hint="@string/race_animal">
+
+                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save_changes_animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_marginBottom="@dimen/margin_default_x0.25"
+                        android:background="@drawable/bg_ripple"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/record_medic_history_animal" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </br.com.petsus.util.custom.card.CardDivider>
+
+            <br.com.petsus.util.custom.card.CardDivider
+                android:id="@+id/tracker_data_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tracker_animal"
+                app:layout_constraintTop_toBottomOf="@id/basic_data_animal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/see_qr_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/bg_ripple"
+                    android:gravity="center_vertical"
+                    android:text="@string/see_qr_code"
+                    android:textAppearance="@style/AppTheme.Petsus.Text.H2"
+                    android:visibility="@{animal.currentQrCode == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/register_or_unregister_qr_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/bg_ripple"
+                    android:gravity="center_vertical"
+                    android:text="@{animal.currentQrCode == null ? @string/register_qr_code : @string/unregister_qr_code}"
+                    android:textAppearance="@style/AppTheme.Petsus.Text.H2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/see_qr_code" />
+
+            </br.com.petsus.util.custom.card.CardDivider>
+
+            <br.com.petsus.util.custom.card.CardDivider
+                android:id="@+id/record_medic_data_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/record_medic_animal"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tracker_data_animal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/record_medic_history_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/see_more_history_medical_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/bg_ripple"
+                    android:text="@string/see_more"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/record_medic_history_animal" />
+
+            </br.com.petsus.util.custom.card.CardDivider>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

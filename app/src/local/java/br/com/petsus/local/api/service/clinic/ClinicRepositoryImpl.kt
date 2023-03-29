@@ -65,7 +65,8 @@ class ClinicRepositoryImpl : ClinicRepository {
                                 ibgeId = 1
                             )
                         ),
-                        postalCode = "18020-268"
+                        postalCode = "18020-268",
+                        nickname = null,
                     ),
                     image = "https://lh3.googleusercontent.com/p/AF1QipOYkKLyoGz2aosGJJa6Af1YeHwQY-se-27DAJCc=s680-w680-h510",
                     exams = generateSequence { if (--countExams > 0) generateExam() else null }.toList(),
