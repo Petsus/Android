@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddressViewModel_Factory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.address</a>
+</div>
+
+<h1>Coverage Summary for Class: AddressViewModel_Factory (br.com.petsus.screen.address)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddressViewModel_Factory</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.address;
+&nbsp;
+&nbsp;import android.app.Application;
+&nbsp;import br.com.petsus.api.service.user.AddressRepository;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.Factory;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import dagger.internal.ScopeMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@ScopeMetadata
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class AddressViewModel_Factory implements Factory&lt;AddressViewModel&gt; {
+&nbsp;  private final Provider&lt;Application&gt; applicationProvider;
+&nbsp;
+&nbsp;  private final Provider&lt;AddressRepository&gt; addressRepositoryProvider;
+&nbsp;
+&nbsp;  public AddressViewModel_Factory(Provider&lt;Application&gt; applicationProvider,
+<b class="nc">&nbsp;      Provider&lt;AddressRepository&gt; addressRepositoryProvider) {</b>
+<b class="nc">&nbsp;    this.applicationProvider = applicationProvider;</b>
+<b class="nc">&nbsp;    this.addressRepositoryProvider = addressRepositoryProvider;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public AddressViewModel get() {
+<b class="nc">&nbsp;    AddressViewModel instance = newInstance(applicationProvider.get());</b>
+<b class="nc">&nbsp;    AddressViewModel_MembersInjector.injectAddressRepository(instance, addressRepositoryProvider.get());</b>
+<b class="nc">&nbsp;    return instance;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static AddressViewModel_Factory create(Provider&lt;Application&gt; applicationProvider,
+&nbsp;      Provider&lt;AddressRepository&gt; addressRepositoryProvider) {
+<b class="nc">&nbsp;    return new AddressViewModel_Factory(applicationProvider, addressRepositoryProvider);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static AddressViewModel newInstance(Application application) {
+<b class="nc">&nbsp;    return new AddressViewModel(application);</b>
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

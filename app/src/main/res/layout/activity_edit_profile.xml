@@ -10,36 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/back"
-            android:layout_width="@dimen/button_height_flat"
-            android:layout_height="@dimen/button_height_flat"
-            android:layout_margin="@dimen/margin_default"
-            android:background="@drawable/bg_button_ripple"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_back" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_edit_address"
-            style="@style/AppTheme.Petsus.Text.H0"
-            android:layout_width="wrap_content"
+        <br.com.petsus.util.custom.toolbar.AppBarView
+            android:id="@+id/back_app_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default_x0.5"
-            android:text="@string/address"
-            app:layout_constraintBottom_toBottomOf="@id/back"
-            app:layout_constraintStart_toEndOf="@id/back"
-            app:layout_constraintTop_toTopOf="@id/back" />
+            app:title="@string/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default"
+            android:layout_marginHorizontal="@dimen/margin_default"
             android:hint="@string/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_edit_address"
+            app:layout_constraintTop_toBottomOf="@id/back_app_bar"
             app:placeholderText="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText

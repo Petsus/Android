@@ -1,5 +1,6 @@
 package br.com.petsus.api.service.user
 
+import android.net.Uri
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.ChangePassword
 import br.com.petsus.api.model.auth.ResetPassword
@@ -9,10 +10,12 @@ import br.com.petsus.api.model.user.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    suspend fun resetPassword(body: ResetPassword): Flow<EmptyResponse>
-    suspend fun changePassword(body: ChangePassword): Flow<EmptyResponse>
-    suspend fun createUser(body: CreateUser): Flow<AuthToken>
-    suspend fun getUser(): Flow<User>
-    suspend fun update(body: User): Flow<EmptyResponse>
-    suspend fun name(): Flow<String>
+    fun resetPassword(body: ResetPassword): Flow<EmptyResponse>
+    fun changePassword(body: ChangePassword): Flow<EmptyResponse>
+    fun createUser(body: CreateUser): Flow<AuthToken>
+    fun getUser(): Flow<User>
+    fun update(body: User): Flow<EmptyResponse>
+    fun name(): Flow<String>
+    fun saveImage(uri: Uri): Flow<Boolean>
+    fun currentImage(): Flow<String?>
 }

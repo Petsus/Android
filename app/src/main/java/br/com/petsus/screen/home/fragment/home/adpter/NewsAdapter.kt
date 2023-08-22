@@ -5,11 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.petsus.api.model.others.News
 import br.com.petsus.databinding.CardNewsBinding
 import br.com.petsus.util.base.adapter.BaseAdapter
-import br.com.petsus.util.tool.dp
 import br.com.petsus.util.tool.inflater
 import br.com.petsus.util.tool.pixel
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -28,8 +26,7 @@ class NewsAdapter : BaseAdapter<News, NewsAdapter.NewsHolder>() {
             Glide.with(binding.imageNews)
                 .asDrawable()
                 .load(news.img)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .transform(RoundedCorners(16f.pixel), CenterCrop())
+                .transform(CenterCrop(), RoundedCorners(16f.pixel))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.imageNews)
                 .waitForLayout()

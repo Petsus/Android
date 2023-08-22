@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class ClinicRepositoryImpl : ClinicRepository {
-    override suspend fun find(id: Long): Flow<Clinic> {
+    override fun find(id: Long): Flow<Clinic> {
         return flow {
             val find = ApiManager
                 .create(ClinicRepositoryRetrofit::class.java)
@@ -21,8 +21,7 @@ class ClinicRepositoryImpl : ClinicRepository {
             send(response = find)
         }
     }
-
-    override suspend fun list(lat: Double, lng: Double, distance: Double): Flow<List<ClinicAddress>> {
+    override fun list(lat: Double, lng: Double, distance: Double): Flow<List<ClinicAddress>> {
         return flow {
             val list = ApiManager
                 .create(ClinicRepositoryRetrofit::class.java)

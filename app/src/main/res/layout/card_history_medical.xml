@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_default_x0.5">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name_history_medical"
+        style="@style/AppTheme.Petsus.Text.H0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Vacina - Covid" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/data_history_medical"
+        style="@style/AppTheme.Petsus.Text.H3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_history_medical"
+        tools:text="21/01/2010 ás 22:00" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/info_history_medical"
+        style="@style/AppTheme.Petsus.Text.H2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default_x0.5"
+        android:lineSpacingExtra="@dimen/padding_default_x0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_history_medical"
+        tools:text="Vacinado por: Nome médico\nNa clinica: Nome clinica" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

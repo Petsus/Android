@@ -25,11 +25,11 @@ class AppApplication : Application() {
     private fun keyPlaces(): String? {
         return packageManager.run {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                return@run getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(0L))
+                return@run getApplicationInfo(this@AppApplication.packageName, PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong()))
              getApplicationInfo(packageName, PackageManager.GET_META_DATA)
         }
             .metaData
-            .getString("com.google.android.places.API_KEY")
+            ?.getString("com.google.android.places.API_KEY")
     }
 
 }

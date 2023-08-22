@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class AuthRepositoryImpl : AuthRepository {
-    override suspend fun login(body: AuthLogin): Flow<AuthToken> {
+    override fun login(body: AuthLogin): Flow<AuthToken> {
         return flow {
             val login = ApiManager
                 .create(AuthRepositoryRetrofit::class.java)
@@ -23,7 +23,7 @@ class AuthRepositoryImpl : AuthRepository {
         }
     }
 
-    override suspend fun refreshToken(body: RefreshToken): Flow<AuthToken> {
+    override fun refreshToken(body: RefreshToken): Flow<AuthToken> {
         return flow {
             val refreshToken = ApiManager
                 .create(AuthRepositoryRetrofit::class.java)

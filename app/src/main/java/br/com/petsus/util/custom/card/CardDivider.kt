@@ -79,8 +79,8 @@ class CardDivider @JvmOverloads constructor(
             binding.contentContainer.addView(child, index, params)
     }
 
-    var isExpanded: Boolean
-        get() = binding.contentContainer.isGone
+    private var isExpanded: Boolean
         set(value) { binding.contentContainer.isGone = value }
+        get() = binding.contentContainer.isGone
 
 }

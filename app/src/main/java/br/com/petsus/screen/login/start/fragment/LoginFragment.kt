@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnLayout
-import androidx.fragment.app.viewModels
 import br.com.petsus.databinding.FragmentLoginBinding
-import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.screen.home.HomeActivity
-import br.com.petsus.util.base.fragment.BaseFragment
+import br.com.petsus.screen.login.start.LoginViewModel
+import br.com.petsus.util.base.fragment.AppFragment
 import br.com.petsus.util.base.fragment.findNavigation
+import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.preventDoubleClick
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+class LoginFragment : AppFragment<FragmentLoginBinding>() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by appViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -42,7 +42,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
             login.setOnClickListener { currentView ->
                 currentView.preventDoubleClick()
-                loading()
+                showLoading()
 
                 viewModel.login(
                     email = binding?.inputEmail?.editText?.text?.toString(),

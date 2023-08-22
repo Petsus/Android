@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SessionRepositoryImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.local.api.service.auth.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: SessionRepositoryImpl (br.com.petsus.local.api.service.auth.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SessionRepositoryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SessionRepositoryImpl$fetchToken$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SessionRepositoryImpl$InvalidRefreshToken</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.local.api.service.auth.repository
+&nbsp;
+&nbsp;import br.com.petsus.api.model.auth.AuthToken
+&nbsp;import br.com.petsus.api.service.auth.SessionRepository
+&nbsp;import br.com.petsus.local.util.delayDefault
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;import kotlinx.coroutines.flow.flow
+&nbsp;
+<b class="nc">&nbsp;class SessionRepositoryImpl : SessionRepository {</b>
+&nbsp;    private var cachedToken: AuthToken? = null
+&nbsp;
+&nbsp;    override val hasToken: Boolean
+<b class="nc">&nbsp;        get() = cachedToken != null</b>
+&nbsp;
+&nbsp;    override var token: AuthToken?
+<b class="nc">&nbsp;        get() = cachedToken</b>
+<b class="nc">&nbsp;        set(value) { cachedToken = value }</b>
+&nbsp;
+&nbsp;    override fun fetchToken(): Flow&lt;Result&lt;AuthToken&gt;?&gt; {
+<b class="nc">&nbsp;        return flow {</b>
+<b class="nc">&nbsp;            delayDefault()</b>
+&nbsp;
+<b class="nc">&nbsp;            val currentToken = cachedToken ?: run {</b>
+<b class="nc">&nbsp;                emit(null)</b>
+&nbsp;                return@flow
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (currentToken.expiration &gt;= System.currentTimeMillis()) {</b>
+<b class="nc">&nbsp;                emit(Result.success(currentToken))</b>
+&nbsp;                return@flow
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            emit(Result.failure(InvalidRefreshToken(currentToken)))</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private class InvalidRefreshToken(authToken: AuthToken) : Throwable(&quot;Invalid authToken: $authToken&quot;)</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

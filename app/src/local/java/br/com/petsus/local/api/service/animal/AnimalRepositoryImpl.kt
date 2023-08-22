@@ -1,12 +1,14 @@
 package br.com.petsus.local.api.service.animal
 
 import br.com.petsus.api.model.animal.Animal
+import br.com.petsus.api.model.animal.CreateAnimal
 import br.com.petsus.api.model.animal.HistoryMedical
 import br.com.petsus.api.model.animal.Race
 import br.com.petsus.api.model.animal.Specie
 import br.com.petsus.api.model.clinic.Vaccine
 import br.com.petsus.api.service.animal.AnimalRepository
 import br.com.petsus.local.util.delayDefault
+import com.google.android.gms.maps.model.LatLng
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,21 +38,11 @@ class AnimalRepositoryImpl : AnimalRepository {
             height = 120,
             birthday = "13/02/2022",
             race = generateRace(),
+            addressId = 1,
             qrcode = "f1875fd1e76afdf663dafcd064ae51345bcc4aa8fcd5f73b1c3614383e7931c1"
         )
     }
-    private fun generateHistoryMedical(): HistoryMedical {
-        return HistoryMedical(
-            id = Random.nextLong(Long.MAX_VALUE),
-            createdAt = "2023-02-13 12:00:00",
-            exam = null,
-            vaccine = Vaccine(
-                id = Random.nextLong(Long.MAX_VALUE),
-                name = "Vaccine name"
-            )
-        )
-    }
-    override suspend fun all(): Flow<List<Animal>> {
+    override fun all(): Flow<List<Animal>> {
         return flow {
             delayDefault()
             emit(
@@ -61,7 +53,13 @@ class AnimalRepositoryImpl : AnimalRepository {
         }
     }
 
-    override suspend fun races(animal: Animal): Flow<List<Race>> {
+    override fun species(): Flow<List<Specie>> {
+        return flow {
+            TODO("Not yet implemented")
+        }
+    }
+
+    override fun races(animal: Animal): Flow<List<Race>> {
         return flow {
             delayDefault()
             emit(
@@ -72,43 +70,66 @@ class AnimalRepositoryImpl : AnimalRepository {
         }
     }
 
-    override suspend fun registerQrCode(): Flow<String> {
+    override fun races(specie: Specie): Flow<List<Race>> {
+        return flow {
+            TODO("Not yet implemented")
+        }
+    }
+
+    override fun registerQrCode(animal: Animal): Flow<String> {
         return flow {
             delayDefault()
             emit("f1875fd1e76afdf663dafcd064ae51345bcc4aa8fcd5f73b1c3614383e7931c1")
         }
     }
 
-    override suspend fun unregisterQrCode(qrCode: String): Flow<Unit> {
+    override fun unregisterQrCode(qrCode: String): Flow<Unit> {
         return flow {
             delayDefault()
             emit(Unit)
         }
     }
 
-    override suspend fun historyMedical(): Flow<List<HistoryMedical>> {
-        return flow {
-            delayDefault()
-            emit(
-                listOf(generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical())
-            )
-        }
-    }
-
-    override suspend fun updateImage(fileImage: File): Flow<Boolean> {
+    override fun updateImage(animalId: Long, fileImage: File): Flow<Boolean> {
         return flow {
             delayDefault()
             emit(value = true)
         }
     }
 
-    override suspend fun updateAnimal(animal: Animal): Flow<Boolean> {
+    override fun updateAnimal(animal: Animal): Flow<Boolean> {
         return flow {
             delayDefault()
             emit(value = true)
         }
     }
 
+    override fun deleteAnimal(animal: Animal): Flow<Boolean> {
+        return flow {
+            delayDefault()
+            emit(value = true)
+        }
+    }
+    override fun getAnimalForTagId(tagId: String): Flow<Animal> {
+        return flow {
+            delayDefault()
+            emit(generateAnimal())
+        }
+    }
+
+    override fun notifyAnimalFounded(animal: Animal, location: LatLng): Flow<Unit> {
+        return flow {
+            delayDefault()
+            emit(Unit)
+        }
+    }
+
+    override fun createAnimal(animal: CreateAnimal): Flow<Animal> {
+        return flow {
+            delayDefault()
+            emit(generateAnimal())
+        }
+    }
 }
 
 @Module

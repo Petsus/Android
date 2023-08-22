@@ -1,16 +1,16 @@
 package br.com.petsus.screen.about
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.core.text.HtmlCompat
 import br.com.petsus.databinding.ActivityAboutAppBinding
-import br.com.petsus.util.base.activity.BaseActivity
+import br.com.petsus.util.base.activity.AppActivity
+import br.com.petsus.util.base.viewmodel.appViewModels
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AboutAppActivity : BaseActivity() {
+class AboutAppActivity : AppActivity() {
 
-    private val viewModel: AboutAppViewModel by viewModels()
+    private val viewModel: AboutAppViewModel by appViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

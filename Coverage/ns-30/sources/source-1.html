@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > WelcomeFragment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.login.welcome</a>
+</div>
+
+<h1>Coverage Summary for Class: WelcomeFragment (br.com.petsus.screen.login.welcome)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">WelcomeFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.login.welcome
+&nbsp;
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import br.com.petsus.databinding.FragmentWelcomeBinding
+&nbsp;import br.com.petsus.screen.login.start.fragment.CreateAccountFragment
+&nbsp;import br.com.petsus.screen.login.start.fragment.LoginFragment
+&nbsp;import br.com.petsus.util.base.fragment.BaseFragment
+&nbsp;import br.com.petsus.util.base.fragment.findNavigation
+&nbsp;
+<b class="nc">&nbsp;class WelcomeFragment : BaseFragment&lt;FragmentWelcomeBinding&gt;() {</b>
+&nbsp;    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+<b class="nc">&nbsp;        binding = FragmentWelcomeBinding.inflate(inflater, container, false)</b>
+<b class="nc">&nbsp;        return binding?.root</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onViewCreated(view, savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        FragmentWelcomeBinding.bind(view).apply {</b>
+<b class="nc">&nbsp;            loginAccount.setOnClickListener {</b>
+<b class="nc">&nbsp;                findNavigation()?.show(fragment = LoginFragment(), addToBack = false)</b>
+&nbsp;            }
+<b class="nc">&nbsp;            createAccount.setOnClickListener {</b>
+<b class="nc">&nbsp;                findNavigation()?.show(fragment = CreateAccountFragment())</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

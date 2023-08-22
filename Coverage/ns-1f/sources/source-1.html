@@ -1,0 +1,270 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddressActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.address.list</a>
+</div>
+
+<h1>Coverage Summary for Class: AddressActivity (br.com.petsus.screen.address.list)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddressActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AddressActivity$binding$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$configureView$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$configureView$helper$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$sam$androidx_lifecycle_Observer$0</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddressActivity$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.address.list
+&nbsp;
+&nbsp;import android.content.Intent
+&nbsp;import android.os.Bundle
+&nbsp;import androidx.activity.viewModels
+&nbsp;import androidx.recyclerview.widget.DividerItemDecoration
+&nbsp;import androidx.recyclerview.widget.ItemTouchHelper
+&nbsp;import br.com.petsus.databinding.ActivityAddressBinding
+&nbsp;import br.com.petsus.screen.address.AddressViewModel
+&nbsp;import br.com.petsus.screen.address.add.AddUpdateAddressActivity
+&nbsp;import br.com.petsus.util.base.adapter.DeleteItemHelper
+&nbsp;import br.com.petsus.screen.address.adapter.ListAddressAdapter
+&nbsp;import br.com.petsus.util.base.activity.BaseActivity
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class AddressActivity : BaseActivity() {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: AddressViewModel by viewModels()</b>
+&nbsp;
+<b class="nc">&nbsp;    private val binding: ActivityAddressBinding by lazy {</b>
+<b class="nc">&nbsp;        ActivityAddressBinding.inflate(layoutInflater)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val adapter: ListAddressAdapter = ListAddressAdapter().apply {</b>
+<b class="nc">&nbsp;        addClickListener { editAddress -&gt;</b>
+<b class="nc">&nbsp;            startActivity(</b>
+<b class="nc">&nbsp;                Intent(this@AddressActivity, AddUpdateAddressActivity::class.java)</b>
+<b class="nc">&nbsp;                    .putExtra(AddUpdateAddressActivity.EXTRA_ADDRESS, editAddress)</b>
+&nbsp;            )
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+<b class="nc">&nbsp;        setContentView(binding.root)</b>
+&nbsp;
+<b class="nc">&nbsp;        configureView()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun configureView() {
+<b class="nc">&nbsp;        binding.listAddress.adapter = adapter</b>
+<b class="nc">&nbsp;        binding.listAddress.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))</b>
+&nbsp;
+<b class="nc">&nbsp;        binding.back.setOnClickListener { finish() }</b>
+&nbsp;
+<b class="nc">&nbsp;        binding.addAddress.setOnClickListener {</b>
+<b class="nc">&nbsp;            startActivity(</b>
+<b class="nc">&nbsp;                Intent(this, AddUpdateAddressActivity::class.java)</b>
+&nbsp;            )
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        val helper = DeleteItemHelper(this, object : DeleteItemHelper.HelperCallback {</b>
+<b class="nc">&nbsp;            override suspend fun canDelete(position: Int): Boolean = viewModel.delete(adapter.find(position).first())</b>
+<b class="nc">&nbsp;            override fun removeItem(position: Int) = adapter.delete(adapter.find(position))</b>
+<b class="nc">&nbsp;            override fun updateItem(position: Int) = adapter.notifyItemChanged(position)</b>
+&nbsp;        })
+&nbsp;
+<b class="nc">&nbsp;        ItemTouchHelper(helper)</b>
+<b class="nc">&nbsp;            .attachToRecyclerView(binding.listAddress)</b>
+&nbsp;
+<b class="nc">&nbsp;        viewModel.list().observe(this) { address -&gt;</b>
+<b class="nc">&nbsp;            adapter.put(address)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

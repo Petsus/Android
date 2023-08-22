@@ -76,9 +76,9 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
 
-            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
+            buildConfigField("String", "BASE_URL", '"http://192.168.15.55:8080/"')
             manifestPlaceholders = [
-                    BASE_HOST : "10.0.2.2",
+                    BASE_HOST : "192.168.15.55",
                     PORT_HOST : "8080",
                     MAPS_API_KEY : propertiesValues.getProperty("google.maps.key"),
                     PLACE_API_KEY : propertiesValues.getProperty("google.places.key")
@@ -87,11 +87,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
     namespace 'br.com.petsus'
 }
@@ -103,7 +103,6 @@ kapt {
 }
 
 sonarqube {
-
     properties {
         property "sonar.projectName", "Petsus Android"
         property "sonar.projectKey", "petsus-android"

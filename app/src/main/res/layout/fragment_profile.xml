@@ -61,10 +61,18 @@
             app:title="@string/address" />
 
         <br.com.petsus.util.custom.buttom.SettingButton
-            android:id="@+id/about_menu"
+            android:id="@+id/notification_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/address_menu"
+            app:icon="@drawable/icon_notification"
+            app:title="@string/notifications" />
+
+        <br.com.petsus.util.custom.buttom.SettingButton
+            android:id="@+id/about_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/notification_menu"
             app:icon="@drawable/icon_info"
             app:title="@string/about" />
 
@@ -73,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/address_menu"
+            app:layout_constraintTop_toBottomOf="@id/about_menu"
             app:layout_constraintVertical_bias="1"
             app:icon="@drawable/icon_logout"
             app:title="@string/logout" />

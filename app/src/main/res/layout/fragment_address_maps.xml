@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <br.com.petsus.util.custom.toolbar.AppBarView
+        android:id="@+id/appbar_address_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title="@string/address"
+        tools:subtitle="Rua Comandante Salgado, 547 - Vila Hortência, Sorocaba/SP" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_maps_address"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_address_fragment" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mark_maps_address"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:translationY="-16dp"
+        app:layout_constraintBottom_toBottomOf="@id/container_maps_address"
+        app:layout_constraintEnd_toEndOf="@id/container_maps_address"
+        app:layout_constraintStart_toStartOf="@id/container_maps_address"
+        app:layout_constraintTop_toTopOf="@id/container_maps_address"
+        app:srcCompat="@drawable/drawable_icon_location" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_maps_address"
+        style="@style/AppTheme.Petsus.Button.Full"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/margin_default"
+        android:text="@string/continue_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

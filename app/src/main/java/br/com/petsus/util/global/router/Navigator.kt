@@ -14,7 +14,7 @@ class Navigator private constructor(
     private val fragmentManager: FragmentManager,
 ) {
 
-    data class Animation(
+    private data class Animation(
         @AnimRes val enter: Int,
         @AnimRes val exit: Int,
         @AnimRes val popEnter: Int,
@@ -37,7 +37,7 @@ class Navigator private constructor(
         }
     }
 
-    var animation: Animation = Animation(
+    private val animation: Animation = Animation(
         enter = R.anim.full_enter_fragment,
         exit = R.anim.full_exit_fragment,
         popEnter = R.anim.full_pop_enter_fragment,

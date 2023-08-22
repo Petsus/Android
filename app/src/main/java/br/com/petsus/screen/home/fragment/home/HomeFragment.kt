@@ -6,20 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.view.isGone
 import androidx.core.view.isInvisible
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.petsus.databinding.FragmentHomeBinding
 import br.com.petsus.screen.home.HomeViewModel
 import br.com.petsus.screen.home.fragment.home.adpter.NewsAdapter
-import br.com.petsus.util.base.fragment.BaseFragment
+import br.com.petsus.util.base.fragment.AppFragment
+import br.com.petsus.util.base.viewmodel.appActivityViewModels
 import br.com.petsus.util.global.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : AppFragment<FragmentHomeBinding>() {
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by appActivityViewModels()
 
     private val adapter: NewsAdapter = NewsAdapter().apply {
         addClickListener { news ->
@@ -44,6 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     binding?.loadingNews?.hide()
                     binding?.listNews?.isInvisible = false
                     adapter.update(items.data)
+                    binding?.infoEmptyNews?.isGone = items.data.isNotEmpty()
                 }
                 is ResultState.Fail -> {
                     binding?.loadingNews?.hide()

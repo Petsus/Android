@@ -44,6 +44,43 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:593020941743:android:b01a8d20294075fc77eb5a",
+        "android_client_info": {
+          "package_name": "br.com.petsus.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593020941743-vv2skv6qsik359t0kno3j955uthe6r3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.petsus.debug",
+            "certificate_hash": "069585044571a9a89eb0d8dad34f50a1a13b6420"
+          }
+        },
+        {
+          "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX0UHg-VM_WEHFVdJppSTNUIKXXs1h27Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593020941743-52mpa0hof66rot2p08gejck30i64uscc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:593020941743:android:891ddd00126c713d77eb5a",
         "android_client_info": {
           "package_name": "br.com.petsus.local.debug"

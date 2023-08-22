@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > KeyboardController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.util.global</a>
+</div>
+
+<h1>Coverage Summary for Class: KeyboardController (br.com.petsus.util.global)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KeyboardController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">KeyboardController$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">KeyboardController$rootView$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.util.global
+&nbsp;
+&nbsp;import android.graphics.Rect
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewTreeObserver
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import androidx.fragment.app.Fragment
+&nbsp;import androidx.lifecycle.DefaultLifecycleObserver
+&nbsp;import androidx.lifecycle.LifecycleOwner
+&nbsp;import br.com.petsus.util.tool.cast
+&nbsp;import java.lang.ref.WeakReference
+&nbsp;
+<b class="nc">&nbsp;class KeyboardController(</b>
+<b class="nc">&nbsp;    private val activity: WeakReference&lt;AppCompatActivity&gt;</b>
+&nbsp;) : DefaultLifecycleObserver {
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        fun of(from: AppCompatActivity): KeyboardController {
+<b class="nc">&nbsp;            return KeyboardController(</b>
+<b class="nc">&nbsp;                activity = WeakReference(from),</b>
+&nbsp;            )
+&nbsp;        }
+&nbsp;
+&nbsp;        fun of(from: Fragment): KeyboardController {
+<b class="nc">&nbsp;            return KeyboardController(</b>
+<b class="nc">&nbsp;                activity = WeakReference(from.requireActivity().cast()),</b>
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val rootView: View? by lazy {</b>
+<b class="nc">&nbsp;        activity.get()?.findViewById(android.R.id.content)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private var onKeyboardChangeListener: Action&lt;Int&gt;? = null
+&nbsp;
+<b class="nc">&nbsp;    private val listenerKeyboard = ViewTreeObserver.OnGlobalLayoutListener {</b>
+<b class="nc">&nbsp;        val visibleBounds = Rect()</b>
+<b class="nc">&nbsp;        rootView?.apply {</b>
+<b class="nc">&nbsp;            getWindowVisibleDisplayFrame(visibleBounds)</b>
+<b class="nc">&nbsp;            onKeyboardChangeListener?.action(this.height - visibleBounds.height())</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        activity.get()?.lifecycle?.addObserver(this)</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    override fun onResume(owner: LifecycleOwner) {
+<b class="nc">&nbsp;        rootView?.viewTreeObserver?.addOnGlobalLayoutListener(listenerKeyboard)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onPause(owner: LifecycleOwner) {
+<b class="nc">&nbsp;        rootView?.viewTreeObserver?.removeOnGlobalLayoutListener(listenerKeyboard)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun setOnKeyboardChangeListener(observer: Action&lt;Int&gt;?) {
+<b class="nc">&nbsp;        onKeyboardChangeListener = observer</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

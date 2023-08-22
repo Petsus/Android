@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class AboutAppRepositoryImpl : AboutAppRepository {
-    override suspend fun about(): Flow<String> {
+    override fun about(): Flow<String> {
         return flow {
             emit("<h1>About app html</h1>")
         }

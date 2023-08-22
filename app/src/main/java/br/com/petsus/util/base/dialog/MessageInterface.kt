@@ -1,6 +1,7 @@
 package br.com.petsus.util.base.dialog
 
 import br.com.petsus.util.base.viewmodel.StringFormatter
+import br.com.petsus.util.global.Action
 
 interface ErrorInterface {
     fun error(message: StringFormatter): ErrorInterface
@@ -14,6 +15,6 @@ interface SuccessInterface {
 }
 
 interface LoadingInterface {
-    fun loading(): LoadingInterface
-    fun closeLoading()
+    fun showLoading(): LoadingInterface
+    fun closeLoading(closing: Action<Unit>? = null)
 }

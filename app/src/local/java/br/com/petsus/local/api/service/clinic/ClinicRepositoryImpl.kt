@@ -1,6 +1,6 @@
 package br.com.petsus.local.api.service.clinic
 
-import br.com.petsus.api.model.address.Address
+import br.com.petsus.api.model.address.AppAddress
 import br.com.petsus.api.model.address.City
 import br.com.petsus.api.model.address.State
 import br.com.petsus.api.model.animal.Specie
@@ -37,7 +37,7 @@ class ClinicRepositoryImpl : ClinicRepository {
         )
     }
 
-    override suspend fun find(id: Long): Flow<Clinic> {
+    override fun find(id: Long): Flow<Clinic> {
         return flow {
             delayDefault()
             emit(
@@ -46,7 +46,7 @@ class ClinicRepositoryImpl : ClinicRepository {
                     name = "Parque Zoológico Municipal \"Quinzinho de Barros\"",
                     site = "https://google.com.br/",
                     phone = "15987654321",
-                    address = Address(
+                    appAddress = AppAddress(
                         id = 1,
                         address = "R. Teodoro Kaisel",
                         number = 883,
@@ -76,7 +76,7 @@ class ClinicRepositoryImpl : ClinicRepository {
         }
     }
 
-    override suspend fun list(lat: Double, lng: Double, distance: Double): Flow<List<ClinicAddress>> {
+    override fun list(lat: Double, lng: Double, distance: Double): Flow<List<ClinicAddress>> {
         return flow {
             emit(
                 listOf(

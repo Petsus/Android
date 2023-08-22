@@ -9,6 +9,10 @@ data class StringFormatter(
     val throwable: Throwable? = null,
 )
 
+class MessageThrowable(
+    val appMessage: StringFormatter
+) : Throwable()
+
 fun StringFormatter.parse(context: Context): String {
     return messageString ?: context.getString(messageId ?: R.string.error_generic)
 }
@@ -16,6 +20,3 @@ fun StringFormatter.parse(context: Context): String {
 fun StringFormatter.printStackTrace() {
     throwable?.printStackTrace()
 }
-
-val StringFormatter.getResourceIDOrThrow: Int
-    get() = messageId ?: throw NullPointerException("messageId is null")

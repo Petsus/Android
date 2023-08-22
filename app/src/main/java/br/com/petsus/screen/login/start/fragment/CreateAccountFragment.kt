@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnLayout
-import androidx.fragment.app.viewModels
 import br.com.petsus.databinding.FragmentLoginCreateUserBinding
-import br.com.petsus.screen.login.start.LoginViewModel
 import br.com.petsus.screen.home.HomeActivity
-import br.com.petsus.util.base.fragment.BaseFragment
+import br.com.petsus.screen.login.start.LoginViewModel
+import br.com.petsus.util.base.fragment.AppFragment
 import br.com.petsus.util.base.fragment.findNavigation
+import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.preventDoubleClick
 import br.com.petsus.util.tool.text
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateAccountFragment : BaseFragment<FragmentLoginCreateUserBinding>() {
+class CreateAccountFragment : AppFragment<FragmentLoginCreateUserBinding>() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by appViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginCreateUserBinding.inflate(inflater, container, false)
@@ -37,9 +37,9 @@ class CreateAccountFragment : BaseFragment<FragmentLoginCreateUserBinding>() {
                 container.minHeight = root.height
             }
             back.setOnClickListener { findNavigation()?.dismiss() }
-            createAccount.setOnClickListener {
-                it.preventDoubleClick()
-                loading()
+            createAccount.setOnClickListener { currentView ->
+                currentView.preventDoubleClick()
+                showLoading()
 
                 viewModel.createUser(
                     name = binding?.inputName?.text,

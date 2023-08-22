@@ -19,5 +19,5 @@ interface ClinicRepositoryRetrofit {
         @Query(value = "lat") lat: Double,
         @Query(value = "lng") lng: Double,
         @Query(value = "distance") distance: Double
-    ): Response<List<ClinicAddress>>
+    ): Response<BaseResponse<List<ClinicAddress>>>
 }

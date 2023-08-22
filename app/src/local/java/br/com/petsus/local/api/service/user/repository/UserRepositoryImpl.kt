@@ -1,5 +1,6 @@
 package br.com.petsus.local.api.service.user.repository
 
+import android.net.Uri
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.ChangePassword
 import br.com.petsus.api.model.auth.ResetPassword
@@ -13,28 +14,28 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImpl : UserRepository {
-    override suspend fun resetPassword(body: ResetPassword): Flow<EmptyResponse> {
+    override fun resetPassword(body: ResetPassword): Flow<EmptyResponse> {
         return flow {
             delayDefault()
             emit(EmptyResponse())
         }
     }
 
-    override suspend fun changePassword(body: ChangePassword): Flow<EmptyResponse> {
+    override fun changePassword(body: ChangePassword): Flow<EmptyResponse> {
         return flow {
             delayDefault()
             emit(EmptyResponse())
         }
     }
 
-    override suspend fun createUser(body: CreateUser): Flow<AuthToken> {
+    override fun createUser(body: CreateUser): Flow<AuthToken> {
         return flow {
             delayDefault()
             emit(AuthRepositoryImpl().generateToken())
         }
     }
 
-    override suspend fun getUser(): Flow<User> {
+    override fun getUser(): Flow<User> {
         return flow {
             delayDefault()
             emit(
@@ -44,27 +45,41 @@ class UserRepositoryImpl : UserRepository {
                     email = "email@mail.com.br",
                     enable = true,
                     createdAt = "2023-01-01 00:00:00",
-                    updatedAt = "2023-01-01 00:00:00",
+                    updatedAt = "2023-01-01 00:00:01",
                     phone = "15987654321",
-                    emailVerified = "2023-01-01 00:00:00",
-                    phoneVerified = "2023-01-01 00:00:00"
+                    emailVerified = "2023-01-01 00:00:02",
+                    phoneVerified = "2023-01-01 00:00:03"
                 )
             )
         }
     }
 
-    override suspend fun update(body: User): Flow<EmptyResponse> {
+    override fun update(body: User): Flow<EmptyResponse> {
         return flow {
             delayDefault()
             emit(EmptyResponse())
         }
     }
 
-    override suspend fun name(): Flow<String> {
+    override fun name(): Flow<String> {
         return flow {
             getUser().collect {
                 emit(it.name)
             }
+        }
+    }
+
+    override fun saveImage(uri: Uri): Flow<Boolean> {
+        return flow {
+            delayDefault()
+            emit(true)
+        }
+    }
+
+    override fun currentImage(): Flow<String> {
+        return flow {
+            delayDefault()
+            emit("https://steamuserimages-a.akamaihd.net/ugc/2029481402824246918/420C7ED8187DB71DAB443C734FD4BD9E984DA14D/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true")
         }
     }
 }

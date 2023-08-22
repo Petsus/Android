@@ -4,16 +4,17 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import br.com.petsus.R
 import br.com.petsus.databinding.ActivityHomeBinding
-import br.com.petsus.screen.home.fragment.clinics.ClinicFragment
 import br.com.petsus.screen.home.fragment.animal.AnimalFragment
+import br.com.petsus.screen.home.fragment.clinics.ClinicFragment
 import br.com.petsus.screen.home.fragment.home.HomeFragment
 import br.com.petsus.screen.home.fragment.profile.ProfileFragment
-import br.com.petsus.util.base.activity.BaseActivity
+import br.com.petsus.screen.home.fragment.scan.ScanAnimalFragment
+import br.com.petsus.util.base.activity.AppActivity
 import br.com.petsus.util.global.router.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity() {
+class HomeActivity : AppActivity() {
 
     private var currentId: Int = 0
 
@@ -21,7 +22,8 @@ class HomeActivity : BaseActivity() {
         Pair(R.id.home_fragment_menu, HomeFragment()),
         Pair(R.id.clinic_fragment_menu, ClinicFragment()),
         Pair(R.id.animal_fragment_menu, AnimalFragment()),
-        Pair(R.id.profile_fragment_menu, ProfileFragment())
+        Pair(R.id.profile_fragment_menu, ProfileFragment()),
+        Pair(R.id.qr_code_scanner_fragment_menu, ScanAnimalFragment())
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

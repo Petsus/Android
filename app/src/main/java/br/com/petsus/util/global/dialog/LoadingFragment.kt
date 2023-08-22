@@ -8,11 +8,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import br.com.petsus.R
 import br.com.petsus.databinding.FragmentLoadingBinding
+import br.com.petsus.util.global.Action
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainCoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoadingFragment : DialogFragment() {
+class LoadingFragment @JvmOverloads constructor(
+    private val defaultDispatcher: MainCoroutineDispatcher = Dispatchers.Main
+) : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return FragmentLoadingBinding.inflate(inflater, container, false).root
@@ -23,10 +27,11 @@ class LoadingFragment : DialogFragment() {
         setStyle(STYLE_NO_FRAME, R.style.AppTheme_Petsus_DialogBase)
     }
 
-    fun close() {
-        lifecycleScope.launch(Dispatchers.Main) {
+    fun close(closing: Action<Unit>? = null) {
+        lifecycleScope.launch(defaultDispatcher) {
             delay(1000)
-            dismiss()
+            runCatching { dismiss() }
+            closing?.action(Unit)
         }
     }
 

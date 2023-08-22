@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ViewModelLiveData</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.util.base.viewmodel</a>
+</div>
+
+<h1>Coverage Summary for Class: ViewModelLiveData (br.com.petsus.util.base.viewmodel)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ViewModelLiveData</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ViewModelLiveData$callOnSuccessful$1</td>
+  </tr>
+  <tr>
+    <td class="name">ViewModelLiveData$emit$1</td>
+  </tr>
+  <tr>
+    <td class="name">ViewModelLiveData$toLiveDataWithResponse$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.util.base.viewmodel
+&nbsp;
+&nbsp;import androidx.lifecycle.*
+&nbsp;import kotlinx.coroutines.Dispatchers
+&nbsp;import retrofit2.Call
+&nbsp;import retrofit2.Response
+&nbsp;
+<b class="nc">&nbsp;abstract class ViewModelLiveData : ViewModel() {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val errorObserver: MutableLiveData&lt;StringFormatter&gt; = MutableLiveData()</b>
+&nbsp;
+&nbsp;    val error: LiveData&lt;StringFormatter&gt;
+<b class="nc">&nbsp;        get() = errorObserver</b>
+&nbsp;
+<b class="nc">&nbsp;    fun sendError(error: StringFormatter) = errorObserver.postValue(error)</b>
+&nbsp;
+&nbsp;    fun Result&lt;*&gt;.callOnError() {
+<b class="nc">&nbsp;        onFailure { error -&gt;</b>
+<b class="nc">&nbsp;            error.printStackTrace()</b>
+<b class="nc">&nbsp;            errorObserver.postValue(StringFormatter(throwable = error))</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    suspend fun &lt;T&gt; Result&lt;T&gt;.callOnSuccessful(liveDataScope: LiveDataScope&lt;T&gt;) {</b>
+<b class="nc">&nbsp;        onSuccess { value -&gt;</b>
+<b class="nc">&nbsp;            liveDataScope.emit(value)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    suspend fun &lt;T&gt; Result&lt;T&gt;.emit(liveDataScope: LiveDataScope&lt;T&gt;) {</b>
+<b class="nc">&nbsp;        callOnSuccessful(liveDataScope)</b>
+<b class="nc">&nbsp;        callOnError()</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    fun &lt;T&gt; Call&lt;T&gt;.toLiveDataWithResponse(): LiveData&lt;Response&lt;T&gt;&gt; = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {</b>
+<b class="nc">&nbsp;        runCatching {</b>
+<b class="nc">&nbsp;            this@toLiveDataWithResponse.execute()</b>
+<b class="nc">&nbsp;        }.onSuccess { response: Response&lt;T&gt; -&gt;</b>
+<b class="nc">&nbsp;            emit(response)</b>
+<b class="nc">&nbsp;        }.callOnError()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

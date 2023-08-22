@@ -1,16 +1,16 @@
 package br.com.petsus.screen.profile
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import br.com.petsus.databinding.ActivityEditProfileBinding
-import br.com.petsus.util.base.activity.BaseActivity
+import br.com.petsus.util.base.activity.AppActivity
+import br.com.petsus.util.base.viewmodel.appViewModels
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditProfileActivity : BaseActivity() {
+class EditProfileActivity : AppActivity() {
 
-    private val viewModel: EditProfileViewModel by viewModels()
+    private val viewModel: EditProfileViewModel by appViewModels()
 
     private val binding: ActivityEditProfileBinding by lazy {
         ActivityEditProfileBinding.inflate(layoutInflater)
@@ -27,9 +27,9 @@ class EditProfileActivity : BaseActivity() {
     }
 
     private fun configureView() {
-        loading()
+        showLoading()
 
-        binding.back.setOnClickListener { finish() }
+        binding.backAppBar.setOnBackClickListener { finish() }
 
         viewModel.get().observe(this) { user ->
             closeLoading()
@@ -39,7 +39,7 @@ class EditProfileActivity : BaseActivity() {
             maskedPhone.setText(user.phone ?: "")
 
             binding.updateProfile.setOnClickListener {
-                loading()
+                showLoading()
                 viewModel.update(user).observe(this) {
                     closeLoading()
                 }

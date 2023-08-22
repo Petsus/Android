@@ -11,7 +11,6 @@
         android:layout_height="@dimen/button_height_flat"
         android:layout_margin="@dimen/margin_default"
         android:background="@drawable/bg_button_ripple"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_back" />
@@ -23,14 +22,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default_x0.5"
         android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default"
         android:maxLines="2"
         app:autoSizeMaxTextSize="@dimen/text_h0"
         app:autoSizeMinTextSize="@dimen/text_h2"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@id/back_app_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/back_app_bar"
         app:layout_constraintTop_toTopOf="@id/back_app_bar"
         tools:text="Name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/subtitle_app_bar"
+        style="@style/AppTheme.Petsus.Text.H3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        android:layout_marginTop="@dimen/margin_default_x0.25"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_marginBottom="@dimen/margin_default_x0.5"
+        app:layout_constraintEnd_toEndOf="@id/title_app_bar"
+        app:layout_constraintStart_toStartOf="@id/title_app_bar"
+        app:layout_constraintTop_toBottomOf="@id/title_app_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible"
+        tools:text="Rua Comandante Salgado, 547 - Vila Hortência, Sorocaba/SP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

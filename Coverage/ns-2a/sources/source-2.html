@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HomeFragment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.home.fragment.home</a>
+</div>
+
+<h1>Coverage Summary for Class: HomeFragment (br.com.petsus.screen.home.fragment.home)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HomeFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HomeFragment$onCreate$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$sam$androidx_lifecycle_Observer$0</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$activityViewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$activityViewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$activityViewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.home.fragment.home
+&nbsp;
+&nbsp;import android.net.Uri
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import androidx.browser.customtabs.CustomTabsIntent
+&nbsp;import androidx.core.view.isInvisible
+&nbsp;import androidx.fragment.app.activityViewModels
+&nbsp;import androidx.recyclerview.widget.DividerItemDecoration
+&nbsp;import br.com.petsus.databinding.FragmentHomeBinding
+&nbsp;import br.com.petsus.screen.home.HomeViewModel
+&nbsp;import br.com.petsus.screen.home.fragment.home.adpter.NewsAdapter
+&nbsp;import br.com.petsus.util.base.fragment.BaseFragment
+&nbsp;import br.com.petsus.util.global.ResultState
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class HomeFragment : BaseFragment&lt;FragmentHomeBinding&gt;() {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: HomeViewModel by activityViewModels()</b>
+&nbsp;
+<b class="nc">&nbsp;    private val adapter: NewsAdapter = NewsAdapter().apply {</b>
+<b class="nc">&nbsp;        addClickListener { news -&gt;</b>
+<b class="nc">&nbsp;            context?.apply {</b>
+<b class="nc">&nbsp;                CustomTabsIntent.Builder()</b>
+<b class="nc">&nbsp;                    .setShowTitle(true)</b>
+<b class="nc">&nbsp;                    .build()</b>
+<b class="nc">&nbsp;                    .launchUrl(this, Uri.parse(news.url))</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        viewModel.news().observe(this) { items -&gt;</b>
+<b class="nc">&nbsp;            when (items) {</b>
+<b class="nc">&nbsp;                is ResultState.Init -&gt; {</b>
+<b class="nc">&nbsp;                    binding?.loadingNews?.show()</b>
+<b class="nc">&nbsp;                    binding?.listNews?.isInvisible = true</b>
+&nbsp;                }
+<b class="nc">&nbsp;                is ResultState.Success -&gt; {</b>
+<b class="nc">&nbsp;                    binding?.loadingNews?.hide()</b>
+<b class="nc">&nbsp;                    binding?.listNews?.isInvisible = false</b>
+<b class="nc">&nbsp;                    adapter.update(items.data)</b>
+&nbsp;                }
+<b class="nc">&nbsp;                is ResultState.Fail -&gt; {</b>
+<b class="nc">&nbsp;                    binding?.loadingNews?.hide()</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+<b class="nc">&nbsp;        binding = FragmentHomeBinding.inflate(inflater, container, false)</b>
+<b class="nc">&nbsp;        return binding?.root</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onViewCreated(view, savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        binding?.apply {</b>
+<b class="nc">&nbsp;            listNews.adapter = adapter</b>
+<b class="nc">&nbsp;            listNews.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

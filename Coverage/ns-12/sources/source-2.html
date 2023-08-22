@@ -1,0 +1,204 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ClinicRepositoryModule</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.local.api.service.clinic</a>
+</div>
+
+<h1>Coverage Summary for Class: ClinicRepositoryModule (br.com.petsus.local.api.service.clinic)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClinicRepositoryModule</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.local.api.service.clinic
+&nbsp;
+&nbsp;import br.com.petsus.api.model.address.Address
+&nbsp;import br.com.petsus.api.model.address.City
+&nbsp;import br.com.petsus.api.model.address.State
+&nbsp;import br.com.petsus.api.model.animal.Specie
+&nbsp;import br.com.petsus.api.model.clinic.Clinic
+&nbsp;import br.com.petsus.api.model.clinic.ClinicAddress
+&nbsp;import br.com.petsus.api.model.clinic.Exam
+&nbsp;import br.com.petsus.api.service.clinic.ClinicRepository
+&nbsp;import br.com.petsus.local.util.delayDefault
+&nbsp;import dagger.Module
+&nbsp;import dagger.Provides
+&nbsp;import dagger.hilt.InstallIn
+&nbsp;import dagger.hilt.android.components.ViewModelComponent
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;import kotlinx.coroutines.flow.flow
+&nbsp;import kotlin.random.Random
+&nbsp;
+&nbsp;class ClinicRepositoryImpl : ClinicRepository {
+&nbsp;
+&nbsp;    private var countExams = Random.nextInt(3, 50)
+&nbsp;    private var countSpecies = Random.nextInt(3, 50)
+&nbsp;    private fun generateExam(): Exam {
+&nbsp;        val id = Random.nextLong(Long.MAX_VALUE)
+&nbsp;        return Exam(
+&nbsp;            id = id,
+&nbsp;            name = &quot;Exam $id&quot;
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun generateSpecies(): Specie {
+&nbsp;        val id = Random.nextLong(Long.MAX_VALUE)
+&nbsp;        return Specie(
+&nbsp;            id = id,
+&nbsp;            name = &quot;Exam $id&quot;
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun find(id: Long): Flow&lt;Clinic&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(
+&nbsp;                Clinic(
+&nbsp;                    id = id,
+&nbsp;                    name = &quot;Parque Zoológico Municipal \&quot;Quinzinho de Barros\&quot;&quot;,
+&nbsp;                    site = &quot;https://google.com.br/&quot;,
+&nbsp;                    phone = &quot;15987654321&quot;,
+&nbsp;                    address = Address(
+&nbsp;                        id = 1,
+&nbsp;                        address = &quot;R. Teodoro Kaisel&quot;,
+&nbsp;                        number = 883,
+&nbsp;                        complement = null,
+&nbsp;                        neighborhood = &quot;Vila Hortência&quot;,
+&nbsp;                        lat = -23.5053214,
+&nbsp;                        lng = -47.4373164,
+&nbsp;                        City(
+&nbsp;                            id = 1,
+&nbsp;                            name = &quot;Sorocaba&quot;,
+&nbsp;                            ibgeId = 1,
+&nbsp;                            state = State(
+&nbsp;                                id = 1,
+&nbsp;                                name = &quot;São Paulo&quot;,
+&nbsp;                                initials = &quot;SP&quot;,
+&nbsp;                                ibgeId = 1
+&nbsp;                            )
+&nbsp;                        ),
+&nbsp;                        postalCode = &quot;18020-268&quot;,
+&nbsp;                        nickname = null,
+&nbsp;                    ),
+&nbsp;                    image = &quot;https://lh3.googleusercontent.com/p/AF1QipOYkKLyoGz2aosGJJa6Af1YeHwQY-se-27DAJCc=s680-w680-h510&quot;,
+&nbsp;                    exams = generateSequence { if (--countExams &gt; 0) generateExam() else null }.toList(),
+&nbsp;                    species = generateSequence { if (--countSpecies &gt; 0) generateSpecies() else null }.toList()
+&nbsp;                )
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun list(lat: Double, lng: Double, distance: Double): Flow&lt;List&lt;ClinicAddress&gt;&gt; {
+&nbsp;        return flow {
+&nbsp;            emit(
+&nbsp;                listOf(
+&nbsp;                    ClinicAddress(
+&nbsp;                        id = 1,
+&nbsp;                        name = &quot;Parque Zoológico Municipal \&quot;Quinzinho de Barros\&quot;&quot;,
+&nbsp;                        lat = -23.5053214,
+&nbsp;                        lng = -47.4373164,
+&nbsp;                        distance = 50.0
+&nbsp;                    )
+&nbsp;                )
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;@Module</b>
+&nbsp;@InstallIn(ViewModelComponent::class)
+&nbsp;class ClinicRepositoryModule {
+&nbsp;    @Provides
+<b class="nc">&nbsp;    fun clinic(): ClinicRepository = ClinicRepositoryImpl()</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

@@ -15,12 +15,11 @@ class ApiException(
 ) : RepositoryException("Invalid response, status code: ${response.code()}") {
 
     override fun formatter(): StringFormatter {
-        try {
-            return response.errorBody().evaluateError()
+        return try {
+            response.errorBody().evaluateError()
         } catch (_: Throwable) {
+            StringFormatter()
         }
-
-        return StringFormatter()
     }
 
     private fun ResponseBody?.evaluateError(): StringFormatter {
@@ -40,9 +39,28 @@ class ApiException(
 suspend fun <T>FlowCollector<T>.send(response: Response<*>) {
     if (response.isSuccessful) {
         when (val value = response.body()) {
-            is BaseResponse<*> -> emit(value.data as T)
+            is BaseResponse<*> -> {
+                when (value.data) {
+                    null -> throw ApiException(response)
+                    else -> emit(value.data as T)
+                }
+            }
             else -> emit(value as T)
         }
+        return
+    }
+
+    throw ApiException(response)
+}
+
+suspend fun FlowCollector<Boolean>.sendBoolean(response: Response<*>) {
+    if (response.isSuccessful) {
+        emit(true)
+        return
+    }
+
+    if ((400..499).contains(response.code())) {
+        emit(false)
         return
     }
 

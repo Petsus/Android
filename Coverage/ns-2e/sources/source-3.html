@@ -1,0 +1,264 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginViewModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.login.start</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginViewModel (br.com.petsus.screen.login.start)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginViewModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LoginViewModel$createUser$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginViewModel$createUser$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginViewModel$login$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginViewModel$resetPassword$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginViewModel$updatePassword$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.login.start
+&nbsp;
+&nbsp;import androidx.lifecycle.liveData
+&nbsp;import br.com.petsus.api.model.auth.AuthLogin
+&nbsp;import br.com.petsus.api.model.auth.ChangePassword
+&nbsp;import br.com.petsus.api.model.auth.ResetPassword
+&nbsp;import br.com.petsus.api.model.user.CreateUser
+&nbsp;import br.com.petsus.api.service.auth.AuthRepository
+&nbsp;import br.com.petsus.api.service.user.UserRepository
+&nbsp;import br.com.petsus.application.preferences.AppPreferences
+&nbsp;import br.com.petsus.util.base.viewmodel.ViewModelLiveData
+&nbsp;import br.com.petsus.util.tool.Keys
+&nbsp;import br.com.petsus.util.tool.collector
+&nbsp;import dagger.hilt.android.lifecycle.HiltViewModel
+&nbsp;import javax.inject.Inject
+&nbsp;
+&nbsp;@HiltViewModel
+<b class="nc">&nbsp;class LoginViewModel @Inject constructor() : ViewModelLiveData() {</b>
+&nbsp;
+<b class="nc">&nbsp;    @Inject lateinit var authRepository: AuthRepository</b>
+<b class="nc">&nbsp;    @Inject lateinit var userRepository: UserRepository</b>
+<b class="nc">&nbsp;    @Inject lateinit var sharedPreferences: AppPreferences</b>
+&nbsp;
+&nbsp;    fun login(
+&nbsp;        email: String?,
+&nbsp;        password: String?,
+<b class="nc">&nbsp;    ) = liveData {</b>
+<b class="nc">&nbsp;        authRepository.login(AuthLogin(email = email, password = password))</b>
+<b class="nc">&nbsp;            .collector(this)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun resetPassword(
+&nbsp;        email: String?
+<b class="nc">&nbsp;    ) = liveData {</b>
+<b class="nc">&nbsp;        userRepository.resetPassword(ResetPassword(email = email))</b>
+<b class="nc">&nbsp;            .collector(this)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun updatePassword(
+&nbsp;        email: String?,
+&nbsp;        password: String?,
+&nbsp;        token: String?
+<b class="nc">&nbsp;    ) = liveData {</b>
+<b class="nc">&nbsp;        userRepository.changePassword(ChangePassword(email = email, password = password, token = token))</b>
+<b class="nc">&nbsp;            .collector(this)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun createUser(
+&nbsp;        name: String?,
+&nbsp;        email: String?,
+&nbsp;        password: String?,
+&nbsp;        phone: String?
+<b class="nc">&nbsp;    ) = liveData {</b>
+<b class="nc">&nbsp;        userRepository.createUser(CreateUser(name = name, email = email, password = password, phone = phone))</b>
+<b class="nc">&nbsp;            .collector(this) { authToken -&gt;</b>
+<b class="nc">&nbsp;                sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, authToken)</b>
+&nbsp;            }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

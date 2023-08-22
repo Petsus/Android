@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AnimalRepositoryModule</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.local.api.service.animal</a>
+</div>
+
+<h1>Coverage Summary for Class: AnimalRepositoryModule (br.com.petsus.local.api.service.animal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AnimalRepositoryModule</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.local.api.service.animal
+&nbsp;
+&nbsp;import br.com.petsus.api.model.animal.Animal
+&nbsp;import br.com.petsus.api.model.animal.HistoryMedical
+&nbsp;import br.com.petsus.api.model.animal.Race
+&nbsp;import br.com.petsus.api.model.animal.Specie
+&nbsp;import br.com.petsus.api.model.clinic.Vaccine
+&nbsp;import br.com.petsus.api.service.animal.AnimalRepository
+&nbsp;import br.com.petsus.local.util.delayDefault
+&nbsp;import dagger.Module
+&nbsp;import dagger.Provides
+&nbsp;import dagger.hilt.InstallIn
+&nbsp;import dagger.hilt.android.components.ViewModelComponent
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;import kotlinx.coroutines.flow.flow
+&nbsp;import java.io.File
+&nbsp;import kotlin.random.Random
+&nbsp;
+&nbsp;class AnimalRepositoryImpl : AnimalRepository {
+&nbsp;    private fun generateRace(): Race {
+&nbsp;        return Race(
+&nbsp;            id = Random.nextLong(Long.MAX_VALUE),
+&nbsp;            name = &quot;Race animal&quot;,
+&nbsp;            specie = Specie(
+&nbsp;                id = Random.nextLong(Long.MAX_VALUE),
+&nbsp;                name = &quot;Specie animal&quot;
+&nbsp;            )
+&nbsp;        )
+&nbsp;    }
+&nbsp;    private fun generateAnimal(): Animal {
+&nbsp;        return Animal(
+&nbsp;            id = Random.nextLong(Long.MAX_VALUE),
+&nbsp;            name = &quot;Animal name&quot;,
+&nbsp;            photo = &quot;https://s2.glbimg.com/cYa3pKAKIPidjKyGPuAd8T4Hd1I=/e.glbimg.com/og/ed/f/original/2017/08/21/dog-2570398_960_720.jpg&quot;,
+&nbsp;            weight = 45.50f,
+&nbsp;            height = 120,
+&nbsp;            birthday = &quot;13/02/2022&quot;,
+&nbsp;            race = generateRace(),
+&nbsp;            qrcode = &quot;f1875fd1e76afdf663dafcd064ae51345bcc4aa8fcd5f73b1c3614383e7931c1&quot;
+&nbsp;        )
+&nbsp;    }
+&nbsp;    private fun generateHistoryMedical(): HistoryMedical {
+&nbsp;        return HistoryMedical(
+&nbsp;            id = Random.nextLong(Long.MAX_VALUE),
+&nbsp;            createdAt = &quot;2023-02-13 12:00:00&quot;,
+&nbsp;            exam = null,
+&nbsp;            vaccine = Vaccine(
+&nbsp;                id = Random.nextLong(Long.MAX_VALUE),
+&nbsp;                name = &quot;Vaccine name&quot;
+&nbsp;            )
+&nbsp;        )
+&nbsp;    }
+&nbsp;    override suspend fun all(): Flow&lt;List&lt;Animal&gt;&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(
+&nbsp;                listOf(
+&nbsp;                    generateAnimal(), generateAnimal(), generateAnimal()
+&nbsp;                )
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun races(animal: Animal): Flow&lt;List&lt;Race&gt;&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(
+&nbsp;                listOf(
+&nbsp;                    generateRace(), generateRace(), generateRace(), generateRace(), generateRace(), generateRace()
+&nbsp;                )
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun registerQrCode(): Flow&lt;String&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(&quot;f1875fd1e76afdf663dafcd064ae51345bcc4aa8fcd5f73b1c3614383e7931c1&quot;)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun unregisterQrCode(qrCode: String): Flow&lt;Unit&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(Unit)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun historyMedical(): Flow&lt;List&lt;HistoryMedical&gt;&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(
+&nbsp;                listOf(generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical(), generateHistoryMedical())
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun updateImage(fileImage: File): Flow&lt;Boolean&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(value = true)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun updateAnimal(animal: Animal): Flow&lt;Boolean&gt; {
+&nbsp;        return flow {
+&nbsp;            delayDefault()
+&nbsp;            emit(value = true)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;@Module</b>
+&nbsp;@InstallIn(ViewModelComponent::class)
+&nbsp;class AnimalRepositoryModule {
+&nbsp;    @Provides
+<b class="nc">&nbsp;    fun animal(): AnimalRepository = AnimalRepositoryImpl()</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

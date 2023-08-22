@@ -8,7 +8,6 @@
     <color name="md_theme_secondary">#00DFC1</color>
     <color name="md_theme_secondaryContainer">#005045</color>
     <color name="md_theme_tertiary">#ABCAE4</color>
-    <color name="md_theme_onTertiary">#123348</color>
     <color name="md_theme_tertiaryContainer">#2B4A5F</color>
     <color name="md_theme_error">#FFB4AB</color>
     <color name="md_theme_errorContainer">#93000A</color>
@@ -26,6 +25,7 @@
     <color name="md_theme_onPrimaryContainer">#78F8DE</color>
     <color name="md_theme_onSecondary">#00382F</color>
     <color name="md_theme_onSecondaryContainer">#45FCDD</color>
+    <color name="md_theme_onTertiary">#123348</color>
     <color name="md_theme_onTertiaryContainer">#C9E6FF</color>
     <color name="md_theme_onError">#690005</color>
     <color name="md_theme_onErrorContainer">#FFDAD6</color>

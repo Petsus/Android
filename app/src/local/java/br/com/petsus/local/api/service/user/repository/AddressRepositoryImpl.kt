@@ -1,7 +1,8 @@
 package br.com.petsus.local.api.service.user.repository
 
-import br.com.petsus.api.model.address.Address
+import br.com.petsus.api.model.address.AppAddress
 import br.com.petsus.api.model.address.City
+import br.com.petsus.api.model.address.CreateOrUpdateAddress
 import br.com.petsus.api.model.address.State
 import br.com.petsus.api.service.user.AddressRepository
 import br.com.petsus.local.util.delayDefault
@@ -10,8 +11,8 @@ import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
 class AddressRepositoryImpl : AddressRepository {
-    private fun generateAddress(): Address {
-        return Address(
+    private fun generateAddress(): AppAddress {
+        return AppAddress(
             id = 1,
             address = "R. Teodoro Kaisel",
             number = 883,
@@ -35,17 +36,23 @@ class AddressRepositoryImpl : AddressRepository {
         )
     }
 
-    override suspend fun list(): Flow<List<Address>> {
+    override fun list(): Flow<List<AppAddress>> {
         return flow {
             emit(listOf(generateAddress(), generateAddress(), generateAddress()))
         }
     }
 
-    override suspend fun delete(address: Address): Flow<Boolean> {
+    override fun delete(appAddress: AppAddress): Flow<Boolean> {
         return flow {
             delayDefault()
             emit(Random.nextBoolean())
         }
     }
 
+    override fun save(appAddress: CreateOrUpdateAddress): Flow<AppAddress> {
+        return flow {
+            delayDefault()
+            emit(generateAddress())
+        }
+    }
 }

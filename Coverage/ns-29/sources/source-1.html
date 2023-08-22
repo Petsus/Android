@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ClinicChips</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.home.fragment.clinics.pager</a>
+</div>
+
+<h1>Coverage Summary for Class: ClinicChips (br.com.petsus.screen.home.fragment.clinics.pager)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClinicChips</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ClinicChips$chipGroup$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.home.fragment.clinics.pager
+&nbsp;
+&nbsp;import android.graphics.Color
+&nbsp;import android.graphics.drawable.ColorDrawable
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import android.widget.FrameLayout
+&nbsp;import androidx.core.view.updatePadding
+&nbsp;import androidx.core.widget.NestedScrollView
+&nbsp;import androidx.fragment.app.Fragment
+&nbsp;import br.com.petsus.util.tool.dp
+&nbsp;import br.com.petsus.util.tool.pixel
+&nbsp;import com.google.android.material.chip.Chip
+&nbsp;import com.google.android.material.chip.ChipGroup
+&nbsp;import com.google.android.material.shape.ShapeAppearanceModel
+&nbsp;
+&nbsp;class ClinicChips(
+<b class="nc">&nbsp;    private val names: List&lt;String&gt;</b>
+<b class="nc">&nbsp;) : Fragment() {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val chipGroup: ChipGroup by lazy {</b>
+<b class="nc">&nbsp;        ChipGroup(requireContext()).apply {</b>
+<b class="nc">&nbsp;            isSingleLine = false</b>
+<b class="nc">&nbsp;            chipSpacingHorizontal = 8.pixel</b>
+<b class="nc">&nbsp;            chipSpacingVertical = 0</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+<b class="nc">&nbsp;        val nestedScrollView = NestedScrollView(requireContext())</b>
+&nbsp;
+<b class="nc">&nbsp;        nestedScrollView.isHorizontalScrollBarEnabled = false</b>
+<b class="nc">&nbsp;        nestedScrollView.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)</b>
+<b class="nc">&nbsp;        nestedScrollView.addView(chipGroup, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)</b>
+<b class="nc">&nbsp;        nestedScrollView.updatePadding(8.pixel, 8.pixel, 8.pixel, 8.pixel)</b>
+&nbsp;
+<b class="nc">&nbsp;        return nestedScrollView</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onViewCreated(view, savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        names.forEach { name -&gt;</b>
+<b class="nc">&nbsp;            val chip = Chip(requireContext()).apply {</b>
+<b class="nc">&nbsp;                text = name</b>
+<b class="nc">&nbsp;                shapeAppearanceModel = ShapeAppearanceModel()</b>
+<b class="nc">&nbsp;                    .withCornerSize(16f.dp)</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            chip.background = ColorDrawable(Color.BLACK)</b>
+<b class="nc">&nbsp;            chipGroup.addView(chip)</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

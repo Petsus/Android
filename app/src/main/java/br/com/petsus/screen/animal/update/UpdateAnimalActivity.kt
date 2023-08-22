@@ -10,15 +10,21 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import br.com.petsus.R
+import br.com.petsus.api.model.address.AppAddress
 import br.com.petsus.api.model.animal.Animal
 import br.com.petsus.api.model.animal.Race
 import br.com.petsus.databinding.ActivityUpdateAnimalBinding
-import br.com.petsus.screen.animal.history.HistoryMedicalAnimalActivity
+import br.com.petsus.screen.animal.history.list.HistoryMedicalAnimalActivity
 import br.com.petsus.screen.animal.update.adapter.SimpleHistoryMedical
 import br.com.petsus.screen.animal.update.sheet.QrCodeBottomSheet
-import br.com.petsus.util.base.activity.BaseActivity
+import br.com.petsus.util.base.activity.AppActivity
 import br.com.petsus.util.global.ResultState
-import br.com.petsus.util.tool.*
+import br.com.petsus.util.tool.cast
+import br.com.petsus.util.tool.format
+import br.com.petsus.util.tool.parcelable
+import br.com.petsus.util.tool.pixel
+import br.com.petsus.util.tool.text
+import br.com.petsus.util.tool.toDate
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -29,10 +35,11 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
-class UpdateAnimalActivity : BaseActivity() {
+class UpdateAnimalActivity : AppActivity() {
 
     companion object {
         const val EXTRA_ANIMAL = "key_animal"
@@ -48,7 +55,8 @@ class UpdateAnimalActivity : BaseActivity() {
         if (result == null || result.resultCode != RESULT_OK)
             return@registerForActivityResult
         result.data?.data?.also { uri ->
-            viewModel.updateImage(uri = uri).observe(this) { newImage ->
+            val animal = intent.parcelable(EXTRA_ANIMAL, Animal::class.java) ?: return@also
+            viewModel.updateImage(uri = uri, animalId = animal.id).observe(this) { newImage ->
                 when (newImage) {
                     is ResultState.Fail -> {
                         binding.loadingImage.hide()
@@ -76,6 +84,7 @@ class UpdateAnimalActivity : BaseActivity() {
         get() = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
 
     private val races: MutableList<Race> = mutableListOf()
+    private val addresses: MutableList<AppAddress> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,7 +144,7 @@ class UpdateAnimalActivity : BaseActivity() {
                         animal.currentQrCode = null
                     }
             } ?: run {
-                viewModel.register()
+                viewModel.register(animal)
                     .observe(this@UpdateAnimalActivity) { qrCode ->
                         animal.currentQrCode = qrCode
                     }
@@ -152,8 +161,13 @@ class UpdateAnimalActivity : BaseActivity() {
                     animal.race = race
                 }
             }
+            binding.addressAnimal.text?.also { nameAddress ->
+                addresses.find { address -> address.completeAddress == nameAddress }?.let { address ->
+                    animal.addressId = address.id
+                }
+            }
 
-            loading()
+            showLoading()
             viewModel.updateAnimal(animal = animal)
                 .observe(this) {
                     closeLoading()
@@ -189,7 +203,25 @@ class UpdateAnimalActivity : BaseActivity() {
             this.races.addAll(races)
             binding.raceAnimal.editText
                 ?.cast<MaterialAutoCompleteTextView>()
-                ?.setSimpleItems(races.map(Race::name).toTypedArray())
+                ?.apply {
+                    val items = races.map(Race::name).toTypedArray()
+                    setSimpleItems(items)
+
+                    val index = items.indexOf(animal.race.name)
+                    if (index >= 0)
+                        setText(items[index], false)
+                }
+        }
+
+        viewModel.addresses().observe(this) { addresses ->
+            this.addresses.addAll(addresses)
+            binding.addressAnimal.editText
+                ?.cast<MaterialAutoCompleteTextView>()
+                ?.apply {
+                    val items = addresses.map(AppAddress::completeAddress).toTypedArray()
+                    setSimpleItems(items)
+                    setText(items[addresses.indexOfFirst { animal.addressId == it.id }], false)
+                }
         }
     }
 

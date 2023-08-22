@@ -1,0 +1,243 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BottomFragmentClinicDetailsBindingImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.databinding</a>
+</div>
+
+<h1>Coverage Summary for Class: BottomFragmentClinicDetailsBindingImpl (br.com.petsus.databinding)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BottomFragmentClinicDetailsBindingImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.databinding;
+&nbsp;import br.com.petsus.R;
+&nbsp;import br.com.petsus.BR;
+&nbsp;import androidx.annotation.NonNull;
+&nbsp;import androidx.annotation.Nullable;
+&nbsp;import android.view.View;
+&nbsp;@SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;public class BottomFragmentClinicDetailsBindingImpl extends BottomFragmentClinicDetailsBinding  {
+&nbsp;
+&nbsp;    @Nullable
+&nbsp;    private static final androidx.databinding.ViewDataBinding.IncludedLayouts sIncludes;
+&nbsp;    @Nullable
+&nbsp;    private static final android.util.SparseIntArray sViewsWithIds;
+&nbsp;    static {
+<b class="nc">&nbsp;        sIncludes = null;</b>
+<b class="nc">&nbsp;        sViewsWithIds = new android.util.SparseIntArray();</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.loading_clinic, 2);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.container_info_clinic, 3);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.container_image, 4);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.image_clinic, 5);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.close_dialog, 6);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.group_button, 7);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.information_clinic, 8);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.species_clinic, 9);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.exams_clinic, 10);</b>
+<b class="nc">&nbsp;        sViewsWithIds.put(R.id.frame_clinic, 11);</b>
+&nbsp;    }
+&nbsp;    // views
+&nbsp;    // variables
+&nbsp;    // values
+&nbsp;    // listeners
+&nbsp;    // Inverse Binding Event Handlers
+&nbsp;
+&nbsp;    public BottomFragmentClinicDetailsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
+<b class="nc">&nbsp;        this(bindingComponent, root, mapBindings(bindingComponent, root, 12, sIncludes, sViewsWithIds));</b>
+&nbsp;    }
+&nbsp;    private BottomFragmentClinicDetailsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
+<b class="nc">&nbsp;        super(bindingComponent, root, 0</b>
+&nbsp;            , (androidx.appcompat.widget.AppCompatImageView) bindings[6]
+&nbsp;            , (com.google.android.material.card.MaterialCardView) bindings[4]
+&nbsp;            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[3]
+&nbsp;            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[0]
+&nbsp;            , (android.widget.Button) bindings[10]
+&nbsp;            , (androidx.fragment.app.FragmentContainerView) bindings[11]
+&nbsp;            , (com.google.android.material.button.MaterialButtonToggleGroup) bindings[7]
+&nbsp;            , (androidx.appcompat.widget.AppCompatImageView) bindings[5]
+&nbsp;            , (android.widget.Button) bindings[8]
+&nbsp;            , (com.google.android.material.progressindicator.LinearProgressIndicator) bindings[2]
+&nbsp;            , (android.widget.Button) bindings[9]
+&nbsp;            , (androidx.appcompat.widget.AppCompatTextView) bindings[1]
+&nbsp;            );
+<b class="nc">&nbsp;        this.elementConstraintClinic.setTag(null);</b>
+<b class="nc">&nbsp;        this.titleClinic.setTag(null);</b>
+<b class="nc">&nbsp;        setRootTag(root);</b>
+&nbsp;        // listeners
+<b class="nc">&nbsp;        invalidateAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void invalidateAll() {
+<b class="nc">&nbsp;        synchronized(this) {</b>
+<b class="nc">&nbsp;                mDirtyFlags = 0x2L;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        requestRebind();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean hasPendingBindings() {
+<b class="nc">&nbsp;        synchronized(this) {</b>
+<b class="nc">&nbsp;            if (mDirtyFlags != 0) {</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean setVariable(int variableId, @Nullable Object variable)  {
+<b class="nc">&nbsp;        boolean variableSet = true;</b>
+<b class="nc">&nbsp;        if (BR.clinic == variableId) {</b>
+<b class="nc">&nbsp;            setClinic((br.com.petsus.api.model.clinic.Clinic) variable);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            variableSet = false;</b>
+&nbsp;        }
+<b class="nc">&nbsp;            return variableSet;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setClinic(@Nullable br.com.petsus.api.model.clinic.Clinic Clinic) {
+<b class="nc">&nbsp;        this.mClinic = Clinic;</b>
+<b class="nc">&nbsp;        synchronized(this) {</b>
+<b class="nc">&nbsp;            mDirtyFlags |= 0x1L;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        notifyPropertyChanged(BR.clinic);</b>
+<b class="nc">&nbsp;        super.requestRebind();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
+<b class="nc">&nbsp;        switch (localFieldId) {</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void executeBindings() {
+<b class="nc">&nbsp;        long dirtyFlags = 0;</b>
+<b class="nc">&nbsp;        synchronized(this) {</b>
+<b class="nc">&nbsp;            dirtyFlags = mDirtyFlags;</b>
+<b class="nc">&nbsp;            mDirtyFlags = 0;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        br.com.petsus.api.model.clinic.Clinic clinic = mClinic;</b>
+<b class="nc">&nbsp;        java.lang.String clinicName = null;</b>
+&nbsp;
+<b class="nc">&nbsp;        if ((dirtyFlags &amp; 0x3L) != 0) {</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;                if (clinic != null) {</b>
+&nbsp;                    // read clinic.name
+<b class="nc">&nbsp;                    clinicName = clinic.getName();</b>
+&nbsp;                }
+&nbsp;        }
+&nbsp;        // batch finished
+<b class="nc">&nbsp;        if ((dirtyFlags &amp; 0x3L) != 0) {</b>
+&nbsp;            // api target 1
+&nbsp;
+<b class="nc">&nbsp;            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.titleClinic, clinicName);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    // Listener Stub Implementations
+&nbsp;    // callback impls
+&nbsp;    // dirty flag
+<b class="nc">&nbsp;    private  long mDirtyFlags = 0xffffffffffffffffL;</b>
+&nbsp;    /* flag mapping
+&nbsp;        flag 0 (0x1L): clinic
+&nbsp;        flag 1 (0x2L): null
+&nbsp;    flag mapping end*/
+&nbsp;    //end
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

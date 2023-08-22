@@ -7,6 +7,11 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/qr_code_scanner_fragment_menu"
+        android:icon="@drawable/icon_qr_code_scanner"
+        android:title="@string/qr_code_scanner" />
+
+    <item
         android:id="@+id/clinic_fragment_menu"
         android:icon="@drawable/icon_navigation"
         android:title="@string/clinic" />

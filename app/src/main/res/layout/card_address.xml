@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/margin_default_x0.5"
+    android:paddingVertical="@dimen/margin_default_x0.5"
+    android:paddingHorizontal="@dimen/margin_default"
     android:background="@drawable/bg_button_ripple"
     android:orientation="vertical">
 

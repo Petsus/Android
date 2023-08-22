@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CardDivider</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.util.custom.card</a>
+</div>
+
+<h1>Coverage Summary for Class: CardDivider (br.com.petsus.util.custom.card)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CardDivider</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/39)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.util.custom.card
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import android.util.AttributeSet
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import androidx.constraintlayout.widget.ConstraintLayout
+&nbsp;import androidx.core.view.isGone
+&nbsp;import br.com.petsus.R
+&nbsp;import br.com.petsus.databinding.CustomCardAnimalBinding
+&nbsp;import br.com.petsus.util.tool.inflater
+&nbsp;
+&nbsp;class CardDivider @JvmOverloads constructor(
+&nbsp;    context: Context,
+<b class="nc">&nbsp;    attrs: AttributeSet? = null,</b>
+<b class="nc">&nbsp;    defStyleAttr: Int = 0,</b>
+<b class="nc">&nbsp;    defStyleRes: Int = 0</b>
+<b class="nc">&nbsp;) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val binding = CustomCardAnimalBinding.inflate(inflater)</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        addView(binding.root)</b>
+&nbsp;
+<b class="nc">&nbsp;        binding.dividerContainer.background = context.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider)).run {</b>
+<b class="nc">&nbsp;            val divider = getDrawable(0)</b>
+<b class="nc">&nbsp;            recycle()</b>
+<b class="nc">&nbsp;            return@run divider</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        binding.nameContainer.text = context.obtainStyledAttributes(attrs, R.styleable.CardDivider).run {</b>
+<b class="nc">&nbsp;            val title = getString(R.styleable.CardDivider_android_text)</b>
+<b class="nc">&nbsp;            recycle()</b>
+<b class="nc">&nbsp;            return@run title</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        binding.root.setOnClickListener {</b>
+<b class="nc">&nbsp;            isExpanded = !isExpanded</b>
+&nbsp;
+<b class="nc">&nbsp;            binding.toggleExpanded</b>
+<b class="nc">&nbsp;                .animate()</b>
+<b class="nc">&nbsp;                .rotation(if (!isExpanded) 180f else 0f)</b>
+<b class="nc">&nbsp;                .start()</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    override fun addView(child: View?) {
+<b class="nc">&nbsp;        if (child == binding.root)</b>
+<b class="nc">&nbsp;            super.addView(child)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            binding.contentContainer.addView(child)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun addView(child: View?, index: Int) {
+<b class="nc">&nbsp;        if (child == binding.root)</b>
+<b class="nc">&nbsp;            super.addView(child, index)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            binding.contentContainer.addView(child, index)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun addView(child: View?, params: ViewGroup.LayoutParams?) {
+<b class="nc">&nbsp;        if (child == binding.root)</b>
+<b class="nc">&nbsp;            super.addView(child, params)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            binding.contentContainer.addView(child, params)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun addView(child: View?, width: Int, height: Int) {
+<b class="nc">&nbsp;        if (child == binding.root)</b>
+<b class="nc">&nbsp;            super.addView(child, width, height)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            binding.contentContainer.addView(child, width, height)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
+<b class="nc">&nbsp;        if (child == binding.root)</b>
+<b class="nc">&nbsp;            super.addView(child, index, params)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            binding.contentContainer.addView(child, index, params)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    var isExpanded: Boolean
+<b class="nc">&nbsp;        get() = binding.contentContainer.isGone</b>
+<b class="nc">&nbsp;        set(value) { binding.contentContainer.isGone = value }</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

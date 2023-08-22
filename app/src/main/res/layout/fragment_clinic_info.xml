@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default_x0.25"
-                android:text="@{clinic.address.completeAddress}"
+                android:text="@{clinic.appAddress.completeAddress}"
                 android:textAppearance="@style/AppTheme.Petsus.Text.H0"
                 android:textSize="@dimen/text_h2"
                 tools:text="Rua Comandante Salgado - 547, Vila Hortência, Sorocaba/SP" />

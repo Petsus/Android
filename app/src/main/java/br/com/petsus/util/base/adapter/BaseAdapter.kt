@@ -6,7 +6,9 @@ import br.com.petsus.util.global.Action
 import br.com.petsus.util.global.ActionSuspend
 import kotlinx.coroutines.*
 
-abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : RecyclerView.Adapter<THolder>() {
+abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> @JvmOverloads constructor(
+    private val defaultDispatcher: MainCoroutineDispatcher = Dispatchers.Main
+) : RecyclerView.Adapter<THolder>() {
 
     protected class BaseDiffCallback<Element>(
         private val currentList: List<Element>,
@@ -29,17 +31,17 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
 
     protected val elements: MutableList<Element> = mutableListOf()
 
-    protected val coroutineScope = CoroutineScope(SupervisorJob())
+    private val coroutineScope = CoroutineScope(SupervisorJob())
 
-    protected val onClickListeners: MutableList<Action<Element>> = mutableListOf()
-    protected val onSuspendClickListeners: MutableList<ActionSuspend<Element>> = mutableListOf()
+    private val onClickListeners: MutableList<Action<Element>> = mutableListOf()
+    private val onSuspendClickListeners: MutableList<ActionSuspend<Element>> = mutableListOf()
 
     override fun getItemCount(): Int = elements.size
 
     open fun put(elements: Collection<Element>) {
         coroutineScope.launch {
             val calculateDiff = DiffUtil.calculateDiff(BaseDiffCallback(currentList = this@BaseAdapter.elements, newList = this@BaseAdapter.elements.plus(elements)))
-            withContext(Dispatchers.Main) {
+            withContext(defaultDispatcher) {
                 this@BaseAdapter.elements.addAll(elements)
                 calculateDiff.dispatchUpdatesTo(this@BaseAdapter)
             }
@@ -49,7 +51,7 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
     open fun update(elements: Collection<Element>) {
         coroutineScope.launch {
             val calculateDiff = DiffUtil.calculateDiff(BaseDiffCallback(currentList = this@BaseAdapter.elements, newList = elements.toList()))
-            withContext(Dispatchers.Main) {
+            withContext(defaultDispatcher) {
                 this@BaseAdapter.elements.clear()
                 this@BaseAdapter.elements.addAll(elements)
                 calculateDiff.dispatchUpdatesTo(this@BaseAdapter)
@@ -63,8 +65,8 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
                 currentList = this@BaseAdapter.elements,
                 newList = this@BaseAdapter.elements.filter { filter -> elements.find { it === filter } == null }
             ))
-            withContext(Dispatchers.Main) {
-                this@BaseAdapter.elements.removeAll(elements)
+            withContext(defaultDispatcher) {
+                this@BaseAdapter.elements.removeAll(elements.toSet())
                 calculateDiff.dispatchUpdatesTo(this@BaseAdapter)
             }
         }
@@ -77,8 +79,8 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
     open fun clear() {
         coroutineScope.launch {
             val calculateDiff = DiffUtil.calculateDiff(BaseDiffCallback(currentList = this@BaseAdapter.elements, newList = emptyList()))
-            withContext(Dispatchers.Main) {
-                this@BaseAdapter.elements.removeAll(elements)
+            withContext(defaultDispatcher) {
+                this@BaseAdapter.elements.removeAll(elements.toSet())
                 calculateDiff.dispatchUpdatesTo(this@BaseAdapter)
             }
         }
@@ -86,18 +88,6 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
 
     open fun addClickListener(onClickListener: Action<Element>) {
         this.onClickListeners.add(onClickListener)
-    }
-
-    open fun removeClickListener(onClickListener: Action<Element>) {
-        this.onClickListeners.remove(onClickListener)
-    }
-
-    open fun addSuspendClickListener(onClickListener: ActionSuspend<Element>) {
-        this.onSuspendClickListeners.add(onClickListener)
-    }
-
-    open fun removeSuspendClickListener(onClickListener: ActionSuspend<Element>) {
-        this.onSuspendClickListeners.remove(onClickListener)
     }
 
     open fun unload() {
@@ -108,5 +98,4 @@ abstract class BaseAdapter<Element, THolder : RecyclerView.ViewHolder> : Recycle
         onClickListeners.iterator().forEach { it.action(item) }
         onSuspendClickListeners.iterator().forEach { coroutineScope.launch { it.action(item) } }
     }
-
 }

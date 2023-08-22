@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HistoryMedicalAnimalActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.animal.history</a>
+</div>
+
+<h1>Coverage Summary for Class: HistoryMedicalAnimalActivity (br.com.petsus.screen.animal.history)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HistoryMedicalAnimalActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HistoryMedicalAnimalActivity$binding$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HistoryMedicalAnimalActivity$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HistoryMedicalAnimalActivity$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HistoryMedicalAnimalActivity$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HistoryMedicalAnimalActivity$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.animal.history
+&nbsp;
+&nbsp;import android.os.Bundle
+&nbsp;import androidx.activity.viewModels
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import br.com.petsus.api.model.animal.Animal
+&nbsp;import br.com.petsus.databinding.ActivityHistoryMedicalBinding
+&nbsp;import br.com.petsus.util.tool.parcelable
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class HistoryMedicalAnimalActivity : AppCompatActivity() {</b>
+&nbsp;
+<b class="nc">&nbsp;    companion object {</b>
+&nbsp;        const val EXTRA_ANIMAL = &quot;extra_animal&quot;
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: HistoryMedicalAnimalViewModel by viewModels()</b>
+&nbsp;
+<b class="nc">&nbsp;    private val binding: ActivityHistoryMedicalBinding by lazy {</b>
+<b class="nc">&nbsp;        ActivityHistoryMedicalBinding.inflate(layoutInflater)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+&nbsp;        super.onCreate(savedInstanceState)
+&nbsp;
+<b class="nc">&nbsp;        val animal = intent.parcelable(EXTRA_ANIMAL, Animal::class.java) ?: run {</b>
+<b class="nc">&nbsp;            finish()</b>
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        setContentView(binding.root)</b>
+<b class="nc">&nbsp;        configureView(animal = animal)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun configureView(animal: Animal) {
+<b class="nc">&nbsp;        binding.back.setOnClickListener { finish() }</b>
+<b class="nc">&nbsp;        binding.addHistory.setOnClickListener {</b>
+&nbsp;
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

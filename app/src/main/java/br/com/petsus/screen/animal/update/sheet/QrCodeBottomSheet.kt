@@ -14,7 +14,7 @@ class QrCodeBottomSheet(
     private val qrCode: Bitmap,
 ) : BottomSheetDialogFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return FragmentQrCodeBinding.inflate(inflater, container, false).root
     }
 

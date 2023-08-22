@@ -6,6 +6,6 @@ import br.com.petsus.api.model.auth.RefreshToken
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    suspend fun login(body: AuthLogin): Flow<AuthToken>
-    suspend fun refreshToken(body: RefreshToken): Flow<AuthToken>
+    fun login(body: AuthLogin): Flow<AuthToken>
+    fun refreshToken(body: RefreshToken): Flow<AuthToken>
 }

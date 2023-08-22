@@ -1,0 +1,353 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ExtendsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.util.tool</a>
+</div>
+
+<h1>Coverage Summary for Class: ExtendsKt (br.com.petsus.util.tool)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExtendsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/36)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ExtendsKt$baseFlow$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$baseFlow$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$collector$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$collector$2$emit$1</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$collectorState$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$collectorState$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ExtendsKt$collectorState$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/49)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.util.tool
+&nbsp;
+&nbsp;import android.app.Activity
+&nbsp;import android.content.Context
+&nbsp;import android.content.Intent
+&nbsp;import android.content.SharedPreferences
+&nbsp;import android.content.res.Resources
+&nbsp;import android.graphics.Bitmap
+&nbsp;import android.location.Location
+&nbsp;import android.os.Build
+&nbsp;import android.os.Handler
+&nbsp;import android.os.Looper
+&nbsp;import android.os.Parcelable
+&nbsp;import android.util.Log
+&nbsp;import android.util.Patterns
+&nbsp;import android.util.TypedValue
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import androidx.appcompat.widget.Toolbar
+&nbsp;import androidx.lifecycle.LiveDataScope
+&nbsp;import androidx.recyclerview.widget.RecyclerView
+&nbsp;import br.com.petsus.util.base.viewmodel.StringFormatter
+&nbsp;import br.com.petsus.util.global.ActionSuspend
+&nbsp;import br.com.petsus.util.global.ResultState
+&nbsp;import com.google.android.gms.maps.model.LatLng
+&nbsp;import com.google.android.material.textfield.TextInputLayout
+&nbsp;import com.google.gson.Gson
+&nbsp;import kotlinx.coroutines.flow.*
+&nbsp;import java.text.SimpleDateFormat
+&nbsp;import java.util.*
+&nbsp;import java.util.regex.Pattern
+&nbsp;import kotlin.math.roundToInt
+&nbsp;
+<b class="nc">&nbsp;fun String.toDate(pattern: String = &quot;yyyy-MM-dd hh:mm:ss&quot;): Date? {</b>
+<b class="nc">&nbsp;    val format = SimpleDateFormat(pattern, Locale.getDefault())</b>
+<b class="nc">&nbsp;    return runCatching { format.parse(this) }.getOrNull()</b>
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;fun Date.format(pattern: String = &quot;dd/MM/yyyy&quot;): String {</b>
+<b class="nc">&nbsp;    val format = SimpleDateFormat(pattern, Locale.getDefault())</b>
+<b class="nc">&nbsp;    return format.format(this)</b>
+&nbsp;}
+&nbsp;
+&nbsp;val Location.latLng: LatLng
+<b class="nc">&nbsp;    get() = LatLng(latitude, longitude)</b>
+&nbsp;
+&nbsp;val View.inflater: LayoutInflater
+<b class="nc">&nbsp;    get() = LayoutInflater.from(this.context)</b>
+&nbsp;
+&nbsp;@Suppress(&quot;unchecked_cast&quot;)
+<b class="nc">&nbsp;fun &lt;T&gt; Any.cast() = this as T</b>
+&nbsp;
+&nbsp;val Number.dp: Float
+<b class="nc">&nbsp;    get() = TypedValue.applyDimension(</b>
+<b class="nc">&nbsp;        TypedValue.COMPLEX_UNIT_DIP,</b>
+<b class="nc">&nbsp;        this.toFloat(),</b>
+<b class="nc">&nbsp;        Resources.getSystem().displayMetrics</b>
+&nbsp;    )
+&nbsp;
+&nbsp;val Number.pixel: Int
+<b class="nc">&nbsp;    get() = TypedValue.applyDimension(</b>
+<b class="nc">&nbsp;        TypedValue.COMPLEX_UNIT_DIP,</b>
+<b class="nc">&nbsp;        this.toFloat(),</b>
+<b class="nc">&nbsp;        Resources.getSystem().displayMetrics</b>
+<b class="nc">&nbsp;    ).roundToInt()</b>
+&nbsp;
+&nbsp;val Any.json: String
+<b class="nc">&nbsp;    get() = Gson().toJson(this)</b>
+&nbsp;
+&nbsp;val String?.isEmail: Boolean
+<b class="nc">&nbsp;    get() = Patterns.EMAIL_ADDRESS.matcher(this ?: &quot;&quot;).matches()</b>
+&nbsp;
+&nbsp;val String?.isName: Boolean
+<b class="nc">&nbsp;    get() = Pattern.compile(&quot;^[a-z·‡‚„ÈËÍÌÔÛÙıˆ˙ÁÒ ]+\$&quot;).matcher(this ?: &quot;&quot;).matches()</b>
+&nbsp;
+&nbsp;val RecyclerView.ViewHolder.context: Context
+<b class="nc">&nbsp;    get() = itemView.context</b>
+&nbsp;
+&nbsp;fun View.preventDoubleClick() {
+<b class="nc">&nbsp;    isClickable = false</b>
+<b class="nc">&nbsp;    Handler(Looper.getMainLooper()).postDelayed({ isClickable = true }, 1000)</b>
+&nbsp;}
+&nbsp;
+&nbsp;val TextInputLayout.text: String?
+<b class="nc">&nbsp;    get() = editText?.text?.toString()</b>
+&nbsp;
+&nbsp;fun Toolbar.listenerDismiss(activity: Activity?) {
+<b class="nc">&nbsp;    setNavigationOnClickListener {</b>
+<b class="nc">&nbsp;        activity?.finish()</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;@Suppress(&quot;DEPRECATION&quot;)
+&nbsp;fun &lt;T : Parcelable&gt; Intent.parcelable(key: String, clazz: Class&lt;T&gt;): T? {
+<b class="nc">&nbsp;    return if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU) getParcelableExtra(key, clazz)</b>
+<b class="nc">&nbsp;    else getParcelableExtra(key)</b>
+&nbsp;}
+&nbsp;
+&nbsp;suspend fun &lt;T&gt; Flow&lt;T&gt;.collector(
+&nbsp;    liveDataScope: LiveDataScope&lt;T&gt;,
+<b class="nc">&nbsp;    onCollect: ActionSuspend&lt;T&gt;? = null</b>
+&nbsp;) {
+<b class="nc">&nbsp;    baseFlow().collect { value -&gt;</b>
+<b class="nc">&nbsp;        liveDataScope.emit(value)</b>
+<b class="nc">&nbsp;        onCollect?.action(value)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;fun &lt;T&gt; Flow&lt;T&gt;.baseFlow(): Flow&lt;T&gt; {
+<b class="nc">&nbsp;    return onStart { Log.i(&quot;Flow&quot;, &quot;Start loading&quot;) }</b>
+<b class="nc">&nbsp;        .catch { Log.i(&quot;Flow&quot;, &quot;Error flow&quot;); it.printStackTrace() }</b>
+&nbsp;}
+&nbsp;
+&nbsp;suspend fun &lt;T&gt; Flow&lt;T&gt;.collectorState(
+&nbsp;    stateFlow: MutableStateFlow&lt;ResultState&lt;T&gt;&gt;,
+&nbsp;) {
+<b class="nc">&nbsp;    onStart {</b>
+<b class="nc">&nbsp;        Log.i(&quot;Flow&quot;, &quot;Start loading&quot;)</b>
+<b class="nc">&nbsp;        stateFlow.value = ResultState.Init()</b>
+<b class="nc">&nbsp;    }.catch {</b>
+<b class="nc">&nbsp;        it.printStackTrace()</b>
+<b class="nc">&nbsp;        Log.i(&quot;Flow&quot;, &quot;Error flow&quot;)</b>
+<b class="nc">&nbsp;        stateFlow.value = ResultState.Fail(error = StringFormatter(throwable = it))</b>
+<b class="nc">&nbsp;    }.collect { value -&gt;</b>
+<b class="nc">&nbsp;        stateFlow.value = ResultState.Success(data = value)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

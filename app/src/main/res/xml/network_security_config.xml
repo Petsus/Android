@@ -3,5 +3,9 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
         <domain includeSubdomains="true">10.0.2.2</domain>
+        <domain includeSubdomains="true">192.168.15.55</domain>
+    </domain-config>
+    <domain-config>
+        <domain includeSubdomains="true">petsus.app.br</domain>
     </domain-config>
 </network-security-config>

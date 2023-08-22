@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginViewModel_MembersInjector</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.login.start</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginViewModel_MembersInjector (br.com.petsus.screen.login.start)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginViewModel_MembersInjector</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.login.start;
+&nbsp;
+&nbsp;import br.com.petsus.api.service.auth.AuthRepository;
+&nbsp;import br.com.petsus.api.service.user.UserRepository;
+&nbsp;import br.com.petsus.application.preferences.AppPreferences;
+&nbsp;import dagger.MembersInjector;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.InjectedFieldSignature;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class LoginViewModel_MembersInjector implements MembersInjector&lt;LoginViewModel&gt; {
+&nbsp;  private final Provider&lt;AuthRepository&gt; authRepositoryProvider;
+&nbsp;
+&nbsp;  private final Provider&lt;UserRepository&gt; userRepositoryProvider;
+&nbsp;
+&nbsp;  private final Provider&lt;AppPreferences&gt; sharedPreferencesProvider;
+&nbsp;
+&nbsp;  public LoginViewModel_MembersInjector(Provider&lt;AuthRepository&gt; authRepositoryProvider,
+&nbsp;      Provider&lt;UserRepository&gt; userRepositoryProvider,
+<b class="nc">&nbsp;      Provider&lt;AppPreferences&gt; sharedPreferencesProvider) {</b>
+<b class="nc">&nbsp;    this.authRepositoryProvider = authRepositoryProvider;</b>
+<b class="nc">&nbsp;    this.userRepositoryProvider = userRepositoryProvider;</b>
+<b class="nc">&nbsp;    this.sharedPreferencesProvider = sharedPreferencesProvider;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static MembersInjector&lt;LoginViewModel&gt; create(
+&nbsp;      Provider&lt;AuthRepository&gt; authRepositoryProvider,
+&nbsp;      Provider&lt;UserRepository&gt; userRepositoryProvider,
+&nbsp;      Provider&lt;AppPreferences&gt; sharedPreferencesProvider) {
+<b class="nc">&nbsp;    return new LoginViewModel_MembersInjector(authRepositoryProvider, userRepositoryProvider, sharedPreferencesProvider);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public void injectMembers(LoginViewModel instance) {
+<b class="nc">&nbsp;    injectAuthRepository(instance, authRepositoryProvider.get());</b>
+<b class="nc">&nbsp;    injectUserRepository(instance, userRepositoryProvider.get());</b>
+<b class="nc">&nbsp;    injectSharedPreferences(instance, sharedPreferencesProvider.get());</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @InjectedFieldSignature(&quot;br.com.petsus.screen.login.start.LoginViewModel.authRepository&quot;)
+&nbsp;  public static void injectAuthRepository(LoginViewModel instance, AuthRepository authRepository) {
+<b class="nc">&nbsp;    instance.authRepository = authRepository;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @InjectedFieldSignature(&quot;br.com.petsus.screen.login.start.LoginViewModel.userRepository&quot;)
+&nbsp;  public static void injectUserRepository(LoginViewModel instance, UserRepository userRepository) {
+<b class="nc">&nbsp;    instance.userRepository = userRepository;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @InjectedFieldSignature(&quot;br.com.petsus.screen.login.start.LoginViewModel.sharedPreferences&quot;)
+&nbsp;  public static void injectSharedPreferences(LoginViewModel instance,
+&nbsp;      AppPreferences sharedPreferences) {
+<b class="nc">&nbsp;    instance.sharedPreferences = sharedPreferences;</b>
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

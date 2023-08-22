@@ -1,0 +1,305 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ClinicFragment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.screen.home.fragment.clinics</a>
+</div>
+
+<h1>Coverage Summary for Class: ClinicFragment (br.com.petsus.screen.home.fragment.clinics)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClinicFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ClinicFragment$onCreate$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$onCreate$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$sam$androidx_lifecycle_Observer$0</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$special$$inlined$viewModels$default$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ClinicFragment$special$$inlined$viewModels$default$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/42)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.screen.home.fragment.clinics
+&nbsp;
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import androidx.activity.result.contract.ActivityResultContracts
+&nbsp;import androidx.fragment.app.viewModels
+&nbsp;import br.com.petsus.api.model.clinic.ClinicAddress
+&nbsp;import br.com.petsus.databinding.FragmentClinicBinding
+&nbsp;import br.com.petsus.screen.home.fragment.clinics.details.ClinicDetailsBottomSheet
+&nbsp;import br.com.petsus.util.base.fragment.BaseFragment
+&nbsp;import br.com.petsus.util.tool.cast
+&nbsp;import br.com.petsus.util.tool.latLng
+&nbsp;import com.google.android.gms.maps.CameraUpdateFactory
+&nbsp;import com.google.android.gms.maps.GoogleMap
+&nbsp;import com.google.android.gms.maps.SupportMapFragment
+&nbsp;import com.google.android.gms.maps.model.LatLng
+&nbsp;import com.google.android.gms.maps.model.MarkerOptions
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class ClinicFragment : BaseFragment&lt;FragmentClinicBinding&gt;() {</b>
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: ClinicViewModel by viewModels()</b>
+&nbsp;
+<b class="nc">&nbsp;    private val requestLocation = registerForActivityResult(ActivityResultContracts.RequestPermission()) { result -&gt;</b>
+<b class="nc">&nbsp;        viewModel.handlerPermission(result)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val requestEnableGPS = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result -&gt;</b>
+<b class="nc">&nbsp;        viewModel.handlerEnableGPS(result)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private val maps: SupportMapFragment?
+&nbsp;        get() {
+<b class="nc">&nbsp;            val id = binding?.containerClinic?.id ?: return null</b>
+<b class="nc">&nbsp;            return childFragmentManager</b>
+<b class="nc">&nbsp;                .findFragmentById(id)</b>
+<b class="nc">&nbsp;                ?.cast&lt;SupportMapFragment&gt;()</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        viewModel.verifyPermissionGPS(requestLocation) { isEnable -&gt;</b>
+<b class="nc">&nbsp;            if (isEnable)</b>
+<b class="nc">&nbsp;                viewModel.enableGPSAndLoadLocation(requestEnableGPS)</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        viewModel.location().observe(this) { currentLocation -&gt;</b>
+<b class="nc">&nbsp;            val supportMapFragment = maps ?: return@observe</b>
+<b class="nc">&nbsp;            supportMapFragment.getMapAsync { googleMap -&gt;</b>
+<b class="nc">&nbsp;                googleMap.addMarker(</b>
+<b class="nc">&nbsp;                    MarkerOptions()</b>
+<b class="nc">&nbsp;                        .position(currentLocation.latLng)</b>
+<b class="nc">&nbsp;                        .title(&quot;You&quot;)</b>
+&nbsp;                )
+<b class="nc">&nbsp;                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.latLng, 15f))</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        viewModel.clinics().observe(this) { clinics -&gt;</b>
+<b class="nc">&nbsp;            val supportMapFragment = maps ?: return@observe</b>
+<b class="nc">&nbsp;            supportMapFragment.getMapAsync { googleMap -&gt;</b>
+<b class="nc">&nbsp;                googleMap.configure()</b>
+<b class="nc">&nbsp;                googleMap.addListener(clinics)</b>
+&nbsp;
+<b class="nc">&nbsp;                clinics.forEach { clinic -&gt;</b>
+<b class="nc">&nbsp;                    googleMap.addMarker(</b>
+<b class="nc">&nbsp;                        MarkerOptions()</b>
+<b class="nc">&nbsp;                            .position(LatLng(clinic.lat, clinic.lng))</b>
+<b class="nc">&nbsp;                            .title(clinic.name)</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                }</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+<b class="nc">&nbsp;        binding = FragmentClinicBinding.inflate(inflater, container, false)</b>
+<b class="nc">&nbsp;        return binding?.root</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun GoogleMap.configure() {
+<b class="nc">&nbsp;        uiSettings.isCompassEnabled = false</b>
+<b class="nc">&nbsp;        uiSettings.isMapToolbarEnabled = false</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun GoogleMap.addListener(clinics: List&lt;ClinicAddress&gt;) {
+<b class="nc">&nbsp;        setOnMarkerClickListener { marker -&gt;</b>
+<b class="nc">&nbsp;            val clinic = clinics.firstOrNull { clinic -&gt; clinic.lat == marker.position.latitude &amp;&amp; clinic.lng == marker.position.longitude } ?: return@setOnMarkerClickListener true</b>
+<b class="nc">&nbsp;            ClinicDetailsBottomSheet(clinic.id)</b>
+<b class="nc">&nbsp;                .show(childFragmentManager, null)</b>
+<b class="nc">&nbsp;            return@setOnMarkerClickListener true</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>

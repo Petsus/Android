@@ -2,9 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <permission android:name="br.com.petsus.ACTIVITY_PERMISSION"
+        android:description="@string/default_permission"
+        android:label="@string/default_permission"
+        android:protectionLevel="normal"/>
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".application.AppApplication"
@@ -48,12 +58,11 @@
 
         <activity
             android:name=".screen.login.reset.SendResetPasswordActivity"
-            android:exported="true">
+            android:exported="true"
+            android:permission="br.com.petsus.ACTIVITY_PERMISSION">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
@@ -90,15 +99,14 @@
 
         <activity android:name=".screen.about.AboutAppActivity" />
 
-        <activity android:name=".screen.address.list.AddressActivity" />
+        <activity android:name=".screen.address.AddressActivity" />
 
-        <activity android:name=".screen.animal.history.HistoryMedicalAnimalActivity" />
+        <activity android:name=".screen.notification.NotificationActivity" />
 
-        <activity android:name=".screen.animal.history.AddHistoryMedicalAnimalActivity" />
+        <activity android:name=".screen.animal.history.list.HistoryMedicalAnimalActivity" />
 
-        <activity
-            android:name=".screen.address.add.AddUpdateAddressActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".screen.animal.history.add.AddHistoryMedicalAnimalActivity" />
+
 
         <activity
             android:name=".screen.animal.update.UpdateAnimalActivity"
@@ -110,6 +118,10 @@
 
         <activity
             android:name=".screen.login.start.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".screen.animal.create.CreateAnimalActivity"
             android:windowSoftInputMode="adjustResize" />
 
     </application>

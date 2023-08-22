@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tabs_clinic_details">
+        <item>Informações</item>
+        <item>Espécies</item>
+        <item>Exames</item>
+        <item>Vacinas</item>
+    </array>
+    <string-array name="channels_id">
+        <item>news</item>
+        <item>warnings</item>
+        <item>others</item>
+    </string-array>
+    <string-array name="channels_name">
+        <item>Notícias</item>
+        <item>Avisos</item>
+        <item>Outros</item>
+    </string-array>
+    <string-array name="channels_description">
+        <item>Avisos de noticias importantes de sua região</item>
+        <item>Mensagens importantes ou alertas sobre seu animal</item>
+        <item>Mensagens diversas</item>
+    </string-array>
+    <integer-array name="channels_level">
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+    </integer-array>
+</resources>

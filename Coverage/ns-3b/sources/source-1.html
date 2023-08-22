@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BaseLoading</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.petsus.util.custom.loading</a>
+</div>
+
+<h1>Coverage Summary for Class: BaseLoading (br.com.petsus.util.custom.loading)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BaseLoading</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.petsus.util.custom.loading
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import android.graphics.Color
+&nbsp;import android.graphics.drawable.ColorDrawable
+&nbsp;import android.util.AttributeSet
+&nbsp;import android.view.Gravity
+&nbsp;import android.view.View
+&nbsp;import android.widget.FrameLayout
+&nbsp;import androidx.core.content.ContextCompat
+&nbsp;import androidx.core.view.isInvisible
+&nbsp;import br.com.petsus.R
+&nbsp;import com.google.android.material.progressindicator.CircularProgressIndicator
+&nbsp;
+&nbsp;class BaseLoading @JvmOverloads constructor(
+&nbsp;    context: Context,
+<b class="nc">&nbsp;    attrs: AttributeSet? = null,</b>
+<b class="nc">&nbsp;    defStyleAttr: Int = 0,</b>
+<b class="nc">&nbsp;    defStyleRes: Int = 0</b>
+<b class="nc">&nbsp;) : FrameLayout(</b>
+<b class="nc">&nbsp;    context, attrs, defStyleAttr, defStyleRes</b>
+&nbsp;) {
+&nbsp;
+<b class="nc">&nbsp;    private val loader = CircularProgressIndicator(context)</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        loader.isIndeterminate = true</b>
+<b class="nc">&nbsp;        addView(loader, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, Gravity.CENTER))</b>
+<b class="nc">&nbsp;        background = ColorDrawable(ContextCompat.getColor(context, R.color.md_theme_background))</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    fun show() {
+<b class="nc">&nbsp;        isInvisible = false</b>
+<b class="nc">&nbsp;        loader.show()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun hide() {
+<b class="nc">&nbsp;        isInvisible = true</b>
+<b class="nc">&nbsp;        loader.hide()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 20:19</div>
+</div>
+</body>
+</html>
