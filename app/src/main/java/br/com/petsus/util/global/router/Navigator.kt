@@ -87,4 +87,9 @@ class Navigator private constructor(
         fragmentManager.popBackStack()
     }
 
+    fun clear() {
+        fragmentManager.commit {
+            fragmentManager.fragments.forEach(this::remove)
+        }
+    }
 }

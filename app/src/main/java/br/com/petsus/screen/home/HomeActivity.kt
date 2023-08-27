@@ -32,6 +32,8 @@ class HomeActivity : AppActivity() {
         ActivityHomeBinding.inflate(layoutInflater).apply {
             setContentView(root)
             val navigator = Navigator.of(homeContainer)
+
+            navigator.clear()
             navigator.add(content.values.toList())
 
             content.keys.firstOrNull()?.let { id ->

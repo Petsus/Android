@@ -61,14 +61,6 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
-    override fun name(): Flow<String> {
-        return flow {
-            getUser().collect {
-                emit(it.name)
-            }
-        }
-    }
-
     override fun saveImage(uri: Uri): Flow<Boolean> {
         return flow {
             delayDefault()

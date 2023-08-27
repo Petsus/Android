@@ -1,5 +1,7 @@
 package br.com.petsus.util.global.dialog
 
+import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,19 @@ class LoadingFragment @JvmOverloads constructor(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_FRAME, R.style.AppTheme_Petsus_DialogBase)
+
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(requireContext(), theme) {
+            init {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    onBackInvokedDispatcher.registerOnBackInvokedCallback(100) { }
+                }
+            }
+            @Suppress("OVERRIDE_DEPRECATION")
+            override fun onBackPressed() = Unit
+        }
     }
 
     fun close(closing: Action<Unit>? = null) {

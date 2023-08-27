@@ -45,7 +45,6 @@ class ProfileFragment : AppFragment<FragmentProfileBinding>() {
     }
 
     private fun configureView(binding: FragmentProfileBinding) {
-
         viewModel.name().observe(viewLifecycleOwner) { name ->
             binding.nameUser.text = name
         }

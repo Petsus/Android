@@ -15,7 +15,6 @@ interface UserRepository {
     fun createUser(body: CreateUser): Flow<AuthToken>
     fun getUser(): Flow<User>
     fun update(body: User): Flow<EmptyResponse>
-    fun name(): Flow<String>
     fun saveImage(uri: Uri): Flow<Boolean>
     fun currentImage(): Flow<String?>
 }

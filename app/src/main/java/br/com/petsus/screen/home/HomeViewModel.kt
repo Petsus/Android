@@ -13,6 +13,7 @@ import br.com.petsus.api.service.auth.SessionRepository
 import br.com.petsus.api.service.notification.NotificationRepository
 import br.com.petsus.api.service.others.NewsRepository
 import br.com.petsus.api.service.user.UserRepository
+import br.com.petsus.service.publisher.UserPublisher
 import br.com.petsus.util.base.viewmodel.AppViewModel
 import br.com.petsus.util.global.ResultState
 import br.com.petsus.util.tool.baseFlow
@@ -24,11 +25,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(application: Application) : AppViewModel(application) {
+class HomeViewModel @Inject constructor(
+    application: Application,
+    private val publisher: UserPublisher
+) : AppViewModel(application) {
 
     @Inject
     lateinit var userRepository: UserRepository
@@ -66,8 +71,12 @@ class HomeViewModel @Inject constructor(application: Application) : AppViewModel
     fun animals() = flowStateAnimal.asLiveData()
 
     fun name() = liveData {
-        userRepository.name()
-            .collector(this, viewModel = this@HomeViewModel)
+        publisher.current
+            .map { user -> user.name }
+            .collector(
+                liveDataScope = this,
+                viewModel = this@HomeViewModel
+            )
     }
 
     fun handlerImage(uri: Uri) = liveData {

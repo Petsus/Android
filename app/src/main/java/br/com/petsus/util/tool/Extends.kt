@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Parcelable
+import android.util.Patterns
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -74,6 +75,12 @@ val Number.pixel: Int
 
 val String?.isName: Boolean
     get() = Pattern.compile("^[a-záàâãéèêíïóôõöúçñ ]+\$").matcher(this?.lowercase() ?: "").matches()
+
+val String?.isEmail: Boolean
+    get() = Patterns.EMAIL_ADDRESS.matcher(this?.lowercase() ?: "").matches()
+
+val String?.isPhone: Boolean
+    get() = Pattern.compile("^[0123456789]+\$").matcher((this?.lowercase() ?: "").replace("[^0-9]".toRegex(), "")).matches()
 
 val RecyclerView.ViewHolder.context: Context
     get() = itemView.context
@@ -177,5 +184,17 @@ suspend fun Context.addressFromLocation(latLng: LatLng): Address? {
             val address = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)?.firstOrNull() ?: throw Throwable()
             continuation.resume(address)
         }.onFailure { continuation.resumeWithException(it) }
+    }
+}
+inline fun <T> T.tryCatch(
+    viewModel: AppViewModelInterface?,
+    block: T.() -> Unit,
+    completion: () -> Unit
+) {
+    try {
+        block()
+        completion()
+    } catch (e: MessageThrowable) {
+        viewModel?.notify(e.messageString)
     }
 }

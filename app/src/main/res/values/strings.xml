@@ -85,4 +85,6 @@
     <string name="name_veterinary">Nome do veterinário</string>
     <string name="search">Pesquisar</string>
     <string name="empty_news">Sem notícias por enquanto</string>
+    <string name="invalid_name">Nome inválido</string>
+    <string name="invalid_phone">Celular inválido</string>
 </resources>
