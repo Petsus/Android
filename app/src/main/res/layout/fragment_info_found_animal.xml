@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:animateLayoutChanges="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <View
         android:layout_width="match_parent"
@@ -25,9 +25,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_info_details_notification"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:animateLayoutChanges="true"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -35,37 +37,37 @@
             style="@style/AppTheme.Petsus.Text.H0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/margin_default"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/margin_default" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/subtitle_notification_details"
             style="@style/AppTheme.Petsus.Text.H1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/title_notification_details"
+            android:layout_marginHorizontal="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default_x0.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/margin_default_x0.5"
-            android:layout_marginHorizontal="@dimen/margin_default" />
+            app:layout_constraintTop_toBottomOf="@id/title_notification_details" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_default"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:cardCornerRadius="@dimen/radius_default"
-            app:layout_constraintTop_toBottomOf="@id/subtitle_notification_details"
-            app:layout_constraintBottom_toTopOf="@id/button_redirect">
+            app:layout_constraintBottom_toTopOf="@id/button_redirect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle_notification_details">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container_maps_notification"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="com.google.android.gms.maps.SupportMapFragment" />
+                android:layout_height="match_parent" />
 
         </com.google.android.material.card.MaterialCardView>
 

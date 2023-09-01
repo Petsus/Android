@@ -76,7 +76,7 @@
     <string name="notifications">Notificações</string>
     <string name="close">Fechar</string>
     <string name="redirect_maps">Iniciar rota</string>
-    <string name="your_animal_found">%s foi localizado em:</string>
+    <string name="your_animal_found">%s foi localizado</string>
     <string name="qr_code_scanner">QRCode</string>
     <string name="confirm_and_continue">Confirmar e continuar</string>
     <string name="specie_animal">Espécie do animal</string>
