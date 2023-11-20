@@ -5,6 +5,8 @@ import br.com.petsus.api.model.user.User
 import br.com.petsus.databinding.ActivityEditProfileBinding
 import br.com.petsus.util.base.activity.AppActivity
 import br.com.petsus.util.base.viewmodel.appViewModels
+import br.com.petsus.util.tool.digits
+import br.com.petsus.util.tool.isPhone
 import br.com.petsus.util.tool.preventDoubleClick
 import br.com.petsus.util.tool.text
 import com.redmadrobot.inputmask.MaskedTextChangedListener
@@ -65,7 +67,7 @@ class EditProfileActivity : AppActivity() {
     }
 
     private fun User.insertValues() {
-        this.phone = binding.inputPhone.text
+        this.phone = binding.inputPhone.text?.digits
         this.name = binding.inputName.text ?: ""
         this.email = binding.inputEmail.text ?: ""
     }

@@ -18,12 +18,12 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 
 interface UserRepositoryRetrofit {
-    @POST("user/reset-password")
+    @POST("auth/reset-password")
     suspend fun resetPassword(@Body body: ResetPassword): Response<EmptyResponse>
     @POST("user/change-password")
     suspend fun changePassword(@Body body: ChangePassword): Response<EmptyResponse>
-    @POST("user")
-    suspend fun createUser(@Body body: CreateUser): Response<AuthToken>
+    @POST("auth/user")
+    suspend fun createUser(@Body body: CreateUser): Response<BaseResponse<AuthToken>>
     @GET("user")
     suspend fun getUser(): Response<BaseResponse<User>>
     @PATCH("user")

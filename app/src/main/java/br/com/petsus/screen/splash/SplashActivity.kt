@@ -24,10 +24,9 @@ class SplashActivity : AppActivity() {
         splashScreen.setKeepOnScreenCondition { true }
 
         viewModel.isLogged().observe(this) { result ->
-            when {
-                result == null -> openActivity(LoginActivity::class.java)
-                result.isFailure -> error(StringFormatter(throwable = result.exceptionOrNull()))
-                result.isSuccess -> openActivity(HomeActivity::class.java)
+            when (result?.isSuccess) {
+                true -> openActivity(HomeActivity::class.java)
+                else -> openActivity(LoginActivity::class.java)
             }
         }
     }

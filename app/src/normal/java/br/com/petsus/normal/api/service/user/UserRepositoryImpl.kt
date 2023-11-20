@@ -6,6 +6,7 @@ import br.com.petsus.BuildConfig
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.ChangePassword
 import br.com.petsus.api.model.auth.ResetPassword
+import br.com.petsus.api.model.base.BaseResponse
 import br.com.petsus.api.model.base.EmptyResponse
 import br.com.petsus.api.model.user.CreateUser
 import br.com.petsus.api.model.user.User
@@ -68,11 +69,6 @@ class UserRepositoryImpl(
             send(response = update)
         }
     }
-    override fun name(): Flow<String> {
-        return flow {
-            emit(appPreferences.getObject(Keys.KEY_USERNAME.valueKey, String::class.java) ?: "")
-        }
-    }
     override fun saveImage(uri: Uri): Flow<Boolean> {
         return flow {
             val update = ApiManager
@@ -86,7 +82,6 @@ class UserRepositoryImpl(
             emit(BuildConfig.BASE_URL + "user/image")
         }
     }
-
 }
 
 @Module

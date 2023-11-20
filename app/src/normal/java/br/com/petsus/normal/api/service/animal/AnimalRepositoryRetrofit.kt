@@ -18,13 +18,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AnimalRepositoryRetrofit {
-    @GET("animal/")
+    @GET("animal")
     suspend fun list(): Response<BaseResponse<List<Animal>>>
-    @GET("animal/races")
+    @GET("races")
     suspend fun races(): Response<BaseResponse<List<Race>>>
-    @GET("animal/races/specie/{specieId}")
+    @GET("races/specie/{specieId}")
     suspend fun races(@Path(value = "specieId") specieId: Long): Response<BaseResponse<List<Race>>>
-    @GET("animal/species")
+    @GET("species")
     suspend fun species(): Response<BaseResponse<List<Specie>>>
     @GET("animal/qrcode/{animalId}")
     suspend fun registerQrCode(@Path(value = "animalId") animalId: Long): Response<BaseResponse<String>>

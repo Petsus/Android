@@ -82,6 +82,9 @@ val String?.isEmail: Boolean
 val String?.isPhone: Boolean
     get() = Pattern.compile("^[0123456789]+\$").matcher((this?.lowercase() ?: "").replace("[^0-9]".toRegex(), "")).matches()
 
+val String?.digits: String?
+    get() = this?.run { replace("[^0-9]".toRegex(), "") }
+
 val RecyclerView.ViewHolder.context: Context
     get() = itemView.context
 

@@ -32,7 +32,7 @@ class AppPreferencesImpl(
     private val gson = Gson()
 
     override fun putObject(key: String, value: Any?) {
-        sharedPreferences.edit {
+        sharedPreferences.edit(commit = true) {
             when {
                 value == null -> putString(key, null)
                 value::class.java.isPrimitive -> putString(key, value.toString())
@@ -58,5 +58,4 @@ class AppPreferencesImpl(
             else -> gson.fromJson(valueItem, clazz)
         }
     }
-
 }

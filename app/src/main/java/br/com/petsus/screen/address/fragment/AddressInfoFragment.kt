@@ -14,6 +14,7 @@ import br.com.petsus.screen.address.AddressViewModel
 import br.com.petsus.util.base.fragment.AppFragment
 import br.com.petsus.util.base.fragment.findNavigation
 import br.com.petsus.util.base.viewmodel.StringFormatter
+import br.com.petsus.util.base.viewmodel.appActivityViewModels
 import br.com.petsus.util.tool.parcelable
 import br.com.petsus.util.tool.text
 import com.google.android.gms.maps.model.LatLng
@@ -25,7 +26,7 @@ class AddressInfoFragment : AppFragment<FragmentAddressInfoBinding>() {
         const val SEARCH_ADDRESS = "data_search_address"
     }
 
-    private val viewModel: AddressViewModel by activityViewModels()
+    private val viewModel: AddressViewModel by appActivityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAddressInfoBinding.inflate(inflater, container, false)

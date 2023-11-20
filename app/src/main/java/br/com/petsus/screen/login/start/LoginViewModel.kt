@@ -69,9 +69,7 @@ class LoginViewModel @Inject constructor(application: Application) : AppViewMode
                 loadUser(token)
                 return@map token
             }
-            .collector(this, onCollect = { authToken ->
-                sharedPreferences.putObject(Keys.KEY_TOKEN.valueKey, authToken)
-            }, viewModel = this@LoginViewModel)
+            .collector(this, viewModel = this@LoginViewModel)
     }
 
     private suspend fun loadUser(token: AuthToken) {

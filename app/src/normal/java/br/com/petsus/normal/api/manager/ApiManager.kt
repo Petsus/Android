@@ -10,15 +10,17 @@ import okhttp3.Route
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class ApiManager(sessionManager: SessionManager) {
     companion object {
-        lateinit var current: ApiManager
-            private set
+        private lateinit var current: ApiManager
 
         fun initialize(sessionManager: SessionManager) { current = ApiManager(sessionManager) }
 
         fun <T>create(clazz: Class<T>): T = current.retrofit.create(clazz)
+
+        private const val TIMEOUT = 60L
     }
 
     private val retrofit: Retrofit
@@ -33,6 +35,10 @@ class ApiManager(sessionManager: SessionManager) {
                         if (BuildConfig.DEBUG)
                             addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     }
+                    .callTimeout(TIMEOUT, TimeUnit.SECONDS)
+                    .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
                     .authenticator(AuthenticatorInterceptor(sessionManager = sessionManager))
                     .addInterceptor(AuthInterceptor(sessionManager = sessionManager))
                     .build()
@@ -55,7 +61,12 @@ class ApiManager(sessionManager: SessionManager) {
         override fun intercept(chain: Interceptor.Chain): Response {
             val builder = chain.request().newBuilder()
             insertHeaders(request = builder)
-            return chain.proceed(builder.build())
+
+            try {
+                return chain.proceed(builder.build())
+            } catch (e: Throwable) {
+                throw e
+            }
         }
 
         open fun insertHeaders(request: Request.Builder) {

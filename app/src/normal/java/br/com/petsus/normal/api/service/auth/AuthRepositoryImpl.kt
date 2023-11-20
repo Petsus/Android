@@ -3,6 +3,7 @@ package br.com.petsus.normal.api.service.auth
 import br.com.petsus.api.model.auth.AuthLogin
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.RefreshToken
+import br.com.petsus.api.model.base.BaseResponse
 import br.com.petsus.api.service.auth.AuthRepository
 import br.com.petsus.normal.api.exception.send
 import br.com.petsus.normal.api.manager.ApiManager

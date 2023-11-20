@@ -4,11 +4,11 @@ import android.net.Uri
 import br.com.petsus.api.model.auth.AuthToken
 import br.com.petsus.api.model.auth.ChangePassword
 import br.com.petsus.api.model.auth.ResetPassword
+import br.com.petsus.api.model.base.BaseResponse
 import br.com.petsus.api.model.base.EmptyResponse
 import br.com.petsus.api.model.user.CreateUser
 import br.com.petsus.api.model.user.User
 import kotlinx.coroutines.flow.Flow
-
 interface UserRepository {
     fun resetPassword(body: ResetPassword): Flow<EmptyResponse>
     fun changePassword(body: ChangePassword): Flow<EmptyResponse>
@@ -18,3 +18,4 @@ interface UserRepository {
     fun saveImage(uri: Uri): Flow<Boolean>
     fun currentImage(): Flow<String?>
 }
+

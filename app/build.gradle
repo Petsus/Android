@@ -61,10 +61,10 @@ android {
         }
         dev {
             signingConfig signingConfigs.debug
-            applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
+            debuggable true
 
-            buildConfigField("String", "BASE_URL", '"https://5c08-2804-431-cfcd-7cad-25e9-746-4ead-7e71.sa.ngrok.io/"')
+            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
             manifestPlaceholders = [
                     BASE_HOST : "5c08-2804-431-cfcd-7cad-25e9-746-4ead-7e71.sa.ngrok.io",
                     PORT_HOST : "8080",
