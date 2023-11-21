@@ -29,6 +29,7 @@ class SearchExamHistoryDialog(
     private val adapter: SimpleAdapter<Exam> = SimpleAdapter<Exam>().apply {
         addClickListener { item ->
             callback(item.second)
+            dismiss()
         }
     }
 

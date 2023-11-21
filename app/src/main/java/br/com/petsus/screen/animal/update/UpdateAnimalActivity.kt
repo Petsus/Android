@@ -220,7 +220,10 @@ class UpdateAnimalActivity : AppActivity() {
                 ?.apply {
                     val items = addresses.map(AppAddress::completeAddress).toTypedArray()
                     setSimpleItems(items)
-                    setText(items[addresses.indexOfFirst { animal.addressId == it.id }], false)
+                    addresses.indexOfFirst { animal.addressId == it.id }.apply {
+                        if (this >= 0)
+                            setText(items[this], false)
+                    }
                 }
         }
     }

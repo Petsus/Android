@@ -33,14 +33,14 @@ interface AnimalRepositoryRetrofit {
     @DELETE("animal/{animalId}")
     suspend fun delete(@Path(value = "animalId") animalId: Long): Response<Unit>
     @GET("animal/tag/{tagId}")
-    suspend fun getAnimalForTag(@Path(value = "tagId") tag: String): Response<Animal>
-    @POST("animal/")
-    fun createAnimal(@Body animal: CreateAnimal): Response<Animal>
+    suspend fun getAnimalForTag(@Path(value = "tagId") tag: String): Response<BaseResponse<Animal>>
+    @POST("animal")
+    suspend fun createAnimal(@Body animal: CreateAnimal): Response<BaseResponse<Animal>>
     @PUT("animal/{animalId}")
-    fun updateAnimal(@Path(value = "animalId") animalId: Long, @Body animal: Animal): Response<BaseResponse<Animal>>
+    suspend fun updateAnimal(@Path(value = "animalId") animalId: Long, @Body animal: Animal): Response<BaseResponse<Animal>>
     @PUT("animal/image/{id}")
-    fun updateImage(@Path(value = "id") id: Long, @Part body: MultipartBody.Part): Response<Unit>
+    suspend fun updateImage(@Path(value = "id") id: Long, @Part body: MultipartBody.Part): Response<Unit>
     @POST("animal/found")
-    fun notifyAnimalFounded(@Query("lat") lat: Double, @Query("lng") lng: Double, @Query("animalId") animalId: Long): Response<Unit>
+    suspend fun notifyAnimalFounded(@Query("lat") lat: Double, @Query("lng") lng: Double, @Query("animalId") animalId: Long): Response<Unit>
 }
 

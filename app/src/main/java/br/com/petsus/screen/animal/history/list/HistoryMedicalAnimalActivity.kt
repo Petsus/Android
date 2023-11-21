@@ -2,6 +2,7 @@ package br.com.petsus.screen.animal.history.list
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import br.com.petsus.api.model.animal.Animal
@@ -78,5 +79,4 @@ class HistoryMedicalAnimalActivity : AppActivity() {
             )
         }
     }
-
 }

@@ -30,7 +30,7 @@ class AnimalFragment (
 
     private val requestNewAnimalActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result != null && result.resultCode == RESULT_OK)
-            loadAnimals()
+            viewModel.getAnimals()
     }
 
     private val adapter: AnimalHomeAdapter = AnimalHomeAdapter().apply {

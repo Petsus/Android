@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:placeholderText="@string/search_exam">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_theme_onBackground" />
@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@id/search_exam"
                 app:placeholderText="@string/search_vaccine">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_theme_onBackground" />

@@ -13,6 +13,7 @@ import br.com.petsus.util.base.fragment.BaseBottomSheetDialogFragment
 import br.com.petsus.util.base.viewmodel.appViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,6 +46,11 @@ class DialogInfoFoundAnimal(
                 containerMapsNotification.getFragment<SupportMapFragment>().getMapAsync { googleMaps ->
                     googleMaps.moveCamera(
                         CameraUpdateFactory.newLatLngZoom(details.latLng, 16f)
+                    )
+                    googleMaps.addMarker(
+                        MarkerOptions()
+                            .title(details.name)
+                            .position(details.latLng)
                     )
                 }
             }

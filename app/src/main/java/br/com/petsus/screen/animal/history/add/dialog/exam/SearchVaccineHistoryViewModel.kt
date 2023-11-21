@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.petsus.api.model.clinic.Vaccine
 import br.com.petsus.api.service.animal.HistoryMedicalRepository
 import br.com.petsus.util.base.viewmodel.AppViewModel
+import br.com.petsus.util.tool.baseFlow
 import br.com.petsus.util.tool.collector
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -35,6 +36,7 @@ class SearchVaccineHistoryViewModel @Inject constructor(application: Application
             delay(3000)
 
             historyRepository.vaccines(text)
+                .baseFlow(viewModel = this@SearchVaccineHistoryViewModel)
                 .collect { items ->
                     searchVaccine.emit(items.map { item -> item.name to item })
                 }

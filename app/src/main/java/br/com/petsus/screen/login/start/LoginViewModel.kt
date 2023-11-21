@@ -9,6 +9,7 @@ import br.com.petsus.api.model.auth.ResetPassword
 import br.com.petsus.api.model.user.CreateUser
 import br.com.petsus.api.service.auth.AuthRepository
 import br.com.petsus.api.service.auth.SessionRepository
+import br.com.petsus.api.service.notification.NotificationRepository
 import br.com.petsus.api.service.user.UserRepository
 import br.com.petsus.application.preferences.AppPreferences
 import br.com.petsus.util.base.viewmodel.AppViewModel
@@ -23,12 +24,18 @@ class LoginViewModel @Inject constructor(application: Application) : AppViewMode
 
     @Inject
     lateinit var authRepository: AuthRepository
+
     @Inject
     lateinit var userRepository: UserRepository
+
     @Inject
     lateinit var sharedPreferences: AppPreferences
+
     @Inject
     lateinit var sessionRepository: SessionRepository
+
+    @Inject
+    lateinit var notificationRepository: NotificationRepository
 
     fun login(
         email: String?,
@@ -75,10 +82,11 @@ class LoginViewModel @Inject constructor(application: Application) : AppViewMode
     private suspend fun loadUser(token: AuthToken) {
         sessionRepository.token = token
         userRepository.getUser()
-            .collector(viewModel = this, onCollect =  { user ->
+            .collector(viewModel = this, onCollect = { user ->
                 sharedPreferences.putObject(Keys.KEY_USER.valueKey, user)
                 sharedPreferences.putObject(Keys.KEY_USERNAME.valueKey, user.name)
             })
+        notificationRepository.sendNotificationPushToken()
     }
 
 }

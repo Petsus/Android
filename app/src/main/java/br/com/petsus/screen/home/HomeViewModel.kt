@@ -68,6 +68,12 @@ class HomeViewModel @Inject constructor(
 
     fun news() = flowStateNews.asLiveData()
 
+    fun getAnimals() {
+        viewModelScope.launch {
+            animalRepository?.all()?.collectorState(stateFlow = flowStateAnimal)
+        }
+    }
+
     fun animals() = flowStateAnimal.asLiveData()
 
     fun name() = liveData {

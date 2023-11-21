@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import br.com.petsus.databinding.FragmentScanInfoBinding
 import br.com.petsus.util.base.fragment.BaseBottomSheetDialogFragment
@@ -55,11 +56,18 @@ class ScanAnimalDialog(
         super.onViewCreated(view, savedInstanceState)
         with(FragmentScanInfoBinding.bind(view)) {
             loadingScanInfo.show()
+
+            root.doOnLayout {
+                containerScan.minHeight = it.height
+            }
+
             viewModel.getAnimal(animalIdentifier).observe(viewLifecycleOwner) { animal ->
                 viewModel.verifyPermissionGPS(requestLocation) { isEnable ->
                     if (isEnable)
                         viewModel.enableGPSAndLoadLocation(requestEnableGPS)
                 }
+
+                nameAnimal.text = animal.name
 
                 viewModel.location().observe(viewLifecycleOwner) { currentLocation ->
                     loadingScanInfo.hide()
@@ -75,12 +83,10 @@ class ScanAnimalDialog(
 
                     confirmAndContinue.setOnClickListener { button ->
                         button.preventDoubleClick()
-                        LoadingFragment().apply {
-                            show(childFragmentManager, null)
-                            viewModel.sendAnimalFound(animal, currentLocation.latLng).observe(viewLifecycleOwner) {
-                                this.close {
-                                    this@ScanAnimalDialog.dismiss()
-                                }
+                        this@ScanAnimalDialog.showLoading()
+                        viewModel.sendAnimalFound(animal, currentLocation.latLng).observe(viewLifecycleOwner) {
+                            this@ScanAnimalDialog.closeLoading {
+                                this@ScanAnimalDialog.dismiss()
                             }
                         }
                     }

@@ -65,7 +65,7 @@ class UpdateAnimalViewModel @Inject constructor(application: Application) : AppV
     fun lastFiveRecords() = liveData {
         historyMedicalRepository.history()
             .transform {list ->
-                this.emit(list.subList(0, 5))
+                this.emit(list.takeLast(5))
             }
             .collector(this, viewModel = this@UpdateAnimalViewModel)
 

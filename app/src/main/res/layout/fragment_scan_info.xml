@@ -27,6 +27,10 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
         <com.google.android.material.card.MaterialCardView
@@ -47,6 +51,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name_animal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default_x0.5"
@@ -62,8 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_default"
-            app:layout_constraintTop_toBottomOf="@id/container_image_animal"
-            app:layout_constraintBottom_toTopOf="@id/confirm_and_continue" />
+            app:layout_constraintBottom_toTopOf="@id/confirm_and_continue"
+            app:layout_constraintTop_toBottomOf="@id/container_image_animal" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/confirm_and_continue"

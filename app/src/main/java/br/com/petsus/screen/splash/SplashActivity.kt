@@ -1,8 +1,11 @@
 package br.com.petsus.screen.splash
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import br.com.petsus.screen.home.HomeActivity
 import br.com.petsus.screen.login.start.LoginActivity
@@ -17,6 +20,8 @@ class SplashActivity : AppActivity() {
 
     private val viewModel: SplashViewModel by appViewModels()
 
+    private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +34,12 @@ class SplashActivity : AppActivity() {
                 else -> openActivity(LoginActivity::class.java)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            requestPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 
     private fun openActivity(clazz: Class<*>) {

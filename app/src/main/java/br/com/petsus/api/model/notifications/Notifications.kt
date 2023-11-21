@@ -8,5 +8,5 @@ import kotlinx.parcelize.Parcelize
 data class Notifications(
     @SerializedName("title") val title: String,
     @SerializedName("subtitle") val subtitle: String,
-    @SerializedName("notificationID") val notificationId: String?
+    @SerializedName("notificationId") val notificationId: String?
 ) : Parcelable

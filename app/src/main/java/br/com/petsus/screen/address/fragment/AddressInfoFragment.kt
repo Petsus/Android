@@ -15,6 +15,7 @@ import br.com.petsus.util.base.fragment.AppFragment
 import br.com.petsus.util.base.fragment.findNavigation
 import br.com.petsus.util.base.viewmodel.StringFormatter
 import br.com.petsus.util.base.viewmodel.appActivityViewModels
+import br.com.petsus.util.tool.digits
 import br.com.petsus.util.tool.parcelable
 import br.com.petsus.util.tool.text
 import com.google.android.gms.maps.model.LatLng
@@ -111,7 +112,7 @@ class AddressInfoFragment : AppFragment<FragmentAddressInfoBinding>() {
             address = address,
             nickname = nickname,
             complement = complement,
-            postalCode = postalCode,
+            postalCode = postalCode?.digits,
             lat = location.latitude,
             lng = location.longitude,
             neighborhood = neighborhood

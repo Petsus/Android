@@ -14,10 +14,10 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HistoryMedicalRepositoryRetrofit {
-    @GET("exams")
+    @GET("exam")
     suspend fun exams(@Query("q") query: String?): Response<BaseResponse<List<Exam>>>
 
-    @GET("vaccines")
+    @GET("vaccine")
     suspend fun vaccines(@Query("q") query: String?): Response<BaseResponse<List<Vaccine>>>
 
     @GET("history")

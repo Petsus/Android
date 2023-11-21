@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.addTextChangedListener
 import br.com.petsus.R
@@ -18,6 +17,7 @@ import br.com.petsus.api.model.animal.Specie
 import br.com.petsus.databinding.ActivityCreateAnimalBinding
 import br.com.petsus.util.base.activity.AppActivity
 import br.com.petsus.util.base.viewmodel.MessageThrowable
+import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.cast
 import br.com.petsus.util.tool.format
 import br.com.petsus.util.tool.pixel
@@ -57,7 +57,7 @@ class CreateAnimalActivity : AppActivity() {
         ActivityCreateAnimalBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: CreateAnimalViewModel by viewModels()
+    private val viewModel: CreateAnimalViewModel by appViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,13 +103,16 @@ class CreateAnimalActivity : AppActivity() {
                 .onFailure { error -> this.error(error.cast<MessageThrowable>().appMessage) }
                 .onSuccess { animal ->
                     showLoading()
-                    viewModel.create(animal).observe(this) { finish() }
+                    viewModel.create(animal).observe(this) {
+                        setResult(RESULT_OK)
+                        finish()
+                    }
                 }
         }
 
         binding.nameAnimal.editText?.addTextChangedListener(afterTextChanged = { text -> text?.toString()?.run(animalBuilder::setName) })
-        binding.weightAnimal.editText?.addTextChangedListener(afterTextChanged = { text -> text?.toString()?.toFloat()?.run(animalBuilder::setWeight) })
-        binding.heightAnimal.editText?.addTextChangedListener(afterTextChanged = { text -> text?.toString()?.toInt()?.run(animalBuilder::setHeight) })
+        binding.weightAnimal.editText?.addTextChangedListener(afterTextChanged = { text -> text?.toString()?.toFloatOrNull()?.run(animalBuilder::setWeight) })
+        binding.heightAnimal.editText?.addTextChangedListener(afterTextChanged = { text -> text?.toString()?.toIntOrNull()?.run(animalBuilder::setHeight) })
 
         viewModel.addresses().observe(this) { address ->
             binding.addressAnimal.editText?.cast<MaterialAutoCompleteTextView>()?.apply {

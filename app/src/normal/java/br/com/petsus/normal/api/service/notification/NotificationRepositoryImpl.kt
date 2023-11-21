@@ -43,7 +43,7 @@ class NotificationRepositoryImpl(
         }
     }
 
-    override fun tokenNotification(token: String) {
+    override suspend fun tokenNotification(token: String) {
         runCatching {
             appPreferences.putObject(Keys.KEY_PUSH_TOKEN.valueKey, token)
             ApiManager
@@ -87,6 +87,11 @@ class NotificationRepositoryImpl(
                 .details(id = notificationId)
             send(response = response)
         }
+    }
+
+    override suspend fun sendNotificationPushToken() {
+        val pushToken = appPreferences.getObject(Keys.KEY_PUSH_TOKEN.valueKey, String::class.java) ?: return
+        tokenNotification(token = pushToken)
     }
 }
 

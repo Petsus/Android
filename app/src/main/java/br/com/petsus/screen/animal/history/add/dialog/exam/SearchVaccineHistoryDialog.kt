@@ -29,6 +29,7 @@ class SearchVaccineHistoryDialog(
     private val adapter: SimpleAdapter<Vaccine> = SimpleAdapter<Vaccine>().apply {
         addClickListener { item ->
             callback(item.second)
+            dismiss()
         }
     }
 

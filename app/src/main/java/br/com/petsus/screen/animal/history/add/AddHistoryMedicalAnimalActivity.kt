@@ -11,7 +11,9 @@ import br.com.petsus.util.base.activity.AppActivity
 import br.com.petsus.util.base.viewmodel.appViewModels
 import br.com.petsus.util.tool.messageString
 import br.com.petsus.util.tool.parcelable
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddHistoryMedicalAnimalActivity : AppActivity() {
     companion object {
         const val EXTRA_ANIMAL = "extra_animal"
@@ -57,7 +59,10 @@ class AddHistoryMedicalAnimalActivity : AppActivity() {
             }.onFailure { error ->
                 this.error(error.messageString)
             }.onSuccess { history ->
-                viewModel.create(history).observe(this) { finish() }
+                viewModel.create(history).observe(this) {
+                    setResult(RESULT_OK)
+                    finish()
+                }
             }
         }
     }

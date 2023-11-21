@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import br.com.petsus.util.tool.format
 import br.com.petsus.util.tool.isName
 import br.com.petsus.util.tool.toDate
 import com.google.gson.annotations.SerializedName
@@ -19,12 +20,12 @@ data class Animal(
     @SerializedName("height") var height: Int,
     @SerializedName("race") var race: Race,
     @SerializedName("birthday") var birthday: String,
-    @SerializedName("qrcode") var qrcode: String?,
+    @SerializedName("qrCode") var qrcode: String?,
     @SerializedName("addressId") var addressId: Long,
 ) : Parcelable, BaseObservable() {
 
     val formattedBirthday: String
-        get() = birthday
+        get() = birthday.toDate("")?.format() ?: ""
 
     val age: Int
         get() {

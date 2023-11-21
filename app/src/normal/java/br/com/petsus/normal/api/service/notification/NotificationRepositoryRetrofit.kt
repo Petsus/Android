@@ -17,13 +17,13 @@ import retrofit2.http.Url
 
 interface NotificationRepositoryRetrofit {
     @GET("notification")
-    fun list(): Response<BaseResponse<List<Notifications>>>
+    suspend fun list(): Response<BaseResponse<List<Notifications>>>
     @PUT("notification/push-token")
     fun registerPushToken(@Body pushTokenRequest: PushTokenRequest): Response<EmptyResponse>
     @DELETE("notification/push-token")
     fun unregisterPushToken(@Header("Authorization") token: String, @Body pushTokenRequest: PushTokenRequest): Response<EmptyResponse>
     @GET("notification/{id}")
-    fun details(@Path(value = "id") id: String): Response<NotificationsAnimal>
+    suspend fun details(@Path(value = "id") id: String): Response<BaseResponse<NotificationsAnimal>>
     @GET
-    fun image(@Url urlImage: String): Response<ResponseBody>
+    suspend fun image(@Url urlImage: String): Response<ResponseBody>
 }

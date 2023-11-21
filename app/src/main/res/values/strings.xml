@@ -87,4 +87,5 @@
     <string name="empty_news">Sem notícias por enquanto</string>
     <string name="invalid_name">Nome inválido</string>
     <string name="invalid_phone">Celular inválido</string>
+    <string name="without_veterinary">Sem veterinário</string>
 </resources>

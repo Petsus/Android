@@ -16,6 +16,7 @@ import androidx.core.app.NotificationManagerCompat
 import br.com.petsus.R
 import br.com.petsus.api.service.notification.NotificationRepository
 import br.com.petsus.screen.notification.NotificationActivity
+import kotlinx.coroutines.flow.catch
 
 class AppNotification private constructor(
     private val context: Context,
@@ -33,22 +34,27 @@ class AppNotification private constructor(
             title = value
             return this
         }
+
         fun subtitle(value: String?): Builder {
             subtitle = value
             return this
         }
+
         fun image(value: String?): Builder {
             image = value
             return this
         }
+
         fun channel(value: String?): Builder {
             channel = value
             return this
         }
+
         fun notificationId(value: String?): Builder {
             notificationId = value
             return this
         }
+
         suspend fun builder(context: Context): AppNotification {
             assert(!title.isNullOrBlank())
             val style = style()
@@ -72,9 +78,11 @@ class AppNotification private constructor(
         private suspend fun style(): NotificationCompat.Style {
             val urlImage = image ?: return NotificationCompat.BigTextStyle().bigText(subtitle)
             var imgBitmap: Bitmap? = null
-            notificationRepository.downloadImage(urlImage).collect { newImage ->
-                imgBitmap = newImage
-            }
+            notificationRepository.downloadImage(urlImage)
+                .catch { it.printStackTrace() }
+                .collect { newImage ->
+                    imgBitmap = newImage
+                }
             return NotificationCompat.BigPictureStyle()
                 .bigPicture(imgBitmap)
         }
@@ -92,7 +100,7 @@ class AppNotification private constructor(
 
     @JvmName("createNotification")
     fun notify() {
-        when  {
+        when {
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> showNotification()
             ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) ==
                     PackageManager.PERMISSION_GRANTED -> showNotification()
