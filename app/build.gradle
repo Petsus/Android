@@ -51,7 +51,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField("String", "BASE_URL", '"http://10.0.2.2:8080/"')
+            buildConfigField("String", "BASE_URL", '"https://api.petsus.app.br/"')
             manifestPlaceholders = [
                     BASE_HOST : "10.0.2.2",
                     PORT_HOST : "8080",
