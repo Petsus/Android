@@ -53,8 +53,8 @@ android {
 
             buildConfigField("String", "BASE_URL", '"https://api.petsus.app.br/"')
             manifestPlaceholders = [
-                    BASE_HOST : "10.0.2.2",
-                    PORT_HOST : "8080",
+                    BASE_HOST : "api.petsus.app.br",
+                    PORT_HOST : "",
                     MAPS_API_KEY : propertiesValues.getProperty("google.maps.key"),
                     PLACE_API_KEY : propertiesValues.getProperty("google.places.key")
             ]

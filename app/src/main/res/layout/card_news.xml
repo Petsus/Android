@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/sample1" />
+        tools:src="@drawable/cat_and_dog" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_news"
